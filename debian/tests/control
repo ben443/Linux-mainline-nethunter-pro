@@ -18,37 +18,37 @@ Test-Command: debian/tests/headers-kbuild 6.7.12-amd64
 Architecture: amd64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-amd64
-Depends: linux-headers-6.7.12-amd64, linux-image-6.7.12-amd64-unsigned
+Depends: linux-headers-6.7.12-amd64, linux-image-6.7.12-amd64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-cloud-amd64
 Architecture: amd64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-cloud-amd64
-Depends: linux-headers-6.7.12-cloud-amd64, linux-image-6.7.12-cloud-amd64-unsigned
+Depends: linux-headers-6.7.12-cloud-amd64, linux-image-6.7.12-cloud-amd64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-rt-amd64
 Architecture: amd64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-rt-amd64
-Depends: linux-headers-6.7.12-rt-amd64, linux-image-6.7.12-rt-amd64-unsigned
+Depends: linux-headers-6.7.12-rt-amd64, linux-image-6.7.12-rt-amd64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-arm64
 Architecture: arm64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-arm64
-Depends: linux-headers-6.7.12-arm64, linux-image-6.7.12-arm64-unsigned
+Depends: linux-headers-6.7.12-arm64, linux-image-6.7.12-arm64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-cloud-arm64
 Architecture: arm64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-cloud-arm64
-Depends: linux-headers-6.7.12-cloud-arm64, linux-image-6.7.12-cloud-arm64-unsigned
+Depends: linux-headers-6.7.12-cloud-arm64, linux-image-6.7.12-cloud-arm64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-rt-arm64
 Architecture: arm64
 Restrictions: skip-not-installable, superficial
 Features: test-name=headers-kbuild-rt-arm64
-Depends: linux-headers-6.7.12-rt-arm64, linux-image-6.7.12-rt-arm64-unsigned
+Depends: linux-headers-6.7.12-rt-arm64, linux-image-6.7.12-rt-arm64
 
 Test-Command: debian/tests/headers-kbuild 6.7.12-rpi
 Architecture: armel

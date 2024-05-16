@@ -1,16 +1,19 @@
 Source: linux
 Section: kernel
 Priority: optional
-Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
-Uploaders: Bastian Blank <waldi@debian.org>, maximilian attems <maks@debian.org>, Ben Hutchings <benh@debian.org>, Salvatore Bonaccorso <carnil@debian.org>
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: Raphaël Hertzog <hertzog@debian.org>, Sophie Brun <sophie@offensive-security.com>
 Standards-Version: 4.2.0
 Build-Depends: debhelper-compat (= 12), dh-exec, python3:native, python3-dacite:native, python3-jinja2:native, quilt, cpio <!pkg.linux.nokernel>, xz-utils <!pkg.linux.nokernel !pkg.linux.nosource>, dh-python <!pkg.linux.notools>, bison <!pkg.linux.nokernel>, flex (>= 2.6.1-1.1~) <!pkg.linux.nokernel>
 Build-Depends-Arch: bc <!pkg.linux.nokernel>, libssl-dev:native <!pkg.linux.nokernel>, libssl-dev <!pkg.linux.notools>, openssl (>= 1.1.0-1~) <!pkg.linux.nokernel>, libelf-dev:native <!pkg.linux.nokernel>, libelf-dev [linux-any] <!pkg.linux.notools>, lz4 [amd64 arm64] <!pkg.linux.nokernel>, pahole <!pkg.linux.nokernel> | dwarves:native (>= 1.16~) <!pkg.linux.nokernel>, gcc-13 [alpha amd64 arm64 armel armhf hppa i386 loong64 m68k mips mips64 mips64el mips64r6el mipsel powerpc ppc64 ppc64el riscv64 s390x sh4 sparc64] <!cross !pkg.linux.nokernel>, gcc-13-alpha-linux-gnu [alpha] <cross !pkg.linux.nokernel>, gcc-13-x86-64-linux-gnu [amd64] <cross !pkg.linux.nokernel>, gcc-13-aarch64-linux-gnu [arm64] <cross !pkg.linux.nokernel>, gcc-arm-linux-gnueabihf [arm64] <!pkg.linux.nokernel>, gcc-13-arm-linux-gnueabi [armel] <cross !pkg.linux.nokernel>, gcc-13-arm-linux-gnueabihf [armhf] <cross !pkg.linux.nokernel>, gcc-13-hppa-linux-gnu [hppa] <cross !pkg.linux.nokernel>, gcc-13-hppa64-linux-gnu [hppa] <!pkg.linux.nokernel>, gcc-13-i686-linux-gnu [i386] <cross !pkg.linux.nokernel>, gcc-13-loongarch64-linux-gnu [loong64] <cross !pkg.linux.nokernel>, gcc-13-m68k-linux-gnu [m68k] <cross !pkg.linux.nokernel>, gcc-13-mips-linux-gnu [mips] <cross !pkg.linux.nokernel>, gcc-13-mips64-linux-gnuabi64 [mips64] <cross !pkg.linux.nokernel>, gcc-13-mips64el-linux-gnuabi64 [mips64el] <cross !pkg.linux.nokernel>, gcc-13-mipsisa64r6el-linux-gnuabi64 [mips64r6el] <cross !pkg.linux.nokernel>, gcc-13-mipsel-linux-gnu [mipsel] <cross !pkg.linux.nokernel>, gcc-13-powerpc-linux-gnu [powerpc] <cross !pkg.linux.nokernel>, gcc-13-powerpc64-linux-gnu [ppc64] <cross !pkg.linux.nokernel>, gcc-13-powerpc64le-linux-gnu [ppc64el] <cross !pkg.linux.nokernel>, gcc-13-riscv64-linux-gnu [riscv64] <cross !pkg.linux.nokernel>, gcc-13-s390x-linux-gnu [s390x] <cross !pkg.linux.nokernel>, gcc-13-sh4-linux-gnu [sh4] <cross !pkg.linux.nokernel>, gcc-13-sparc64-linux-gnu [sparc64] <cross !pkg.linux.nokernel>, python3-docutils [amd64 arm64 armhf i386 linux-any x32] <!nodoc !pkg.linux.notools> <!pkg.linux.mintools !pkg.linux.notools>, binutils-dev [hppa] <!pkg.linux.mintools !pkg.linux.notools>, zlib1g-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libcap-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libpci-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, asciidoctor [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nodoc !nopython !pkg.linux.notools>, gcc-multilib [amd64 mips64 mips64el mips64r6 mips64r6el ppc64 s390x sparc64] <!cross>, libaudit-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libbabeltrace-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libdw-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libnewt-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libnuma-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libopencsd-dev (>= 1.1.1) [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libperl-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libpython3-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libtraceevent-dev (>= 1:1.5) [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64 x32] <!pkg.linux.mintools !pkg.linux.notools>, libunwind-dev [amd64 arm64 armel armhf hppa i386 mips mips64 mips64el mipsel powerpc ppc64 ppc64el sh4] <!nopython !pkg.linux.mintools !pkg.linux.notools>, libzstd-dev [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, python3-dev:any [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, python3-setuptools [alpha amd64 arm64 armel armhf hppa i386 loong64 mips mips64 mips64el mips64r6 mips64r6el mipsel mipsn32 mipsn32el mipsn32r6 mipsn32r6el mipsr6 mipsr6el powerpc ppc64 ppc64el riscv64 s390 s390x sh4 sparc sparc64] <!nopython !pkg.linux.mintools !pkg.linux.notools>, autoconf [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, automake [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libtool [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libglib2.0-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libudev-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libwrap0-dev [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, rsync [linux-any] <!pkg.linux.mintools !pkg.linux.notools>, libtracefs-dev (>= 1.3) [amd64 arm64 armhf i386 x32] <!pkg.linux.mintools !pkg.linux.notools>, kernel-wedge (>= 2.105~) [alpha amd64 arm64 armel armhf hppa i386 loong64 m68k mips mips64 mips64el mips64r6el mipsel powerpc ppc64 ppc64el riscv64 s390x sh4 sparc64] <!pkg.linux.nokernel>, kmod [alpha amd64 arm64 armel armhf hppa i386 loong64 m68k mips mips64 mips64el mips64r6el mipsel powerpc ppc64 ppc64el riscv64 s390x sh4 sparc64] <!pkg.linux.nokernel>
 Build-Depends-Indep: graphviz <!nodoc !pkg.linux.quick>, python3-sphinx <!nodoc !pkg.linux.quick>, python3-sphinx-rtd-theme <!nodoc !pkg.linux.quick>, texlive-latex-base <!nodoc !pkg.linux.quick>, texlive-latex-extra <!nodoc !pkg.linux.quick>, dvipng <!nodoc !pkg.linux.quick>, patchutils <!pkg.linux.nosource !pkg.linux.quick>, rsync
 Rules-Requires-Root: no
 Homepage: https://www.kernel.org/
-Vcs-Browser: https://salsa.debian.org/kernel-team/linux
-Vcs-Git: https://salsa.debian.org/kernel-team/linux.git
+Vcs-Browser: https://gitlab.com/kalilinux/packages/linux
+Vcs-Git: https://gitlab.com/kalilinux/packages/linux.git
+XS-Debian-Vcs-Browser: https://salsa.debian.org/kernel-team/linux
+XS-Debian-Vcs-Git: https://salsa.debian.org/kernel-team/linux.git
+XSBC-Original-Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
 
 Package: linux-support-6.7.12
 Architecture: all
@@ -850,14 +853,6 @@ Description: Debugging symbols for Linux alpha-smp configuration (meta-package)
  This package depends on the detached debugging symbols for the latest
  Linux kernel alpha-smp configuration.
 
-Package: linux-image-amd64-signed-template
-Architecture: amd64
-Build-Profiles: <!pkg.linux.nokernel>
-Depends: dpkg-dev, python3:any, ${misc:Depends}
-Description: Template for signed linux-image packages for amd64
- This package is used to control code signing by the Debian signing
- service.
-
 Package: linux-headers-6.7.12-amd64
 Architecture: amd64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
@@ -870,18 +865,34 @@ Description: Header files for Linux 6.7.12-amd64
  that load into the kernel provided by the linux-image-6.7.12-amd64
  package.
 
-Package: linux-image-6.7.12-amd64-unsigned
+Package: linux-image-6.7.12-amd64
 Architecture: amd64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [amd64] | linux-initramfs-tool [amd64]
 Recommends: firmware-linux-free, apparmor [amd64]
 Suggests: linux-doc-6.7, debian-kernel-handbook, grub-pc [amd64] | grub-efi-amd64 [amd64] | extlinux [amd64]
-Replaces: linux-image-6.7.12-amd64
 Breaks: fwupdate (<< 12-7) [amd64], wireless-regdb (<< 2019.06.03-1~) [amd64], initramfs-tools (<< 0.120+deb8u2) [amd64]
-Conflicts: linux-image-6.7.12-amd64
 Description: Linux 6.7 for 64-bit PCs
  The Linux kernel 6.7 and modules for use on PCs with AMD64, Intel 64 or
  VIA Nano processors.
+
+Package: linux-image-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-latest-modules-6.7.12-amd64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386], linux-image-generic
+Depends: linux-image-6.7.12-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for 64-bit PCs (meta-package)
+ This package depends on the latest Linux kernel and modules for use on PCs
+ with AMD64, Intel 64 or VIA Nano processors.
+
+Package: linux-headers-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-headers-generic
+Depends: linux-headers-6.7.12-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux amd64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel amd64 configuration.
 
 Package: linux-image-6.7.12-amd64-dbg
 Architecture: amd64
@@ -907,7 +918,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: kernel-image
 Kernel-Version: 6.7.12-amd64
 Description: Linux kernel image and core modules for the Debian installer
@@ -920,7 +931,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-modules, nic-extra-modules
 Depends: kernel-image-6.7.12-amd64-di, nic-shared-modules-6.7.12-amd64-di, i2c-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di, mtd-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -933,7 +944,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-wireless-modules
 Depends: kernel-image-6.7.12-amd64-di, nic-shared-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di, mmc-core-modules-6.7.12-amd64-di, pcmcia-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di, rfkill-modules-6.7.12-amd64-di, crypto-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -946,7 +957,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-shared-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di, i2c-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -959,7 +970,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: serial-modules
 Depends: kernel-image-6.7.12-amd64-di, pcmcia-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -971,7 +982,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-serial-modules
 Depends: kernel-image-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -983,7 +994,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ppp-modules
 Depends: kernel-image-6.7.12-amd64-di, serial-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -995,7 +1006,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: pata-modules
 Depends: kernel-image-6.7.12-amd64-di, ata-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1007,7 +1018,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: cdrom-core-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1019,7 +1030,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: firewire-core-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1031,7 +1042,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-core-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1043,7 +1054,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di, cdrom-core-modules-6.7.12-amd64-di, ata-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1055,7 +1066,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-nic-modules
 Depends: scsi-modules-6.7.12-amd64-di, nic-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1067,7 +1078,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: loop-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1079,7 +1090,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: btrfs-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di, md-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1091,7 +1102,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ext4-modules, ext2-modules, ext3-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1104,7 +1115,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: isofs-modules
 Depends: kernel-image-6.7.12-amd64-di, cdrom-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1116,7 +1127,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: jfs-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1128,7 +1139,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: xfs-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1140,7 +1151,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: fat-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1152,7 +1163,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: squashfs-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1164,7 +1175,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: udf-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di, cdrom-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1176,7 +1187,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: f2fs-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1188,7 +1199,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: md-modules
 Depends: kernel-image-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1200,7 +1211,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: multipath-modules
 Depends: kernel-image-6.7.12-amd64-di, md-modules-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1212,7 +1223,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1224,7 +1235,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-storage-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1236,7 +1247,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: pcmcia-storage-modules
 Depends: kernel-image-6.7.12-amd64-di, cdrom-core-modules-6.7.12-amd64-di, pcmcia-modules-6.7.12-amd64-di, ata-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1248,7 +1259,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: fb-modules
 Depends: kernel-image-6.7.12-amd64-di, i2c-modules-6.7.12-amd64-di, input-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1260,7 +1271,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: input-modules
 Depends: kernel-image-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di, i2c-modules-6.7.12-amd64-di, rfkill-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1272,7 +1283,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: event-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1284,7 +1295,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mouse-modules
 Depends: kernel-image-6.7.12-amd64-di, event-modules-6.7.12-amd64-di, input-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1296,7 +1307,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-pcmcia-modules
 Depends: kernel-image-6.7.12-amd64-di, nic-shared-modules-6.7.12-amd64-di, nic-wireless-modules-6.7.12-amd64-di, pcmcia-modules-6.7.12-amd64-di, mmc-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1308,7 +1319,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: pcmcia-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1320,7 +1331,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-usb-modules
 Depends: kernel-image-6.7.12-amd64-di, nic-shared-modules-6.7.12-amd64-di, nic-wireless-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1332,7 +1343,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: sata-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di, ata-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1344,7 +1355,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: acpi-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1356,7 +1367,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: i2c-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1368,7 +1379,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crc-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1380,7 +1391,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crypto-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1392,7 +1403,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crypto-dm-modules
 Depends: kernel-image-6.7.12-amd64-di, md-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1404,7 +1415,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: efi-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1416,7 +1427,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ata-modules
 Depends: kernel-image-6.7.12-amd64-di, scsi-core-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1429,7 +1440,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mmc-core-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1441,7 +1452,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mmc-modules
 Depends: kernel-image-6.7.12-amd64-di, mmc-core-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1454,7 +1465,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nbd-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1467,7 +1478,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: speakup-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1479,7 +1490,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: uinput-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1491,7 +1502,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: sound-modules
 Depends: kernel-image-6.7.12-amd64-di, i2c-modules-6.7.12-amd64-di, usb-modules-6.7.12-amd64-di, pcmcia-modules-6.7.12-amd64-di, firewire-core-modules-6.7.12-amd64-di, crc-modules-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1503,7 +1514,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mtd-core-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1515,7 +1526,7 @@ Package-Type: udeb
 Architecture: amd64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: rfkill-modules
 Depends: kernel-image-6.7.12-amd64-di
 Kernel-Version: 6.7.12-amd64
@@ -1534,18 +1545,34 @@ Description: Header files for Linux 6.7.12-cloud-amd64
  modules that load into the kernel provided by the
  linux-image-6.7.12-cloud-amd64 package.
 
-Package: linux-image-6.7.12-cloud-amd64-unsigned
+Package: linux-image-6.7.12-cloud-amd64
 Architecture: amd64
 Build-Profiles: <!pkg.linux.nokernel>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [amd64] | linux-initramfs-tool [amd64]
 Recommends: firmware-linux-free, apparmor [amd64]
 Suggests: linux-doc-6.7, debian-kernel-handbook, grub-pc [amd64] | grub-efi-amd64 [amd64] | extlinux [amd64]
-Replaces: linux-image-6.7.12-cloud-amd64
 Breaks: fwupdate (<< 12-7) [amd64], wireless-regdb (<< 2019.06.03-1~) [amd64], initramfs-tools (<< 0.120+deb8u2) [amd64]
-Conflicts: linux-image-6.7.12-cloud-amd64
 Description: Linux 6.7 for x86-64 cloud
  The Linux kernel 6.7 and modules for use on cloud platforms including
  Amazon EC2, Microsoft Azure, and Google Compute Engine.
+
+Package: linux-image-cloud-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa>
+Provides: linux-latest-modules-6.7.12-cloud-amd64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386]
+Depends: linux-image-6.7.12-cloud-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for x86-64 cloud (meta-package)
+ This package depends on the latest Linux kernel and modules for use on
+ cloud platforms including Amazon EC2, Microsoft Azure, and Google Compute
+ Engine.
+
+Package: linux-headers-cloud-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa>
+Depends: linux-headers-6.7.12-cloud-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux cloud-amd64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel cloud-amd64 configuration.
 
 Package: linux-image-6.7.12-cloud-amd64-dbg
 Architecture: amd64
@@ -1578,20 +1605,35 @@ Description: Header files for Linux 6.7.12-rt-amd64
  modules that load into the kernel provided by the
  linux-image-6.7.12-rt-amd64 package.
 
-Package: linux-image-6.7.12-rt-amd64-unsigned
+Package: linux-image-6.7.12-rt-amd64
 Architecture: amd64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [amd64] | linux-initramfs-tool [amd64]
 Recommends: firmware-linux-free, apparmor [amd64]
 Suggests: linux-doc-6.7, debian-kernel-handbook, grub-pc [amd64] | grub-efi-amd64 [amd64] | extlinux [amd64]
-Replaces: linux-image-6.7.12-rt-amd64
 Breaks: fwupdate (<< 12-7) [amd64], wireless-regdb (<< 2019.06.03-1~) [amd64], initramfs-tools (<< 0.120+deb8u2) [amd64]
-Conflicts: linux-image-6.7.12-rt-amd64
 Description: Linux 6.7 for 64-bit PCs, PREEMPT_RT
  The Linux kernel 6.7 and modules for use on PCs with AMD64, Intel 64 or
  VIA Nano processors.
  .
  This kernel includes the PREEMPT_RT realtime patch set.
+
+Package: linux-image-rt-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-latest-modules-6.7.12-rt-amd64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386]
+Depends: linux-image-6.7.12-rt-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for 64-bit PCs (meta-package)
+ This package depends on the latest Linux kernel and modules for use on PCs
+ with AMD64, Intel 64 or VIA Nano processors.
+
+Package: linux-headers-rt-amd64
+Architecture: amd64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Depends: linux-headers-6.7.12-rt-amd64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux rt-amd64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel rt-amd64 configuration.
 
 Package: linux-image-6.7.12-rt-amd64-dbg
 Architecture: amd64
@@ -1612,14 +1654,6 @@ Description: Debugging symbols for Linux rt-amd64 configuration (meta-package)
  This package depends on the detached debugging symbols for the latest
  Linux kernel rt-amd64 configuration.
 
-Package: linux-image-arm64-signed-template
-Architecture: arm64
-Build-Profiles: <!pkg.linux.nokernel>
-Depends: dpkg-dev, python3:any, ${misc:Depends}
-Description: Template for signed linux-image packages for arm64
- This package is used to control code signing by the Debian signing
- service.
-
 Package: linux-headers-6.7.12-arm64
 Architecture: arm64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
@@ -1632,17 +1666,33 @@ Description: Header files for Linux 6.7.12-arm64
  that load into the kernel provided by the linux-image-6.7.12-arm64
  package.
 
-Package: linux-image-6.7.12-arm64-unsigned
+Package: linux-image-6.7.12-arm64
 Architecture: arm64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [arm64] | linux-initramfs-tool [arm64]
 Recommends: firmware-linux-free, apparmor [arm64]
 Suggests: linux-doc-6.7, debian-kernel-handbook
-Replaces: linux-image-6.7.12-arm64
 Breaks: fwupdate (<< 12-7) [arm64], wireless-regdb (<< 2019.06.03-1~) [arm64], initramfs-tools (<< 0.120+deb8u2) [arm64]
-Conflicts: linux-image-6.7.12-arm64
 Description: Linux 6.7 for 64-bit ARMv8 machines
  The Linux kernel 6.7 and modules for use on 64-bit ARMv8 machines.
+
+Package: linux-image-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-latest-modules-6.7.12-arm64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386], linux-image-generic
+Depends: linux-image-6.7.12-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for 64-bit ARMv8 machines (meta-package)
+ This package depends on the latest Linux kernel and modules for use on
+ 64-bit ARMv8 machines.
+
+Package: linux-headers-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-headers-generic
+Depends: linux-headers-6.7.12-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux arm64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel arm64 configuration.
 
 Package: linux-image-6.7.12-arm64-dbg
 Architecture: arm64
@@ -1668,7 +1718,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: kernel-image, mmc-core-modules
 Kernel-Version: 6.7.12-arm64
 Description: Linux kernel image and core modules for the Debian installer
@@ -1681,7 +1731,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-modules, nic-extra-modules
 Depends: kernel-image-6.7.12-arm64-di, nic-shared-modules-6.7.12-arm64-di, i2c-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di, mtd-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1694,7 +1744,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-wireless-modules
 Depends: kernel-image-6.7.12-arm64-di, nic-shared-modules-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di, crypto-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1707,7 +1757,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-shared-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di, i2c-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1720,7 +1770,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-serial-modules
 Depends: kernel-image-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1732,7 +1782,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ppp-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1744,7 +1794,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: cdrom-core-modules
 Depends: kernel-image-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1756,7 +1806,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-core-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1768,7 +1818,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-modules
 Depends: kernel-image-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di, cdrom-core-modules-6.7.12-arm64-di, ata-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1780,7 +1830,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: scsi-nic-modules
 Depends: scsi-modules-6.7.12-arm64-di, nic-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1792,7 +1842,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: loop-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1804,7 +1854,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: btrfs-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di, md-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1816,7 +1866,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ext4-modules, ext2-modules, ext3-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1829,7 +1879,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: isofs-modules
 Depends: kernel-image-6.7.12-arm64-di, cdrom-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1841,7 +1891,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: jfs-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1853,7 +1903,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: xfs-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1865,7 +1915,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: fat-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1877,7 +1927,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: squashfs-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1889,7 +1939,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: udf-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di, cdrom-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1901,7 +1951,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: f2fs-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1913,7 +1963,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: md-modules
 Depends: kernel-image-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1925,7 +1975,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: multipath-modules
 Depends: kernel-image-6.7.12-arm64-di, md-modules-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1937,7 +1987,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1949,7 +1999,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: usb-storage-modules
 Depends: kernel-image-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1961,7 +2011,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: fb-modules
 Depends: kernel-image-6.7.12-arm64-di, i2c-modules-6.7.12-arm64-di, input-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1973,7 +2023,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: input-modules
 Depends: kernel-image-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di, i2c-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1985,7 +2035,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: event-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -1997,7 +2047,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nic-usb-modules
 Depends: kernel-image-6.7.12-arm64-di, nic-shared-modules-6.7.12-arm64-di, nic-wireless-modules-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2009,7 +2059,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: standard
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: sata-modules
 Depends: kernel-image-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di, ata-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2021,7 +2071,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: i2c-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2033,7 +2083,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crc-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2045,7 +2095,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crypto-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2057,7 +2107,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: crypto-dm-modules
 Depends: kernel-image-6.7.12-arm64-di, md-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2069,7 +2119,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: efi-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2081,7 +2131,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: ata-modules
 Depends: kernel-image-6.7.12-arm64-di, scsi-core-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2094,7 +2144,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mmc-modules
 Depends: kernel-image-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2107,7 +2157,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: nbd-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2120,7 +2170,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: speakup-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2132,7 +2182,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: uinput-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2144,7 +2194,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: sound-modules
 Depends: kernel-image-6.7.12-arm64-di, i2c-modules-6.7.12-arm64-di, usb-modules-6.7.12-arm64-di, crc-modules-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2156,7 +2206,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: leds-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2168,7 +2218,7 @@ Package-Type: udeb
 Architecture: arm64
 Section: debian-installer
 Priority: optional
-Build-Profiles: <pkg.linux.udeb-unsigned-test-build !noudeb !pkg.linux.nokernel !pkg.linux.quick>
+Build-Profiles: <!noudeb !pkg.linux.nokernel !pkg.linux.quick>
 Provides: mtd-core-modules
 Depends: kernel-image-6.7.12-arm64-di
 Kernel-Version: 6.7.12-arm64
@@ -2187,18 +2237,33 @@ Description: Header files for Linux 6.7.12-cloud-arm64
  modules that load into the kernel provided by the
  linux-image-6.7.12-cloud-arm64 package.
 
-Package: linux-image-6.7.12-cloud-arm64-unsigned
+Package: linux-image-6.7.12-cloud-arm64
 Architecture: arm64
 Build-Profiles: <!pkg.linux.nokernel>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [arm64] | linux-initramfs-tool [arm64]
 Recommends: firmware-linux-free, apparmor [arm64]
 Suggests: linux-doc-6.7, debian-kernel-handbook
-Replaces: linux-image-6.7.12-cloud-arm64
 Breaks: fwupdate (<< 12-7) [arm64], wireless-regdb (<< 2019.06.03-1~) [arm64], initramfs-tools (<< 0.120+deb8u2) [arm64]
-Conflicts: linux-image-6.7.12-cloud-arm64
 Description: Linux 6.7 for arm64 cloud
  The Linux kernel 6.7 and modules for use on cloud platforms supporting
  arm64 virtual machines.
+
+Package: linux-image-cloud-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa>
+Provides: linux-latest-modules-6.7.12-cloud-arm64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386]
+Depends: linux-image-6.7.12-cloud-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for arm64 cloud (meta-package)
+ This package depends on the latest Linux kernel and modules for use on
+ cloud platforms supporting arm64 virtual machines.
+
+Package: linux-headers-cloud-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa>
+Depends: linux-headers-6.7.12-cloud-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux cloud-arm64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel cloud-arm64 configuration.
 
 Package: linux-image-6.7.12-cloud-arm64-dbg
 Architecture: arm64
@@ -2231,19 +2296,34 @@ Description: Header files for Linux 6.7.12-rt-arm64
  modules that load into the kernel provided by the
  linux-image-6.7.12-rt-arm64 package.
 
-Package: linux-image-6.7.12-rt-arm64-unsigned
+Package: linux-image-6.7.12-rt-arm64
 Architecture: arm64
 Build-Profiles: <!pkg.linux.nokernel !pkg.linux.quick>
 Depends: kmod, linux-base (>= 4.3~), ${misc:Depends}, initramfs-tools (>= 0.120+deb8u2) [arm64] | linux-initramfs-tool [arm64]
 Recommends: firmware-linux-free, apparmor [arm64]
 Suggests: linux-doc-6.7, debian-kernel-handbook
-Replaces: linux-image-6.7.12-rt-arm64
 Breaks: fwupdate (<< 12-7) [arm64], wireless-regdb (<< 2019.06.03-1~) [arm64], initramfs-tools (<< 0.120+deb8u2) [arm64]
-Conflicts: linux-image-6.7.12-rt-arm64
 Description: Linux 6.7 for 64-bit ARMv8 machines, PREEMPT_RT
  The Linux kernel 6.7 and modules for use on 64-bit ARMv8 machines.
  .
  This kernel includes the PREEMPT_RT realtime patch set.
+
+Package: linux-image-rt-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Provides: linux-latest-modules-6.7.12-rt-arm64, wireguard-modules (= 1.0.0), virtualbox-guest-modules [amd64 i386]
+Depends: linux-image-6.7.12-rt-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Linux for 64-bit ARMv8 machines (meta-package)
+ This package depends on the latest Linux kernel and modules for use on
+ 64-bit ARMv8 machines.
+
+Package: linux-headers-rt-arm64
+Architecture: arm64
+Build-Profiles: <!pkg.linux.nokernel !pkg.linux.nometa !pkg.linux.quick>
+Depends: linux-headers-6.7.12-rt-arm64 (= ${binary:Version}), ${misc:Depends}
+Description: Header files for Linux rt-arm64 configuration (meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel rt-arm64 configuration.
 
 Package: linux-image-6.7.12-rt-arm64-dbg
 Architecture: arm64
