@@ -227,6 +227,36 @@ static inline bool pipe_readable(const struct pipe_inode_info *pipe)
 	return !pipe_empty(head, tail) || !writers;
 }
 
+static inline unsigned int pipe_update_tail(struct pipe_inode_info *pipe,
+					    struct pipe_buffer *buf,
+					    unsigned int tail)
+{
+	pipe_buf_release(pipe, buf);
+
+	/*
+	 * If the pipe has a watch_queue, we need additional protection
+	 * by the spinlock because notifications get posted with only
+	 * this spinlock, no mutex
+	 */
+	if (pipe_has_watch_queue(pipe)) {
+		spin_lock_irq(&pipe->rd_wait.lock);
+#ifdef CONFIG_WATCH_QUEUE
+		if (buf->flags & PIPE_BUF_FLAG_LOSS)
+			pipe->note_loss = true;
+#endif
+		pipe->tail = ++tail;
+		spin_unlock_irq(&pipe->rd_wait.lock);
+		return tail;
+	}
+
+	/*
+	 * Without a watch_queue, we can simply increment the tail
+	 * without the spinlock - the mutex is enough.
+	 */
+	pipe->tail = ++tail;
+	return tail;
+}
+
 static ssize_t
 pipe_read(struct kiocb *iocb, struct iov_iter *to)
 {
@@ -320,17 +350,8 @@ pipe_read(struct kiocb *iocb, struct iov_iter *to)
 				buf->len = 0;
 			}
 
-			if (!buf->len) {
-				pipe_buf_release(pipe, buf);
-				spin_lock_irq(&pipe->rd_wait.lock);
-#ifdef CONFIG_WATCH_QUEUE
-				if (buf->flags & PIPE_BUF_FLAG_LOSS)
-					pipe->note_loss = true;
-#endif
-				tail++;
-				pipe->tail = tail;
-				spin_unlock_irq(&pipe->rd_wait.lock);
-			}
+			if (!buf->len)
+				tail = pipe_update_tail(pipe, buf, tail);
 			total_len -= chars;
 			if (!total_len)
 				break;	/* common path: read succeeded */
@@ -425,6 +446,18 @@ pipe_write(struct kiocb *iocb, struct iov_iter *from)
 	bool was_empty = false;
 	bool wake_next_writer = false;
 
+	/*
+	 * Reject writing to watch queue pipes before the point where we lock
+	 * the pipe.
+	 * Otherwise, lockdep would be unhappy if the caller already has another
+	 * pipe locked.
+	 * If we had to support locking a normal pipe and a notification pipe at
+	 * the same time, we could set up lockdep annotations for that, but
+	 * since we don't actually need that, it's simpler to just bail here.
+	 */
+	if (pipe_has_watch_queue(pipe))
+		return -EXDEV;
+
 	/* Null write succeeds. */
 	if (unlikely(total_len == 0))
 		return 0;
@@ -434,11 +467,6 @@ pipe_write(struct kiocb *iocb, struct iov_iter *from)
 	if (!pipe->readers) {
 		send_sig(SIGPIPE, current, 0);
 		ret = -EPIPE;
-		goto out;
-	}
-
-	if (pipe_has_watch_queue(pipe)) {
-		ret = -EXDEV;
 		goto out;
 	}
 
@@ -505,16 +533,7 @@ pipe_write(struct kiocb *iocb, struct iov_iter *from)
 			 * it, either the reader will consume it or it'll still
 			 * be there for the next write.
 			 */
-			spin_lock_irq(&pipe->rd_wait.lock);
-
-			head = pipe->head;
-			if (pipe_full(head, pipe->tail, pipe->max_usage)) {
-				spin_unlock_irq(&pipe->rd_wait.lock);
-				continue;
-			}
-
 			pipe->head = head + 1;
-			spin_unlock_irq(&pipe->rd_wait.lock);
 
 			/* Insert it into the buffer array */
 			buf = &pipe->bufs[head & mask];
@@ -852,7 +871,7 @@ void free_pipe_info(struct pipe_inode_info *pipe)
 	kfree(pipe);
 }
 
-static struct vfsmount *pipe_mnt __read_mostly;
+static struct vfsmount *pipe_mnt __ro_after_init;
 
 /*
  * pipefs_dname() is called from d_path().
@@ -896,7 +915,7 @@ static struct inode * get_pipe_inode(void)
 	inode->i_mode = S_IFIFO | S_IRUSR | S_IWUSR;
 	inode->i_uid = current_fsuid();
 	inode->i_gid = current_fsgid();
-	inode->i_atime = inode->i_mtime = inode_set_ctime_current(inode);
+	simple_inode_init_ts(inode);
 
 	return inode;
 

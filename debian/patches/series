@@ -1,7 +1,6 @@
 # Disable features broken by exclusion of upstream files
 debian/dfsg/arch-powerpc-platforms-8xx-ucode-disable.patch
 debian/dfsg/drivers-media-dvb-dvb-usb-af9005-disable.patch
-debian/dfsg/drivers-net-appletalk-cops.patch
 debian/dfsg/video-remove-nvidiafb-and-rivafb.patch
 debian/dfsg/documentation-fix-broken-link-to-cipso-draft.patch
 
@@ -9,7 +8,6 @@ debian/dfsg/documentation-fix-broken-link-to-cipso-draft.patch
 debian/version.patch
 debian/uname-version-timestamp.patch
 debian/kernelvariables.patch
-debian/ia64-hardcode-arch-script-output.patch
 debian/mips-disable-werror.patch
 debian/mips-boston-disable-its.patch
 debian/mips-ieee754-relaxed.patch
@@ -81,9 +79,9 @@ features/x86/x86-make-x32-syscall-support-conditional.patch
 # Miscellaneous bug fixes
 bugfix/all/disable-some-marvell-phys.patch
 bugfix/all/fs-add-module_softdep-declarations-for-hard-coded-cr.patch
-debian/Revert-docs-kernel_feat.py-fix-potential-command-inj.patch
 
 # Miscellaneous features
+features/all/driver-core-Emit-reason-for-pending-deferred-probe.patch
 
 # Lockdown missing pieces
 features/all/lockdown/efi-add-an-efi_secure_boot-flag-to-indicate-secure-b.patch

@@ -521,7 +521,8 @@ static void init_bdb_blocks(struct drm_i915_private *i915,
 }
 
 static void
-fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
+fill_detail_timing_data(struct drm_i915_private *i915,
+			struct drm_display_mode *panel_fixed_mode,
 			const struct lvds_dvo_timing *dvo_timing)
 {
 	panel_fixed_mode->hdisplay = (dvo_timing->hactive_hi << 8) |
@@ -561,11 +562,17 @@ fill_detail_timing_data(struct drm_display_mode *panel_fixed_mode,
 	panel_fixed_mode->height_mm = (dvo_timing->vimage_hi << 8) |
 		dvo_timing->vimage_lo;
 
-	/* Some VBTs have bogus h/vtotal values */
-	if (panel_fixed_mode->hsync_end > panel_fixed_mode->htotal)
-		panel_fixed_mode->htotal = panel_fixed_mode->hsync_end + 1;
-	if (panel_fixed_mode->vsync_end > panel_fixed_mode->vtotal)
-		panel_fixed_mode->vtotal = panel_fixed_mode->vsync_end + 1;
+	/* Some VBTs have bogus h/vsync_end values */
+	if (panel_fixed_mode->hsync_end > panel_fixed_mode->htotal) {
+		drm_dbg_kms(&i915->drm, "reducing hsync_end %d->%d\n",
+			    panel_fixed_mode->hsync_end, panel_fixed_mode->htotal);
+		panel_fixed_mode->hsync_end = panel_fixed_mode->htotal;
+	}
+	if (panel_fixed_mode->vsync_end > panel_fixed_mode->vtotal) {
+		drm_dbg_kms(&i915->drm, "reducing vsync_end %d->%d\n",
+			    panel_fixed_mode->vsync_end, panel_fixed_mode->vtotal);
+		panel_fixed_mode->vsync_end = panel_fixed_mode->vtotal;
+	}
 
 	drm_mode_set_name(panel_fixed_mode);
 }
@@ -849,7 +856,7 @@ parse_lfp_panel_dtd(struct drm_i915_private *i915,
 	if (!panel_fixed_mode)
 		return;
 
-	fill_detail_timing_data(panel_fixed_mode, panel_dvo_timing);
+	fill_detail_timing_data(i915, panel_fixed_mode, panel_dvo_timing);
 
 	panel->vbt.lfp_lvds_vbt_mode = panel_fixed_mode;
 
@@ -1134,7 +1141,7 @@ parse_sdvo_panel_data(struct drm_i915_private *i915,
 	if (!panel_fixed_mode)
 		return;
 
-	fill_detail_timing_data(panel_fixed_mode, &dtds->dtds[index]);
+	fill_detail_timing_data(i915, panel_fixed_mode, &dtds->dtds[index]);
 
 	panel->vbt.sdvo_lvds_vbt_mode = panel_fixed_mode;
 
@@ -1945,15 +1952,11 @@ static int get_init_otp_deassert_fragment_len(struct drm_i915_private *i915,
  * these devices we split the init OTP sequence into a deassert sequence and
  * the actual init OTP part.
  */
-static void fixup_mipi_sequences(struct drm_i915_private *i915,
-				 struct intel_panel *panel)
+static void vlv_fixup_mipi_sequences(struct drm_i915_private *i915,
+				     struct intel_panel *panel)
 {
 	u8 *init_otp;
 	int len;
-
-	/* Limit this to VLV for now. */
-	if (!IS_VALLEYVIEW(i915))
-		return;
 
 	/* Limit this to v1 vid-mode sequences */
 	if (panel->vbt.dsi.config->is_cmd_mode ||
@@ -1988,6 +1991,41 @@ static void fixup_mipi_sequences(struct drm_i915_private *i915,
 	init_otp[len - 1] = MIPI_SEQ_INIT_OTP;
 	/* And make MIPI_MIPI_SEQ_INIT_OTP point to it */
 	panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP] = init_otp + len - 1;
+}
+
+/*
+ * Some machines (eg. Lenovo 82TQ) appear to have broken
+ * VBT sequences:
+ * - INIT_OTP is not present at all
+ * - what should be in INIT_OTP is in DISPLAY_ON
+ * - what should be in DISPLAY_ON is in BACKLIGHT_ON
+ *   (along with the actual backlight stuff)
+ *
+ * To make those work we simply swap DISPLAY_ON and INIT_OTP.
+ *
+ * TODO: Do we need to limit this to specific machines,
+ *       or examine the contents of the sequences to
+ *       avoid false positives?
+ */
+static void icl_fixup_mipi_sequences(struct drm_i915_private *i915,
+				     struct intel_panel *panel)
+{
+	if (!panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP] &&
+	    panel->vbt.dsi.sequence[MIPI_SEQ_DISPLAY_ON]) {
+		drm_dbg_kms(&i915->drm, "Broken VBT: Swapping INIT_OTP and DISPLAY_ON sequences\n");
+
+		swap(panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP],
+		     panel->vbt.dsi.sequence[MIPI_SEQ_DISPLAY_ON]);
+	}
+}
+
+static void fixup_mipi_sequences(struct drm_i915_private *i915,
+				 struct intel_panel *panel)
+{
+	if (DISPLAY_VER(i915) >= 11)
+		icl_fixup_mipi_sequences(i915, panel);
+	else if (IS_VALLEYVIEW(i915))
+		vlv_fixup_mipi_sequences(i915, panel);
 }
 
 static void
@@ -2194,7 +2232,8 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
 	const u8 *ddc_pin_map;
 	int i, n_entries;
 
-	if (HAS_PCH_MTP(i915) || IS_ALDERLAKE_P(i915)) {
+	if (INTEL_PCH_TYPE(i915) >= PCH_LNL || HAS_PCH_MTP(i915) ||
+	    IS_ALDERLAKE_P(i915)) {
 		ddc_pin_map = adlp_ddc_pin_map;
 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
 	} else if (IS_ALDERLAKE_S(i915)) {
@@ -3312,6 +3351,9 @@ bool intel_bios_is_port_present(struct drm_i915_private *i915, enum port port)
 bool intel_bios_encoder_supports_dp_dual_mode(const struct intel_bios_encoder_data *devdata)
 {
 	const struct child_device_config *child = &devdata->child;
+
+	if (!devdata)
+		return false;
 
 	if (!intel_bios_encoder_supports_dp(devdata) ||
 	    !intel_bios_encoder_supports_hdmi(devdata))

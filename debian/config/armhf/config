@@ -516,6 +516,11 @@ CONFIG_DRM_TEGRA_STAGING=y
 CONFIG_DRM_TILCDC=m
 
 ##
+## file: drivers/gpu/drm/tiny/Kconfig
+##
+CONFIG_DRM_PANEL_MIPI_DBI=m
+
+##
 ## file: drivers/gpu/host1x/Kconfig
 ##
 CONFIG_TEGRA_HOST1X=m
@@ -1070,6 +1075,11 @@ CONFIG_MDIO_SUN4I=y
 CONFIG_MDIO_ASPEED=m
 
 ##
+## file: drivers/net/phy/Kconfig
+##
+CONFIG_ADIN_PHY=m
+
+##
 ## file: drivers/net/wireless/broadcom/brcm80211/brcmfmac/Kconfig
 ##
 CONFIG_BRCMFMAC=m
@@ -1214,6 +1224,16 @@ CONFIG_OLPC_XO175=y
 CONFIG_OLPC_XO175_EC=m
 
 ##
+## file: drivers/pmdomain/bcm/Kconfig
+##
+CONFIG_RASPBERRYPI_POWER=y
+
+##
+## file: drivers/pmdomain/rockchip/Kconfig
+##
+CONFIG_ROCKCHIP_PM_DOMAINS=y
+
+##
 ## file: drivers/power/reset/Kconfig
 ##
 CONFIG_POWER_RESET=y
@@ -1352,15 +1372,9 @@ CONFIG_ASPEED_LPC_SNOOP=m
 CONFIG_ASPEED_P2A_CTRL=m
 
 ##
-## file: drivers/soc/bcm/Kconfig
-##
-CONFIG_RASPBERRYPI_POWER=y
-
-##
 ## file: drivers/soc/rockchip/Kconfig
 ##
 CONFIG_ROCKCHIP_IODOMAIN=m
-CONFIG_ROCKCHIP_PM_DOMAINS=y
 
 ##
 ## file: drivers/soc/tegra/Kconfig

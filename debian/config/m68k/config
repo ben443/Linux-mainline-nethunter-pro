@@ -346,11 +346,6 @@ CONFIG_MAC_EMUMOUSEBTN=m
 # CONFIG_MTD is not set
 
 ##
-## file: drivers/net/appletalk/Kconfig
-##
-CONFIG_DEV_APPLETALK=m
-
-##
 ## file: drivers/net/arcnet/Kconfig
 ##
 # CONFIG_ARCNET is not set

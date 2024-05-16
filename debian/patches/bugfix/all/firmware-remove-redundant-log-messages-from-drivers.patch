@@ -11,7 +11,7 @@ upstream submission.
 
 --- a/arch/x86/kernel/cpu/microcode/amd.c
 +++ b/arch/x86/kernel/cpu/microcode/amd.c
-@@ -912,10 +912,8 @@ static enum ucode_state request_microcod
+@@ -894,10 +894,8 @@ static enum ucode_state request_microcod
  	if (c->x86 >= 0x15)
  		snprintf(fw_name, sizeof(fw_name), "amd-ucode/microcode_amd_fam%.2xh.bin", c->x86);
  
@@ -22,7 +22,7 @@ upstream submission.
 -	}
  
  	ret = UCODE_ERROR;
- 	if (!verify_container(fw->data, fw->size, false))
+ 	if (!verify_container(fw->data, fw->size))
 --- a/drivers/atm/fore200e.c
 +++ b/drivers/atm/fore200e.c
 @@ -2398,10 +2398,9 @@ static int fore200e_load_and_start_fw(st
@@ -499,7 +499,7 @@ upstream submission.
  
 --- a/drivers/media/pci/bt8xx/bttv-cards.c
 +++ b/drivers/media/pci/bt8xx/bttv-cards.c
-@@ -3901,10 +3901,8 @@ static int pvr_boot(struct bttv *btv)
+@@ -3902,10 +3902,8 @@ static int pvr_boot(struct bttv *btv)
  	int rc;
  
  	rc = request_firmware(&fw_entry, "hcwamc.rbf", &btv->c.pci->dev);
@@ -712,7 +712,7 @@ upstream submission.
  	}
 --- a/drivers/media/usb/cx231xx/cx231xx-417.c
 +++ b/drivers/media/usb/cx231xx/cx231xx-417.c
-@@ -983,11 +983,6 @@ static int cx231xx_load_firmware(struct
+@@ -982,11 +982,6 @@ static int cx231xx_load_firmware(struct
  				  dev->dev);
  
  	if (retval != 0) {
@@ -1090,7 +1090,7 @@ upstream submission.
  	if (bp->mips_firmware->size < sizeof(*mips_fw) ||
 --- a/drivers/net/ethernet/broadcom/tg3.c
 +++ b/drivers/net/ethernet/broadcom/tg3.c
-@@ -11394,11 +11394,8 @@ static int tg3_request_firmware(struct t
+@@ -11474,11 +11474,8 @@ static int tg3_request_firmware(struct t
  {
  	const struct tg3_firmware_hdr *fw_hdr;
  
@@ -1281,7 +1281,7 @@ upstream submission.
  	fwh = (struct at76_fw_header *)(fwe->fw->data);
 --- a/drivers/net/wireless/atmel/atmel.c
 +++ b/drivers/net/wireless/atmel/atmel.c
-@@ -3892,12 +3892,8 @@ static int reset_atmel_card(struct net_d
+@@ -3820,12 +3820,8 @@ static int reset_atmel_card(struct net_d
  					strcpy(priv->firmware_id, "atmel_at76c502.bin");
  				}
  				err = request_firmware(&fw_entry, priv->firmware_id, priv->sys_dev);
@@ -1359,7 +1359,7 @@ upstream submission.
  	}
 --- a/drivers/net/wireless/intel/ipw2x00/ipw2100.c
 +++ b/drivers/net/wireless/intel/ipw2x00/ipw2100.c
-@@ -8359,12 +8359,8 @@ static int ipw2100_get_firmware(struct i
+@@ -8354,12 +8354,8 @@ static int ipw2100_get_firmware(struct i
  
  	rc = request_firmware(&fw->fw_entry, fw_name, &priv->pci_dev->dev);
  
@@ -1399,7 +1399,7 @@ upstream submission.
  			else
 --- a/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
 +++ b/drivers/net/wireless/intel/iwlwifi/iwl-drv.c
-@@ -241,8 +241,6 @@ static int iwl_request_firmware(struct i
+@@ -249,8 +249,6 @@ static int iwl_request_firmware(struct i
  		drv->fw_index--;
  
  	if (drv->fw_index < cfg->ucode_api_min) {
@@ -1744,7 +1744,7 @@ upstream submission.
  	}
 --- a/drivers/scsi/ipr.c
 +++ b/drivers/scsi/ipr.c
-@@ -4009,10 +4009,8 @@ static ssize_t ipr_store_update_fw(struc
+@@ -4013,10 +4013,8 @@ static ssize_t ipr_store_update_fw(struc
  	if (endline)
  		*endline = '\0';
  
@@ -1770,7 +1770,7 @@ upstream submission.
  	}
 --- a/drivers/scsi/qla1280.c
 +++ b/drivers/scsi/qla1280.c
-@@ -1504,8 +1504,6 @@ qla1280_request_firmware(struct scsi_qla
+@@ -1506,8 +1506,6 @@ qla1280_request_firmware(struct scsi_qla
  	err = request_firmware(&fw, fwname, &ha->pdev->dev);
  
  	if (err) {
@@ -1819,7 +1819,7 @@ upstream submission.
  	if (qla82xx_validate_firmware_blob(vha,
 --- a/drivers/scsi/qla2xxx/qla_os.c
 +++ b/drivers/scsi/qla2xxx/qla_os.c
-@@ -7696,8 +7696,6 @@ qla2x00_request_firmware(scsi_qla_host_t
+@@ -7697,8 +7697,6 @@ qla2x00_request_firmware(scsi_qla_host_t
  		goto out;
  
  	if (request_firmware(&blob->fw, blob->name, &ha->pdev->dev)) {
@@ -1843,20 +1843,6 @@ upstream submission.
  	if (fw->size % 2) {
  		printk(KERN_ERR "Bogus length %zu in image \"%s\"\n",
  		       fw->size, fwname);
---- a/drivers/staging/rtl8192u/r819xU_firmware.c
-+++ b/drivers/staging/rtl8192u/r819xU_firmware.c
-@@ -240,10 +240,8 @@ bool init_firmware(struct net_device *de
- 		 */
- 		if (rst_opt == OPT_SYSTEM_RESET) {
- 			rc = request_firmware(&fw_entry, fw_name[init_step], &priv->udev->dev);
--			if (rc < 0) {
--				RT_TRACE(COMP_ERR, "request firmware fail!\n");
-+			if (rc)
- 				goto download_firmware_fail;
--			}
- 
- 			if (fw_entry->size > sizeof(pfirmware->firmware_buf)) {
- 				RT_TRACE(COMP_ERR, "img file size exceed the container buffer fail!\n");
 --- a/drivers/staging/rtl8712/hal_init.c
 +++ b/drivers/staging/rtl8712/hal_init.c
 @@ -72,8 +72,6 @@ int rtl871x_load_fw(struct _adapter *pad
@@ -2280,7 +2266,7 @@ upstream submission.
  	snd_emu1010_fpga_read(emu, EMU_HANA_ID, &reg);
 --- a/sound/pci/hda/hda_intel.c
 +++ b/sound/pci/hda/hda_intel.c
-@@ -2040,8 +2040,6 @@ static void azx_firmware_cb(const struct
+@@ -2034,8 +2034,6 @@ static void azx_firmware_cb(const struct
  
  	if (fw)
  		chip->fw = fw;

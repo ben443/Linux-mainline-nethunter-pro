@@ -579,6 +579,7 @@ static inline struct zcrypt_queue *zcrypt_pick_queue(struct zcrypt_card *zc,
 {
 	if (!zq || !try_module_get(zq->queue->ap_dev.device.driver->owner))
 		return NULL;
+	zcrypt_card_get(zc);
 	zcrypt_queue_get(zq);
 	get_device(&zq->queue->ap_dev.device);
 	atomic_add(weight, &zc->load);
@@ -598,6 +599,7 @@ static inline void zcrypt_drop_queue(struct zcrypt_card *zc,
 	atomic_sub(weight, &zq->load);
 	put_device(&zq->queue->ap_dev.device);
 	zcrypt_queue_put(zq);
+	zcrypt_card_put(zc);
 	module_put(mod);
 }
 
@@ -693,7 +695,7 @@ static long zcrypt_rsa_modexpo(struct ap_perms *perms,
 		for_each_zcrypt_queue(zq, zc) {
 			/* check if device is usable and eligible */
 			if (!zq->online || !zq->ops->rsa_modexpo ||
-			    !zq->queue->config || zq->queue->chkstop)
+			    !ap_queue_usable(zq->queue))
 				continue;
 			/* check if device node has admission for this queue */
 			if (!zcrypt_check_queue(perms,
@@ -798,7 +800,7 @@ static long zcrypt_rsa_crt(struct ap_perms *perms,
 		for_each_zcrypt_queue(zq, zc) {
 			/* check if device is usable and eligible */
 			if (!zq->online || !zq->ops->rsa_modexpo_crt ||
-			    !zq->queue->config || zq->queue->chkstop)
+			    !ap_queue_usable(zq->queue))
 				continue;
 			/* check if device node has admission for this queue */
 			if (!zcrypt_check_queue(perms,
@@ -916,7 +918,7 @@ static long _zcrypt_send_cprb(bool userspace, struct ap_perms *perms,
 		for_each_zcrypt_queue(zq, zc) {
 			/* check for device usable and eligible */
 			if (!zq->online || !zq->ops->send_cprb ||
-			    !zq->queue->config || zq->queue->chkstop ||
+			    !ap_queue_usable(zq->queue) ||
 			    (tdom != AUTOSEL_DOM &&
 			     tdom != AP_QID_QUEUE(zq->queue->qid)))
 				continue;
@@ -1087,7 +1089,7 @@ static long _zcrypt_send_ep11_cprb(bool userspace, struct ap_perms *perms,
 		for_each_zcrypt_queue(zq, zc) {
 			/* check if device is usable and eligible */
 			if (!zq->online || !zq->ops->send_ep11_cprb ||
-			    !zq->queue->config || zq->queue->chkstop ||
+			    !ap_queue_usable(zq->queue) ||
 			    (targets &&
 			     !is_desired_ep11_queue(zq->queue->qid,
 						    target_num, targets)))
@@ -1186,7 +1188,7 @@ static long zcrypt_rng(char *buffer)
 		for_each_zcrypt_queue(zq, zc) {
 			/* check if device is usable and eligible */
 			if (!zq->online || !zq->ops->rng ||
-			    !zq->queue->config || zq->queue->chkstop)
+			    !ap_queue_usable(zq->queue))
 				continue;
 			if (!zcrypt_queue_compare(zq, pref_zq, wgt, pref_wgt))
 				continue;

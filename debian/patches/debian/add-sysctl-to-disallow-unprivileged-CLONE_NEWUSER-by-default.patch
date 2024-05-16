@@ -14,8 +14,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
 [bwh: Remove unneeded binary sysctl bits]
 [bwh: Keep this sysctl, but change the default to enabled]
 ---
---- a/kernel/fork.c
-+++ b/kernel/fork.c
+Index: linux/kernel/fork.c
+===================================================================
+--- linux.orig/kernel/fork.c
++++ linux/kernel/fork.c
 @@ -110,6 +110,11 @@
  
  #define CREATE_TRACE_POINTS
@@ -28,7 +30,7 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  
  /*
   * Minimum number of threads to boot the kernel
-@@ -2260,6 +2265,10 @@ __latent_entropy struct task_struct *cop
+@@ -2265,6 +2270,10 @@ static __latent_entropy struct task_stru
  	if ((clone_flags & (CLONE_NEWUSER|CLONE_FS)) == (CLONE_NEWUSER|CLONE_FS))
  		return ERR_PTR(-EINVAL);
  
@@ -39,7 +41,7 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  	/*
  	 * Thread groups must share signals as well, and detached threads
  	 * can only be started up within the thread group.
-@@ -3413,6 +3422,12 @@ int ksys_unshare(unsigned long unshare_f
+@@ -3411,6 +3420,12 @@ int ksys_unshare(unsigned long unshare_f
  	if (unshare_flags & CLONE_NEWNS)
  		unshare_flags |= CLONE_FS;
  
@@ -52,8 +54,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  	err = check_unshare_flags(unshare_flags);
  	if (err)
  		goto bad_unshare_out;
---- a/kernel/sysctl.c
-+++ b/kernel/sysctl.c
+Index: linux/kernel/sysctl.c
+===================================================================
+--- linux.orig/kernel/sysctl.c
++++ linux/kernel/sysctl.c
 @@ -135,6 +135,10 @@ static enum sysctl_writes_mode sysctl_wr
  int sysctl_legacy_va_layout;
  #endif
@@ -81,8 +85,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  #ifdef CONFIG_PROC_SYSCTL
  	{
  		.procname	= "tainted",
---- a/kernel/user_namespace.c
-+++ b/kernel/user_namespace.c
+Index: linux/kernel/user_namespace.c
+===================================================================
+--- linux.orig/kernel/user_namespace.c
++++ linux/kernel/user_namespace.c
 @@ -22,6 +22,9 @@
  #include <linux/bsearch.h>
  #include <linux/sort.h>
@@ -90,6 +96,6 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
 +/* sysctl */
 +int unprivileged_userns_clone = 1;
 +
- static struct kmem_cache *user_ns_cachep __read_mostly;
+ static struct kmem_cache *user_ns_cachep __ro_after_init;
  static DEFINE_MUTEX(userns_state_mutex);
  

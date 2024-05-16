@@ -16,6 +16,7 @@
 #include <linux/panic.h>
 #include <linux/sched/debug.h>
 #include <linux/sched.h>
+#include <linux/mm.h>
 
 #include "debugfs.h"
 #include "hooks-impl.h"
@@ -109,51 +110,17 @@ static void kunit_print_test_stats(struct kunit *test,
 		  stats.total);
 }
 
-/**
- * kunit_log_newline() - Add newline to the end of log if one is not
- * already present.
- * @log: The log to add the newline to.
- */
-static void kunit_log_newline(char *log)
-{
-	int log_len, len_left;
-
-	log_len = strlen(log);
-	len_left = KUNIT_LOG_SIZE - log_len - 1;
-
-	if (log_len > 0 && log[log_len - 1] != '\n')
-		strncat(log, "\n", len_left);
-}
-
-/*
- * Append formatted message to log, size of which is limited to
- * KUNIT_LOG_SIZE bytes (including null terminating byte).
- */
-void kunit_log_append(char *log, const char *fmt, ...)
+/* Append formatted message to log. */
+void kunit_log_append(struct string_stream *log, const char *fmt, ...)
 {
 	va_list args;
-	int len, log_len, len_left;
 
 	if (!log)
 		return;
 
-	log_len = strlen(log);
-	len_left = KUNIT_LOG_SIZE - log_len - 1;
-	if (len_left <= 0)
-		return;
-
-	/* Evaluate length of line to add to log */
 	va_start(args, fmt);
-	len = vsnprintf(NULL, 0, fmt, args) + 1;
+	string_stream_vadd(log, fmt, args);
 	va_end(args);
-
-	/* Print formatted line to the log */
-	va_start(args, fmt);
-	vsnprintf(log + log_len, min(len, len_left), fmt, args);
-	va_end(args);
-
-	/* Add newline to end of log if not already present. */
-	kunit_log_newline(log);
 }
 EXPORT_SYMBOL_GPL(kunit_log_append);
 
@@ -296,7 +263,7 @@ static void kunit_print_string_stream(struct kunit *test,
 		kunit_err(test, "\n");
 	} else {
 		kunit_err(test, "%s", buf);
-		kunit_kfree(test, buf);
+		kfree(buf);
 	}
 }
 
@@ -308,7 +275,7 @@ static void kunit_fail(struct kunit *test, const struct kunit_loc *loc,
 
 	kunit_set_failure(test);
 
-	stream = alloc_string_stream(test, GFP_KERNEL);
+	stream = kunit_alloc_string_stream(test, GFP_KERNEL);
 	if (IS_ERR(stream)) {
 		WARN(true,
 		     "Could not allocate stream to print failed assertion in %s:%d\n",
@@ -322,7 +289,7 @@ static void kunit_fail(struct kunit *test, const struct kunit_loc *loc,
 
 	kunit_print_string_stream(test, stream);
 
-	string_stream_destroy(stream);
+	kunit_free_string_stream(test, stream);
 }
 
 void __noreturn __kunit_abort(struct kunit *test)
@@ -359,14 +326,14 @@ void __kunit_do_failed_assertion(struct kunit *test,
 }
 EXPORT_SYMBOL_GPL(__kunit_do_failed_assertion);
 
-void kunit_init_test(struct kunit *test, const char *name, char *log)
+void kunit_init_test(struct kunit *test, const char *name, struct string_stream *log)
 {
 	spin_lock_init(&test->lock);
 	INIT_LIST_HEAD(&test->resources);
 	test->name = name;
 	test->log = log;
 	if (test->log)
-		test->log[0] = '\0';
+		string_stream_clear(log);
 	test->status = KUNIT_SUCCESS;
 	test->status_comment[0] = '\0';
 }
@@ -686,12 +653,15 @@ int kunit_run_tests(struct kunit_suite *suite)
 						      param_desc,
 						      test.status_comment);
 
+				kunit_update_stats(&param_stats, test.status);
+
 				/* Get next param. */
 				param_desc[0] = '\0';
 				test.param_value = test_case->generate_params(test.param_value, param_desc);
 				test.param_index++;
-
-				kunit_update_stats(&param_stats, test.status);
+				test.status = KUNIT_SUCCESS;
+				test.status_comment[0] = '\0';
+				test.priv = NULL;
 			}
 		}
 
@@ -807,12 +777,19 @@ static void kunit_module_exit(struct module *mod)
 	};
 	const char *action = kunit_action();
 
+	/*
+	 * Check if the start address is a valid virtual address to detect
+	 * if the module load sequence has failed and the suite set has not
+	 * been initialized and filtered.
+	 */
+	if (!suite_set.start || !virt_addr_valid(suite_set.start))
+		return;
+
 	if (!action)
 		__kunit_test_suites_exit(mod->kunit_suites,
 					 mod->num_kunit_suites);
 
-	if (suite_set.start)
-		kunit_free_suite_set(suite_set);
+	kunit_free_suite_set(suite_set);
 }
 
 static int kunit_module_notify(struct notifier_block *nb, unsigned long val,
@@ -822,12 +799,12 @@ static int kunit_module_notify(struct notifier_block *nb, unsigned long val,
 
 	switch (val) {
 	case MODULE_STATE_LIVE:
+		kunit_module_init(mod);
 		break;
 	case MODULE_STATE_GOING:
 		kunit_module_exit(mod);
 		break;
 	case MODULE_STATE_COMING:
-		kunit_module_init(mod);
 		break;
 	case MODULE_STATE_UNFORMED:
 		break;
@@ -842,6 +819,8 @@ static struct notifier_block kunit_mod_nb = {
 };
 #endif
 
+KUNIT_DEFINE_ACTION_WRAPPER(kfree_action_wrapper, kfree, const void *)
+
 void *kunit_kmalloc_array(struct kunit *test, size_t n, size_t size, gfp_t gfp)
 {
 	void *data;
@@ -851,7 +830,7 @@ void *kunit_kmalloc_array(struct kunit *test, size_t n, size_t size, gfp_t gfp)
 	if (!data)
 		return NULL;
 
-	if (kunit_add_action_or_reset(test, (kunit_action_t *)kfree, data) != 0)
+	if (kunit_add_action_or_reset(test, kfree_action_wrapper, data) != 0)
 		return NULL;
 
 	return data;
@@ -863,7 +842,7 @@ void kunit_kfree(struct kunit *test, const void *ptr)
 	if (!ptr)
 		return;
 
-	kunit_release_action(test, (kunit_action_t *)kfree, (void *)ptr);
+	kunit_release_action(test, kfree_action_wrapper, (void *)ptr);
 }
 EXPORT_SYMBOL_GPL(kunit_kfree);
 

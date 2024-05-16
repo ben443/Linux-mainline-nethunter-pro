@@ -1027,23 +1027,7 @@ static int l2cap_sock_setsockopt(struct socket *sock, int level, int optname,
 			break;
 		}
 
-		if (opt > BT_CHANNEL_POLICY_AMP_PREFERRED) {
-			err = -EINVAL;
-			break;
-		}
-
-		if (chan->mode != L2CAP_MODE_ERTM &&
-		    chan->mode != L2CAP_MODE_STREAMING) {
-			err = -EOPNOTSUPP;
-			break;
-		}
-
-		chan->chan_policy = (u8) opt;
-
-		if (sk->sk_state == BT_CONNECTED &&
-		    chan->move_role == L2CAP_MOVE_ROLE_NONE)
-			l2cap_move_start(chan);
-
+		err = -EOPNOTSUPP;
 		break;
 
 	case BT_SNDMTU:
@@ -1615,7 +1599,7 @@ static struct sk_buff *l2cap_sock_alloc_skb_cb(struct l2cap_chan *chan,
 		return ERR_PTR(-ENOTCONN);
 	}
 
-	skb->priority = sk->sk_priority;
+	skb->priority = READ_ONCE(sk->sk_priority);
 
 	bt_cb(skb)->l2cap.chan = chan;
 

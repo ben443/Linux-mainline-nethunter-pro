@@ -60,6 +60,7 @@ extract-source:
         gpgv \
         kernel-wedge \
         python3 \
+        python3-dacite \
         python3-debian \
         python3-jinja2 \
         quilt \
@@ -213,7 +214,7 @@ python-static:
   script:
     - |
       apt-get update && eatmydata apt-get install --no-install-recommends -y \
-        flake8 python3 python3-jinja2 python3-pytest
+        flake8 python3 python3-dacite python3-jinja2 python3-pytest
 
     # Run both checkers and coalesce their results rather than exiting
     # on first failure
@@ -236,7 +237,7 @@ kconfig-static:
     # Unpack source and apply featureset patches
     - |
       apt-get update && eatmydata apt-get install --no-install-recommends -y \
-        debhelper dpkg-dev git python3 quilt
+        debhelper dpkg-dev git python3 python3-dacite quilt
     - dpkg-source -x ${WORKING_DIR}/*.dsc ${WORKING_DIR}/${SOURCE_DIR}
     - cd ${WORKING_DIR}/${SOURCE_DIR}
     - debian/rules source

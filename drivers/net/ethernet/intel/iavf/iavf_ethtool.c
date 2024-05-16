@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0
 /* Copyright(c) 2013 - 2018 Intel Corporation. */
 
+#include <linux/bitfield.h>
+#include <linux/uaccess.h>
+
 /* ethtool support for iavf */
 #include "iavf.h"
-
-#include <linux/uaccess.h>
 
 /* ethtool statistics helpers */
 
@@ -395,11 +396,9 @@ static void iavf_get_priv_flag_strings(struct net_device *netdev, u8 *data)
 {
 	unsigned int i;
 
-	for (i = 0; i < IAVF_PRIV_FLAGS_STR_LEN; i++) {
-		snprintf(data, ETH_GSTRING_LEN, "%s",
-			 iavf_gstrings_priv_flags[i].flag_string);
-		data += ETH_GSTRING_LEN;
-	}
+	for (i = 0; i < IAVF_PRIV_FLAGS_STR_LEN; i++)
+		ethtool_sprintf(&data, "%s",
+				iavf_gstrings_priv_flags[i].flag_string);
 }
 
 /**

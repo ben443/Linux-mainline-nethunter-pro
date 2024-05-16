@@ -7,6 +7,7 @@
 #include <linux/atomic.h>
 #include <linux/mutex.h>
 #include <linux/workqueue.h>
+#include <linux/skbuff.h>
 
 #include "ionic_if.h"
 #include "ionic_regs.h"
@@ -152,6 +153,7 @@ struct ionic_dev {
 	bool fw_hb_ready;
 	bool fw_status_ready;
 	u8 fw_generation;
+	u8 opcode;
 
 	u64 __iomem *db_pages;
 	dma_addr_t phy_db_pages;
@@ -217,7 +219,7 @@ struct ionic_desc_info {
 	};
 	unsigned int bytes;
 	unsigned int nbufs;
-	struct ionic_buf_info bufs[IONIC_MAX_FRAGS];
+	struct ionic_buf_info bufs[MAX_SKB_FRAGS + 1];
 	ionic_desc_cb cb;
 	void *cb_arg;
 };

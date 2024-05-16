@@ -16,6 +16,9 @@
 
 #define MBOX_SIZE		SZ_64K
 
+#define MBOX_DOWN_MSG		1
+#define MBOX_UP_MSG		2
+
 /* AF/PF: PF initiated, PF/VF VF initiated */
 #define MBOX_DOWN_RX_START	0
 #define MBOX_DOWN_RX_SIZE	(46 * SZ_1K)
@@ -101,6 +104,7 @@ int otx2_mbox_regions_init(struct otx2_mbox *mbox, void __force **hwbase,
 			   struct pci_dev *pdev, void __force *reg_base,
 			   int direction, int ndevs, unsigned long *bmap);
 void otx2_mbox_msg_send(struct otx2_mbox *mbox, int devid);
+void otx2_mbox_msg_send_up(struct otx2_mbox *mbox, int devid);
 int otx2_mbox_wait_for_rsp(struct otx2_mbox *mbox, int devid);
 int otx2_mbox_busy_poll_for_rsp(struct otx2_mbox *mbox, int devid);
 struct mbox_msghdr *otx2_mbox_alloc_msg_rsp(struct otx2_mbox *mbox, int devid,
@@ -117,6 +121,8 @@ static inline struct mbox_msghdr *otx2_mbox_alloc_msg(struct otx2_mbox *mbox,
 {
 	return otx2_mbox_alloc_msg_rsp(mbox, devid, size, 0);
 }
+
+bool otx2_mbox_wait_for_zero(struct otx2_mbox *mbox, int devid);
 
 /* Mailbox message types */
 #define MBOX_MSG_MASK				0xFFFF
@@ -1473,6 +1479,12 @@ struct flow_msg {
 		u8 next_header;
 	};
 	__be16 vlan_itci;
+#define OTX2_FLOWER_MASK_MPLS_LB		GENMASK(31, 12)
+#define OTX2_FLOWER_MASK_MPLS_TC		GENMASK(11, 9)
+#define OTX2_FLOWER_MASK_MPLS_BOS		BIT(8)
+#define OTX2_FLOWER_MASK_MPLS_TTL		GENMASK(7, 0)
+#define OTX2_FLOWER_MASK_MPLS_NON_TTL		GENMASK(31, 8)
+	u32 mpls_lse[4];
 };
 
 struct npc_install_flow_req {
@@ -1574,7 +1586,7 @@ enum ptp_op {
 	PTP_OP_GET_CLOCK = 1,
 	PTP_OP_GET_TSTMP = 2,
 	PTP_OP_SET_THRESH = 3,
-	PTP_OP_EXTTS_ON = 4,
+	PTP_OP_PPS_ON = 4,
 	PTP_OP_ADJTIME = 5,
 	PTP_OP_SET_CLOCK = 6,
 };
@@ -1584,7 +1596,8 @@ struct ptp_req {
 	u8 op;
 	s64 scaled_ppm;
 	u64 thresh;
-	int extts_on;
+	u64 period;
+	int pps_on;
 	s64 delta;
 	u64 clk;
 };

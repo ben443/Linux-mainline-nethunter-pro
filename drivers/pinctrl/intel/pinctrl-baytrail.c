@@ -7,16 +7,16 @@
  */
 
 #include <linux/acpi.h>
+#include <linux/array_size.h>
 #include <linux/bitops.h>
 #include <linux/gpio/driver.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/io.h>
-#include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/types.h>
 #include <linux/platform_device.h>
-#include <linux/pm_runtime.h>
+#include <linux/pm.h>
 #include <linux/property.h>
 #include <linux/seq_file.h>
 #include <linux/string_helpers.h>
@@ -722,8 +722,6 @@ static int byt_gpio_request_enable(struct pinctrl_dev *pctl_dev,
 
 	raw_spin_unlock_irqrestore(&byt_lock, flags);
 
-	pm_runtime_get(vg->dev);
-
 	return 0;
 }
 
@@ -734,7 +732,6 @@ static void byt_gpio_disable_free(struct pinctrl_dev *pctl_dev,
 	struct intel_pinctrl *vg = pinctrl_dev_get_drvdata(pctl_dev);
 
 	byt_gpio_clear_triggering(vg, offset);
-	pm_runtime_put(vg->dev);
 }
 
 static void byt_gpio_direct_irq_check(struct intel_pinctrl *vg,
@@ -921,13 +918,14 @@ static int byt_pin_config_set(struct pinctrl_dev *pctl_dev,
 			      unsigned int num_configs)
 {
 	struct intel_pinctrl *vg = pinctrl_dev_get_drvdata(pctl_dev);
-	unsigned int param, arg;
 	void __iomem *conf_reg = byt_gpio_reg(vg, offset, BYT_CONF0_REG);
 	void __iomem *val_reg = byt_gpio_reg(vg, offset, BYT_VAL_REG);
 	void __iomem *db_reg = byt_gpio_reg(vg, offset, BYT_DEBOUNCE_REG);
 	u32 conf, val, db_pulse, debounce;
+	enum pin_config_param param;
 	unsigned long flags;
 	int i, ret = 0;
+	u32 arg;
 
 	raw_spin_lock_irqsave(&byt_lock, flags);
 
@@ -1661,7 +1659,6 @@ static int byt_pinctrl_probe(struct platform_device *pdev)
 		return ret;
 
 	platform_set_drvdata(pdev, vg);
-	pm_runtime_enable(dev);
 
 	return 0;
 }
@@ -1750,26 +1747,15 @@ static int byt_gpio_resume(struct device *dev)
 	return 0;
 }
 
-static int byt_gpio_runtime_suspend(struct device *dev)
-{
-	return 0;
-}
-
-static int byt_gpio_runtime_resume(struct device *dev)
-{
-	return 0;
-}
-
 static const struct dev_pm_ops byt_gpio_pm_ops = {
 	LATE_SYSTEM_SLEEP_PM_OPS(byt_gpio_suspend, byt_gpio_resume)
-	RUNTIME_PM_OPS(byt_gpio_runtime_suspend, byt_gpio_runtime_resume, NULL)
 };
 
 static struct platform_driver byt_gpio_driver = {
 	.probe          = byt_pinctrl_probe,
 	.driver         = {
 		.name			= "byt_gpio",
-		.pm			= pm_ptr(&byt_gpio_pm_ops),
+		.pm			= pm_sleep_ptr(&byt_gpio_pm_ops),
 		.acpi_match_table	= byt_gpio_acpi_match,
 		.suppress_bind_attrs	= true,
 	},

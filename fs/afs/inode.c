@@ -91,8 +91,8 @@ static int afs_inode_init_from_status(struct afs_operation *op,
 
 	t = status->mtime_client;
 	inode_set_ctime_to_ts(inode, t);
-	inode->i_mtime = t;
-	inode->i_atime = t;
+	inode_set_mtime_to_ts(inode, t);
+	inode_set_atime_to_ts(inode, t);
 	inode->i_flags |= S_NOATIME;
 	inode->i_uid = make_kuid(&init_user_ns, status->owner);
 	inode->i_gid = make_kgid(&init_user_ns, status->group);
@@ -204,7 +204,7 @@ static void afs_apply_status(struct afs_operation *op,
 	}
 
 	t = status->mtime_client;
-	inode->i_mtime = t;
+	inode_set_mtime_to_ts(inode, t);
 	if (vp->update_ctime)
 		inode_set_ctime_to_ts(inode, op->ctime);
 
@@ -253,7 +253,7 @@ static void afs_apply_status(struct afs_operation *op,
 		if (change_size) {
 			afs_set_i_size(vnode, status->size);
 			inode_set_ctime_to_ts(inode, t);
-			inode->i_atime = t;
+			inode_set_atime_to_ts(inode, t);
 		}
 	}
 }
@@ -331,7 +331,7 @@ static void afs_fetch_status_success(struct afs_operation *op)
 
 	if (vnode->netfs.inode.i_state & I_NEW) {
 		ret = afs_inode_init_from_status(op, vp, vnode);
-		op->error = ret;
+		afs_op_set_error(op, ret);
 		if (ret == 0)
 			afs_cache_permit(vnode, op->key, vp->cb_break_before, &vp->scb);
 	} else {

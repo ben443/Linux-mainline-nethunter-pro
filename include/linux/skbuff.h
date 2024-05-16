@@ -3439,6 +3439,16 @@ static inline void skb_frag_ref(struct sk_buff *skb, int f)
 bool napi_pp_put_page(struct page *page, bool napi_safe);
 
 static inline void
+skb_page_unref(const struct sk_buff *skb, struct page *page, bool napi_safe)
+{
+#ifdef CONFIG_PAGE_POOL
+	if (skb->pp_recycle && napi_pp_put_page(page, napi_safe))
+		return;
+#endif
+	put_page(page);
+}
+
+static inline void
 napi_frag_unref(skb_frag_t *frag, bool recycle, bool napi_safe)
 {
 	struct page *page = skb_frag_page(frag);
@@ -3678,6 +3688,9 @@ static inline int __must_check skb_put_padto(struct sk_buff *skb, unsigned int l
 {
 	return __skb_put_padto(skb, len, true);
 }
+
+bool csum_and_copy_from_iter_full(void *addr, size_t bytes, __wsum *csum, struct iov_iter *i)
+	__must_check;
 
 static inline int skb_add_data(struct sk_buff *skb,
 			       struct iov_iter *from, int copy)

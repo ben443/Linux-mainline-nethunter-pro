@@ -4,7 +4,6 @@ import sys
 import glob
 import os
 
-from debian_linux.config import ConfigCoreDump
 from debian_linux.debian import Changelog, VersionLinux
 
 
@@ -96,12 +95,13 @@ class Main(object):
     def __init__(self, dir, arch, featureset, flavour):
         self.args = dir, arch, featureset, flavour
 
-        self.config = ConfigCoreDump(open("debian/config.defines.dump", "rb"))
+        # TODO
+        # self.config = ConfigCoreDump(open("debian/config.defines.dump", "rb"))
 
     def __call__(self):
         fail = 0
 
-        for c in (CheckImage, ):
+        for c in ():
             fail |= c(self.config, *self.args)(sys.stdout)
 
         return fail

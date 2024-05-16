@@ -3238,6 +3238,9 @@ static void ionic_lif_reset(struct ionic_lif *lif)
 {
 	struct ionic_dev *idev = &lif->ionic->idev;
 
+	if (!ionic_is_fw_running(idev))
+		return;
+
 	mutex_lock(&lif->ionic->dev_cmd_lock);
 	ionic_dev_cmd_lif_reset(idev, lif->index);
 	ionic_dev_cmd_wait(lif->ionic, DEVCMD_TIMEOUT);
@@ -3831,6 +3834,18 @@ static void ionic_lif_queue_identify(struct ionic_lif *lif)
 			qtype, qti->max_sg_elems);
 		dev_dbg(ionic->dev, " qtype[%d].sg_desc_stride = %d\n",
 			qtype, qti->sg_desc_stride);
+
+		if (qti->max_sg_elems >= IONIC_MAX_FRAGS) {
+			qti->max_sg_elems = IONIC_MAX_FRAGS - 1;
+			dev_dbg(ionic->dev, "limiting qtype %d max_sg_elems to IONIC_MAX_FRAGS-1 %d\n",
+				qtype, qti->max_sg_elems);
+		}
+
+		if (qti->max_sg_elems > MAX_SKB_FRAGS) {
+			qti->max_sg_elems = MAX_SKB_FRAGS;
+			dev_dbg(ionic->dev, "limiting qtype %d max_sg_elems to MAX_SKB_FRAGS %d\n",
+				qtype, qti->max_sg_elems);
+		}
 	}
 }
 

@@ -298,6 +298,7 @@ struct swap_info_struct {
 	unsigned int __percpu *cluster_next_cpu; /*percpu index for next allocation */
 	struct percpu_cluster __percpu *percpu_cluster; /* per cpu's swap location */
 	struct rb_root swap_extent_root;/* root of the swap extent rbtree */
+	struct bdev_handle *bdev_handle;/* open handle of the bdev */
 	struct block_device *bdev;	/* swap device or bdev of swap file */
 	struct file *swap_file;		/* seldom referenced */
 	unsigned int old_block_size;	/* seldom referenced */
@@ -548,6 +549,11 @@ static inline void swap_shmem_alloc(swp_entry_t swp)
 }
 
 static inline int swap_duplicate(swp_entry_t swp)
+{
+	return 0;
+}
+
+static inline int swapcache_prepare(swp_entry_t swp)
 {
 	return 0;
 }

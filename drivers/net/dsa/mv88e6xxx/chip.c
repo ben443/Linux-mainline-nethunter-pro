@@ -2498,7 +2498,7 @@ static int mv88e6xxx_port_vlan_add(struct dsa_switch *ds, int port,
 	else
 		member = MV88E6XXX_G1_VTU_DATA_MEMBER_TAG_TAGGED;
 
-	/* net/dsa/slave.c will call dsa_port_vlan_add() for the affected port
+	/* net/dsa/user.c will call dsa_port_vlan_add() for the affected port
 	 * and then the CPU port. Do not warn for duplicates for the CPU port.
 	 */
 	warn = !dsa_is_cpu_port(ds, port) && !dsa_is_dsa_port(ds, port);
@@ -3545,7 +3545,7 @@ static int mv88e6xxx_mdio_read_c45(struct mii_bus *bus, int phy, int devad,
 	int err;
 
 	if (!chip->info->ops->phy_read_c45)
-		return -EOPNOTSUPP;
+		return 0xffff;
 
 	mv88e6xxx_reg_lock(chip);
 	err = chip->info->ops->phy_read_c45(chip, bus, phy, devad, reg, &val);
@@ -3731,7 +3731,7 @@ static int mv88e6xxx_setup(struct dsa_switch *ds)
 		return err;
 
 	chip->ds = ds;
-	ds->slave_mii_bus = mv88e6xxx_default_mdio_bus(chip);
+	ds->user_mii_bus = mv88e6xxx_default_mdio_bus(chip);
 
 	/* Since virtual bridges are mapped in the PVT, the number we support
 	 * depends on the physical switch topology. We need to let DSA figure

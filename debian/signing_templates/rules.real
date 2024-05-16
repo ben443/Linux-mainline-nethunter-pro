@@ -17,7 +17,16 @@ endef
 
 define dh_binary_post
 	dh_install $(DH_INSTALL_ARGS)
-	dh_installdocs $(if $(INSTALLDOCS_LINK_DOC),--link-doc=$(INSTALLDOCS_LINK_DOC))
+	# Workaround #1068189. By Debian policy and aligned debhelper behaviour /usr/share/doc/package
+	# is permitted to be a symbolic link to another directory in /usr/share/doc only if the two
+	# packages come from the same source package. The package build will fail with the new debhelper
+	# version since debhelper/13.15. As the linux-signed-* packages are quite special in the eco-
+	# system, make the workaround to fallback to the old behaviour until it is agreed on how to
+	# resolve the situation policy conformant.
+	# https://www.debian.org/doc/debian-policy/ch-docs.html#copyright-information
+	$(if $(INSTALLDOCS_LINK_DOC),
+		mkdir -p debian/$(PACKAGE_NAME)/usr/share/doc && ln -sf $(INSTALLDOCS_LINK_DOC) debian/$(PACKAGE_NAME)/usr/share/doc/$(PACKAGE_NAME),
+		dh_installdocs)
 	dh_installchangelogs
 	dh_installexamples
 	dh_installman
@@ -30,8 +39,8 @@ define dh_binary_post
 	dh_compress
 	dh_fixperms
 	dh_missing
-	dh_strip
-	dh_makeshlibs
+	dh_strip $(DH_STRIP_ARGS) -Xvmlinux -Xvmlinuz
+	dh_makeshlibs -Xvmlinux -Xvmlinuz
 	dh_shlibdeps $(DH_SHLIBDEPS_ARGS)
 	dh_installdeb
 	dh_gencontrol -- $(GENCONTROL_ARGS)
@@ -44,6 +53,7 @@ build-indep:
 build_image:
 
 binary_image: DH_OPTIONS = -p$(PACKAGE_NAME)
+binary_image: DH_STRIP_ARGS = --no-automatic-dbgsym
 binary_image: KERNEL_VERSION = $(ABINAME)$(LOCALVERSION)
 binary_image: IMAGE_PACKAGE_NAME = linux-image-$(KERNEL_VERSION)-unsigned
 binary_image: PACKAGE_DIR = debian/$(PACKAGE_NAME)
