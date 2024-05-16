@@ -1,3 +1,10 @@
+linux (6.7.12-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+  * Refresh patches
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 16 May 2024 17:39:30 +0200
+
 linux (6.7.12-1) unstable; urgency=medium
 
   * New upstream stable update:
