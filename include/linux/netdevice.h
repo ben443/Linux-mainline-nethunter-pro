@@ -1833,6 +1833,8 @@ enum netdev_reg_state {
  *
  *	@mpls_features:	Mask of features inheritable by MPLS
  *	@gso_partial_features: value(s) from NETIF_F_GSO\*
+ *	@mangleid_features:	Mask of features requiring MANGLEID, will be
+ *				disabled together with the latter.
  *
  *	@ifindex:	interface index
  *	@group:		The group the device belongs to
@@ -2222,6 +2224,7 @@ struct net_device {
 	netdev_features_t	vlan_features;
 	netdev_features_t	hw_enc_features;
 	netdev_features_t	mpls_features;
+	netdev_features_t	mangleid_features;
 
 	unsigned int		min_mtu;
 	unsigned int		max_mtu;
@@ -5213,8 +5216,7 @@ void *netdev_lower_dev_get_private(struct net_device *dev,
 void netdev_lower_state_changed(struct net_device *lower_dev,
 				void *lower_state_info);
 
-/* RSS keys are 40 or 52 bytes long */
-#define NETDEV_RSS_KEY_LEN 52
+#define NETDEV_RSS_KEY_LEN 256
 extern u8 netdev_rss_key[NETDEV_RSS_KEY_LEN] __read_mostly;
 void netdev_rss_key_fill(void *buffer, size_t len);
 
@@ -5337,9 +5339,9 @@ static inline netdev_tx_t netdev_start_xmit(struct sk_buff *skb, struct net_devi
 }
 
 int netdev_class_create_file_ns(const struct class_attribute *class_attr,
-				const void *ns);
+				const struct ns_common *ns);
 void netdev_class_remove_file_ns(const struct class_attribute *class_attr,
-				 const void *ns);
+				 const struct ns_common *ns);
 
 extern const struct kobj_ns_type_operations net_ns_type_operations;
 
