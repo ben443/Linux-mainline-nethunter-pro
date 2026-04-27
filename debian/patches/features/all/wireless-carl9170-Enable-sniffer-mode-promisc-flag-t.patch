@@ -24,8 +24,10 @@ Signed-off-by: Steve deRosier <derosier@cal-sierra.com>
  drivers/net/wireless/ath/carl9170/mac.c | 5 +++++
  1 file changed, 5 insertions(+)
 
---- a/drivers/net/wireless/ath/carl9170/mac.c
-+++ b/drivers/net/wireless/ath/carl9170/mac.c
+Index: kalilinux/drivers/net/wireless/ath/carl9170/mac.c
+===================================================================
+--- kalilinux.orig/drivers/net/wireless/ath/carl9170/mac.c
++++ kalilinux/drivers/net/wireless/ath/carl9170/mac.c
 @@ -309,6 +309,7 @@ int carl9170_set_operating_mode(struct a
  	u32 rx_ctrl = AR9170_MAC_RX_CTRL_DEAGG |
  		      AR9170_MAC_RX_CTRL_SHORT_FILTER;

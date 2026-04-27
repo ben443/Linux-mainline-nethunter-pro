@@ -17,8 +17,10 @@ https://web.archive.org/web/20180830093617/https://dmz-portal.mips.com/wiki/MIPS
  arch/mips/kernel/fpu-probe.c | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
---- a/arch/mips/kernel/fpu-probe.c
-+++ b/arch/mips/kernel/fpu-probe.c
+Index: kalilinux/arch/mips/kernel/fpu-probe.c
+===================================================================
+--- kalilinux.orig/arch/mips/kernel/fpu-probe.c
++++ kalilinux/arch/mips/kernel/fpu-probe.c
 @@ -144,7 +144,12 @@ static void cpu_set_fpu_2008(struct cpui
   * IEEE 754 conformance mode to use.  Affects the NaN encoding and the
   * ABS.fmt/NEG.fmt execution mode.

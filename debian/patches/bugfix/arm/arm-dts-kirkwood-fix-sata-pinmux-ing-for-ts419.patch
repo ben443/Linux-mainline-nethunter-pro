@@ -19,9 +19,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi | 8 ++++++++
  1 file changed, 8 insertions(+)
 
---- a/arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi
-+++ b/arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi
-@@ -69,3 +69,11 @@
+Index: kalilinux/arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi
+===================================================================
+--- kalilinux.orig/arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi
++++ kalilinux/arch/arm/boot/dts/marvell/kirkwood-ts419.dtsi
+@@ -67,3 +67,11 @@
  		phy-handle = <&ethphy1>;
  	};
  };

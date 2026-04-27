@@ -20,10 +20,10 @@ Signed-off-by: Ben Hutchings <benh@debian.org>
  tools/perf/Documentation/perf-check.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tools/perf/Documentation/perf-check.txt b/tools/perf/Documentation/perf-check.txt
-index a764a4629220..80eb1de4eee0 100644
---- a/tools/perf/Documentation/perf-check.txt
-+++ b/tools/perf/Documentation/perf-check.txt
+Index: kalilinux/tools/perf/Documentation/perf-check.txt
+===================================================================
+--- kalilinux.orig/tools/perf/Documentation/perf-check.txt
++++ kalilinux/tools/perf/Documentation/perf-check.txt
 @@ -1,5 +1,5 @@
  perf-check(1)
 -===============

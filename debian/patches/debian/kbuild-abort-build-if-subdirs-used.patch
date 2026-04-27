@@ -14,8 +14,10 @@ To avoid such mishaps, detect this situation and abort the build.
 The error message is based on that used in commit 0126be38d988
 "kbuild: announce removal of SUBDIRS if used".
 ---
---- a/Makefile
-+++ b/Makefile
+Index: kalilinux/Makefile
+===================================================================
+--- kalilinux.orig/Makefile
++++ kalilinux/Makefile
 @@ -138,6 +138,18 @@ ifeq ("$(origin MO)", "command line")
    KBUILD_EXTMOD_OUTPUT := $(MO)
  endif

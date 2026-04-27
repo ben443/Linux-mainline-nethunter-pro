@@ -7,8 +7,10 @@ We exclude the CIPSO draft text as its licence is not DFSG compliant.
 Link to the IETF's online version instead.
 
 ---
---- a/Documentation/netlabel/draft_ietf.rst
-+++ b/Documentation/netlabel/draft_ietf.rst
+Index: kalilinux/Documentation/netlabel/draft_ietf.rst
+===================================================================
+--- kalilinux.orig/Documentation/netlabel/draft_ietf.rst
++++ kalilinux/Documentation/netlabel/draft_ietf.rst
 @@ -1,5 +1,4 @@
  Draft IETF CIPSO IP Security
  ----------------------------

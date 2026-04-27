@@ -13,8 +13,10 @@ These drivers are also largely redundant with nouveau.  The RIVA 128
 probably discontinued 10 years ago.
 
 ---
---- a/drivers/video/fbdev/Kconfig
-+++ b/drivers/video/fbdev/Kconfig
+Index: kalilinux/drivers/video/fbdev/Kconfig
+===================================================================
+--- kalilinux.orig/drivers/video/fbdev/Kconfig
++++ kalilinux/drivers/video/fbdev/Kconfig
 @@ -658,102 +658,6 @@ config FB_ATMEL
  	help
  	  This enables support for the AT91 LCD Controller.
@@ -118,8 +120,10 @@ probably discontinued 10 years ago.
  config FB_I740
  	tristate "Intel740 support"
  	depends on FB && PCI
---- a/drivers/video/fbdev/Makefile
-+++ b/drivers/video/fbdev/Makefile
+Index: kalilinux/drivers/video/fbdev/Makefile
+===================================================================
+--- kalilinux.orig/drivers/video/fbdev/Makefile
++++ kalilinux/drivers/video/fbdev/Makefile
 @@ -22,8 +22,6 @@ obj-$(CONFIG_FB_PM3)		  += pm3fb.o
  
  obj-$(CONFIG_FB_I740)		  += i740fb.o

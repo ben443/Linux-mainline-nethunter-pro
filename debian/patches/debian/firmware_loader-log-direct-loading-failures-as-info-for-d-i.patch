@@ -22,8 +22,10 @@ this with the check-missing-firmware.sh in hw-detect.
  drivers/base/firmware_loader/main.c     | 17 ++++++++---------
  2 files changed, 9 insertions(+), 10 deletions(-)
 
---- a/drivers/base/firmware_loader/main.c
-+++ b/drivers/base/firmware_loader/main.c
+Index: kalilinux/drivers/base/firmware_loader/main.c
+===================================================================
+--- kalilinux.orig/drivers/base/firmware_loader/main.c
++++ kalilinux/drivers/base/firmware_loader/main.c
 @@ -590,6 +590,10 @@ fw_get_filesystem_firmware(struct device
  	}
  	__putname(path);

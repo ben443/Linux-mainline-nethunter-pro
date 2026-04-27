@@ -14,11 +14,11 @@ Acked-by: Ian Rogers <irogers@google.com>
  tools/lib/symbol/Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tools/lib/symbol/Makefile b/tools/lib/symbol/Makefile
-index 13d43c6f92b4..4a08cc4e19f2 100644
---- a/tools/lib/symbol/Makefile
-+++ b/tools/lib/symbol/Makefile
-@@ -39,7 +39,7 @@ endif
+Index: kalilinux/tools/lib/symbol/Makefile
+===================================================================
+--- kalilinux.orig/tools/lib/symbol/Makefile
++++ kalilinux/tools/lib/symbol/Makefile
+@@ -35,7 +35,7 @@ ifeq ($(DEBUG),0)
  endif
  
  ifeq ($(DEBUG),0)
@@ -27,5 +27,3 @@ index 13d43c6f92b4..4a08cc4e19f2 100644
  endif
  
  # Treat warnings as errors unless directed not to
--- 
-2.39.2

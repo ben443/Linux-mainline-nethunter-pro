@@ -22,9 +22,11 @@ incorrect check has been fixed with upstream commit 53d1cd6b125f.
 Keep in the patch the distinction and report for the zero and
 negative cases.]
 ---
---- a/tools/power/cpupower/bench/system.c
-+++ b/tools/power/cpupower/bench/system.c
-@@ -58,12 +58,19 @@ long long int get_time()
+Index: kalilinux/tools/power/cpupower/bench/system.c
+===================================================================
+--- kalilinux.orig/tools/power/cpupower/bench/system.c
++++ kalilinux/tools/power/cpupower/bench/system.c
+@@ -45,12 +45,19 @@ long long int get_time()
  
  int set_cpufreq_governor(char *governor, unsigned int cpu)
  {

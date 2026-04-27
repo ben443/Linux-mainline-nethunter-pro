@@ -21,9 +21,11 @@ Cc: linux-mtd@lists.infradead.org
  drivers/mtd/devices/slram.c | 9 ++++++++-
  2 files changed, 13 insertions(+), 2 deletions(-)
 
---- a/drivers/mtd/devices/phram.c
-+++ b/drivers/mtd/devices/phram.c
-@@ -364,7 +364,11 @@ static int phram_param_call(const char *
+Index: kalilinux/drivers/mtd/devices/phram.c
+===================================================================
+--- kalilinux.orig/drivers/mtd/devices/phram.c
++++ kalilinux/drivers/mtd/devices/phram.c
+@@ -365,7 +365,11 @@ static int phram_param_call(const char *
  #endif
  }
  
@@ -36,8 +38,10 @@ Cc: linux-mtd@lists.infradead.org
  MODULE_PARM_DESC(phram, "Memory region to map. \"phram=<name>,<start>,<length>[,<erasesize>]\"");
  
  #ifdef CONFIG_OF
---- a/drivers/mtd/devices/slram.c
-+++ b/drivers/mtd/devices/slram.c
+Index: kalilinux/drivers/mtd/devices/slram.c
+===================================================================
+--- kalilinux.orig/drivers/mtd/devices/slram.c
++++ kalilinux/drivers/mtd/devices/slram.c
 @@ -43,6 +43,7 @@
  #include <linux/ioctl.h>
  #include <linux/init.h>

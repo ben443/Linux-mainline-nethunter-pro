@@ -24,9 +24,11 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  security/lockdown/lockdown.c      |    2 +-
  5 files changed, 27 insertions(+), 3 deletions(-)
 
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -904,6 +904,8 @@ void __init setup_arch(char **cmdline_p)
+Index: kalilinux/arch/x86/kernel/setup.c
+===================================================================
+--- kalilinux.orig/arch/x86/kernel/setup.c
++++ kalilinux/arch/x86/kernel/setup.c
+@@ -995,6 +995,8 @@ void __init setup_arch(char **cmdline_p)
  	if (efi_enabled(EFI_BOOT))
  		efi_init();
  
@@ -35,7 +37,7 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  	reserve_ibft_region();
  	x86_init.resources.dmi_setup();
  
-@@ -1070,8 +1072,6 @@ void __init setup_arch(char **cmdline_p)
+@@ -1156,8 +1158,6 @@ void __init setup_arch(char **cmdline_p)
  	/* Allocate bigger log buffer */
  	setup_log_buf(1);
  
@@ -44,8 +46,10 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  	reserve_initrd();
  
  	acpi_table_upgrade();
---- a/drivers/firmware/efi/secureboot.c
-+++ b/drivers/firmware/efi/secureboot.c
+Index: kalilinux/drivers/firmware/efi/secureboot.c
+===================================================================
+--- kalilinux.orig/drivers/firmware/efi/secureboot.c
++++ kalilinux/drivers/firmware/efi/secureboot.c
 @@ -15,6 +15,7 @@
  #include <linux/efi.h>
  #include <linux/kernel.h>
@@ -65,9 +69,11 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  			pr_info("Secure boot enabled\n");
  			break;
  		default:
---- a/include/linux/security.h
-+++ b/include/linux/security.h
-@@ -522,6 +522,7 @@ int security_inode_notifysecctx(struct i
+Index: kalilinux/include/linux/security.h
+===================================================================
+--- kalilinux.orig/include/linux/security.h
++++ kalilinux/include/linux/security.h
+@@ -576,6 +576,7 @@ int security_inode_notifysecctx(struct i
  int security_inode_setsecctx(struct dentry *dentry, void *ctx, u32 ctxlen);
  int security_inode_getsecctx(struct inode *inode, struct lsm_context *cp);
  int security_locked_down(enum lockdown_reason what);
@@ -75,7 +81,7 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  int lsm_fill_user_ctx(struct lsm_ctx __user *uctx, u32 *uctx_len,
  		      void *val, size_t val_len, u64 id, u64 flags);
  int security_bdev_alloc(struct block_device *bdev);
-@@ -1504,6 +1505,11 @@ static inline int security_locked_down(e
+@@ -1590,6 +1591,11 @@ static inline int security_locked_down(e
  {
  	return 0;
  }
@@ -87,8 +93,10 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
  static inline int lsm_fill_user_ctx(struct lsm_ctx __user *uctx,
  				    u32 *uctx_len, void *val, size_t val_len,
  				    u64 id, u64 flags)
---- a/security/lockdown/Kconfig
-+++ b/security/lockdown/Kconfig
+Index: kalilinux/security/lockdown/Kconfig
+===================================================================
+--- kalilinux.orig/security/lockdown/Kconfig
++++ kalilinux/security/lockdown/Kconfig
 @@ -45,3 +45,18 @@ config LOCK_DOWN_KERNEL_FORCE_CONFIDENTI
  	 disabled.
  
@@ -108,8 +116,10 @@ Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
 +
 +	  Enabling this option results in kernel lockdown being
 +	  triggered in integrity mode if EFI Secure Boot is set.
---- a/security/lockdown/lockdown.c
-+++ b/security/lockdown/lockdown.c
+Index: kalilinux/security/lockdown/lockdown.c
+===================================================================
+--- kalilinux.orig/security/lockdown/lockdown.c
++++ kalilinux/security/lockdown/lockdown.c
 @@ -24,7 +24,7 @@ static const enum lockdown_reason lockdo
  /*
   * Put the kernel into lock-down mode.

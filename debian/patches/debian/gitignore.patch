@@ -8,9 +8,11 @@ Forwarded: not-needed
  .gitignore | 25 +++++++------------------
  1 file changed, 7 insertions(+), 18 deletions(-)
 
---- a/.gitignore
-+++ b/.gitignore
-@@ -108,21 +108,6 @@ modules.order
+Index: kalilinux/.gitignore
+===================================================================
+--- kalilinux.orig/.gitignore
++++ kalilinux/.gitignore
+@@ -104,21 +104,6 @@ modules.order
  /pacman/
  
  #

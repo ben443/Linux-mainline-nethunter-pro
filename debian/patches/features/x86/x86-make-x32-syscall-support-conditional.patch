@@ -27,9 +27,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  arch/x86/include/asm/syscall.h                | 13 ++++++
  6 files changed, 78 insertions(+), 2 deletions(-)
 
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -6498,6 +6498,10 @@
+Index: kalilinux/Documentation/admin-guide/kernel-parameters.txt
+===================================================================
+--- kalilinux.orig/Documentation/admin-guide/kernel-parameters.txt
++++ kalilinux/Documentation/admin-guide/kernel-parameters.txt
+@@ -7540,6 +7540,10 @@ Kernel parameters
  			later by a loaded module cannot be set this way.
  			Example: sysctl.vm.swappiness=40
  
@@ -40,9 +42,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  	sysrq_always_enabled
  			[KNL]
  			Ignore sysrq setting - this boot parameter will
---- a/arch/x86/Kconfig
-+++ b/arch/x86/Kconfig
-@@ -3058,6 +3058,14 @@ config COMPAT_32
+Index: kalilinux/arch/x86/Kconfig
+===================================================================
+--- kalilinux.orig/arch/x86/Kconfig
++++ kalilinux/arch/x86/Kconfig
+@@ -3171,6 +3171,14 @@ config COMPAT_32
  	select HAVE_UID16
  	select OLD_SIGSUSPEND3
  
@@ -57,8 +61,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  config COMPAT
  	def_bool y
  	depends on IA32_EMULATION || X86_X32_ABI
---- a/arch/x86/include/asm/elf.h
-+++ b/arch/x86/include/asm/elf.h
+Index: kalilinux/arch/x86/include/asm/elf.h
+===================================================================
+--- kalilinux.orig/arch/x86/include/asm/elf.h
++++ kalilinux/arch/x86/include/asm/elf.h
 @@ -12,6 +12,9 @@
  #include <asm/user.h>
  #include <asm/auxvec.h>
@@ -69,7 +75,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  
  typedef unsigned long elf_greg_t;
  
-@@ -152,7 +155,8 @@
+@@ -148,7 +151,8 @@ do {						\
  
  #define compat_elf_check_arch(x)					\
  	((elf_check_arch_ia32(x) && ia32_enabled_verbose()) ||		\
@@ -79,8 +85,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  
  static inline void elf_common_init(struct thread_struct *t,
  				   struct pt_regs *regs, const u16 ds)
---- a/arch/x86/include/asm/syscall.h
-+++ b/arch/x86/include/asm/syscall.h
+Index: kalilinux/arch/x86/include/asm/syscall.h
+===================================================================
+--- kalilinux.orig/arch/x86/include/asm/syscall.h
++++ kalilinux/arch/x86/include/asm/syscall.h
 @@ -13,6 +13,7 @@
  #include <uapi/linux/audit.h>
  #include <linux/sched.h>
@@ -89,7 +97,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  #include <asm/thread_info.h>	/* for TS_COMPAT */
  #include <asm/unistd.h>
  
-@@ -28,6 +29,18 @@
+@@ -28,6 +29,18 @@ extern long ia32_sys_call(const struct p
  extern long x32_sys_call(const struct pt_regs *, unsigned int nr);
  extern long x64_sys_call(const struct pt_regs *, unsigned int nr);
  
@@ -108,8 +116,10 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  /*
   * Only the low 32 bits of orig_ax are meaningful, so we return int.
   * This importantly ignores the high bits on 64-bit, so comparisons
---- a/arch/x86/entry/syscall_64.c
-+++ b/arch/x86/entry/syscall_64.c
+Index: kalilinux/arch/x86/entry/syscall_64.c
+===================================================================
+--- kalilinux.orig/arch/x86/entry/syscall_64.c
++++ kalilinux/arch/x86/entry/syscall_64.c
 @@ -7,6 +7,9 @@
  #include <linux/syscalls.h>
  #include <linux/entry-common.h>
@@ -120,7 +130,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  #include <asm/syscall.h>
  
  #define __SYSCALL(nr, sym) extern long __x64_##sym(const struct pt_regs *);
-@@ -75,7 +78,7 @@
+@@ -75,7 +78,7 @@ static __always_inline bool do_syscall_x
  	 */
  	unsigned int xnr = nr - __X32_SYSCALL_BIT;
  
@@ -129,7 +139,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  		xnr = array_index_nospec(xnr, X32_NR_syscalls);
  		regs->ax = x32_sys_call(regs, xnr);
  		return true;
-@@ -139,3 +142,48 @@
+@@ -139,3 +142,48 @@ __visible noinstr bool do_syscall_64(str
  	/* Use SYSRET to exit to userspace */
  	return true;
  }

@@ -13,8 +13,10 @@ subdirectory.
 
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/tools/lib/bpf/Makefile
-+++ b/tools/lib/bpf/Makefile
+Index: kalilinux/tools/lib/bpf/Makefile
+===================================================================
+--- kalilinux.orig/tools/lib/bpf/Makefile
++++ kalilinux/tools/lib/bpf/Makefile
 @@ -134,7 +134,7 @@ all_cmd: $(CMD_TARGETS) check
  $(SHARED_OBJDIR) $(STATIC_OBJDIR):
  	$(Q)mkdir -p $@

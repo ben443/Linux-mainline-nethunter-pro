@@ -20,15 +20,14 @@ implementation went from disk-io.c to super.c; forwarded the issue]
  fs/btrfs/super.c | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/fs/btrfs/super.c b/fs/btrfs/super.c
-index 101f786963d4..2c409bce1bf5 100644
---- a/fs/btrfs/super.c
-+++ b/fs/btrfs/super.c
-@@ -731,6 +731,18 @@ static void set_device_specific_options(struct btrfs_fs_info *fs_info)
- 	    !fs_info->fs_devices->rotating)
+Index: kalilinux/fs/btrfs/super.c
+===================================================================
+--- kalilinux.orig/fs/btrfs/super.c
++++ kalilinux/fs/btrfs/super.c
+@@ -781,6 +781,18 @@ static void set_device_specific_options(
  		btrfs_set_opt(fs_info->mount_opt, SSD);
  
-+	/*
+ 	/*
 +	 * Warn about RAID5/6 being experimental at mount time
 +	 */
 +	if ((fs_info->avail_data_alloc_bits |
@@ -40,6 +39,7 @@ index 101f786963d4..2c409bce1bf5 100644
 +		add_taint(TAINT_AUX, LOCKDEP_STILL_OK);
 +	}
 +
- 	/*
++	/*
  	 * For devices supporting discard turn on discard=async automatically,
  	 * unless it's already set or disabled. This could be turned off by
+ 	 * nodiscard for the same mount.

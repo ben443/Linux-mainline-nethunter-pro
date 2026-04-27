@@ -10,8 +10,10 @@ u-boot-tools.
  - zload-y is no longer assigned here and appears to default to empty
  - Adjust context]
 
---- a/arch/mips/generic/Platform
-+++ b/arch/mips/generic/Platform
+Index: kalilinux/arch/mips/generic/Platform
+===================================================================
+--- kalilinux.orig/arch/mips/generic/Platform
++++ kalilinux/arch/mips/generic/Platform
 @@ -13,7 +13,6 @@ cflags-$(CONFIG_MACH_INGENIC_SOC)	+= -I$
  cflags-$(CONFIG_MIPS_GENERIC)	+= -I$(srctree)/arch/mips/include/asm/mach-generic
  

@@ -15,9 +15,11 @@ Signed-off-by: Jeremy Cline <jcline@redhat.com>
 [bwh: Forward-ported to 5.19: adjust filename]
 [наб: reinstate for 6.1, re-write description]
 ---
---- a/kernel/module/signing.c
-+++ b/kernel/module/signing.c
-@@ -61,10 +61,17 @@
+Index: kalilinux/kernel/module/signing.c
+===================================================================
+--- kalilinux.orig/kernel/module/signing.c
++++ kalilinux/kernel/module/signing.c
+@@ -61,10 +61,17 @@ int mod_verify_sig(const void *mod, stru
  	modlen -= sig_len + sizeof(ms);
  	info->len = modlen;
  
