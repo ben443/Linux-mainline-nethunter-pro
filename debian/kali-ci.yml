@@ -6,9 +6,15 @@ variables:
   # we have our own runners that aren't just arm.
   SALSA_CI_IGNORED_BRANCHES: 'kali/master'
   #SALSA_CI_DISABLE_BUILD_PACKAGE_ALL: 1
-  #SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 1
   #SALSA_CI_DISABLE_BUILD_PACKAGE_I386: 1
   #SALSA_CI_DISABLE_BUILD_PACKAGE_ARMHF: 1
-  #SALSA_CI_DISABLE_BUILD_PACKAGE_ARM64: 1
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ARM64: 1
   SALSA_CI_DISABLE_VERSION_BUMP: 1
 
+# The included Kali pipeline always schedules the generic amd64 package build.
+# Linux package builds exceed the one-hour gitlab.com shared-runner limit here,
+# while source/i386/all-only jobs finish and still validate packaging changes.
+build:
+  rules:
+    - when: never
