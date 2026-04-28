@@ -18,3 +18,19 @@ variables:
 build:
   rules:
     - when: never
+
+lintian:
+  rules:
+    - when: never
+
+autopkgtest:
+  rules:
+    - when: never
+
+blhc:
+  rules:
+    - when: never
+
+piuparts:
+  rules:
+    - when: never
