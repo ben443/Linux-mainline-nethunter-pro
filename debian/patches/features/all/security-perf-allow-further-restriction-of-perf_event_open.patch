@@ -20,9 +20,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  security/Kconfig           | 9 +++++++++
  3 files changed, 22 insertions(+)
 
---- a/include/linux/perf_event.h
-+++ b/include/linux/perf_event.h
-@@ -1684,6 +1684,11 @@
+Index: kalilinux/include/linux/perf_event.h
+===================================================================
+--- kalilinux.orig/include/linux/perf_event.h
++++ kalilinux/include/linux/perf_event.h
+@@ -1777,6 +1777,11 @@ extern int sysctl_perf_event_sample_rate
  
  extern void perf_sample_event_took(u64 sample_len_ns);
  
@@ -34,9 +36,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  /* Access to perf_event_open(2) syscall. */
  #define PERF_SECURITY_OPEN		0
  
---- a/kernel/events/core.c
-+++ b/kernel/events/core.c
-@@ -449,8 +449,13 @@ static struct kmem_cache *perf_event_cac
+Index: kalilinux/kernel/events/core.c
+===================================================================
+--- kalilinux.orig/kernel/events/core.c
++++ kalilinux/kernel/events/core.c
+@@ -491,8 +491,13 @@ static __always_inline bool is_guest_med
   *   0 - disallow raw tracepoint access for unpriv
   *   1 - disallow cpu events for unpriv
   *   2 - disallow kernel profiling for unpriv
@@ -50,7 +54,7 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  
  /* Minimum for 512 kiB + 1 user control page. 'free' kiB per user. */
  static int sysctl_perf_event_mlock __read_mostly = 512 + (PAGE_SIZE / 1024);
-@@ -13084,6 +13089,9 @@
+@@ -13828,6 +13833,9 @@ SYSCALL_DEFINE5(perf_event_open,
  	if (err)
  		return err;
  
@@ -60,9 +64,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  	/* Do we allow access to perf_event_open(2) ? */
  	err = security_perf_event_open(PERF_SECURITY_OPEN);
  	if (err)
---- a/security/Kconfig
-+++ b/security/Kconfig
-@@ -81,6 +81,15 @@
+Index: kalilinux/security/Kconfig
+===================================================================
+--- kalilinux.orig/security/Kconfig
++++ kalilinux/security/Kconfig
+@@ -72,6 +72,15 @@ config MSEAL_SYSTEM_MAPPINGS
  	  For complete descriptions of memory sealing, please see
  	  Documentation/userspace-api/mseal.rst
  

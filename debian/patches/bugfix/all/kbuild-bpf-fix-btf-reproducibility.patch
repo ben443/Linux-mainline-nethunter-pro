@@ -13,18 +13,11 @@ is required, and use both options if available or neither if not.
 
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/scripts/Makefile.btf
-+++ b/scripts/Makefile.btf
-@@ -14,8 +14,6 @@ endif
- 
- pahole-flags-$(call test-ge, $(pahole-ver), 121)	+= --btf_gen_floats
- 
--pahole-flags-$(call test-ge, $(pahole-ver), 122)	+= -j$(JOBS)
--
- pahole-flags-$(call test-ge, $(pahole-ver), 125)	+= --skip_encoding_btf_inconsistent_proto --btf_gen_optimized
- 
- else
-@@ -29,6 +27,18 @@ endif
+Index: kalilinux/scripts/Makefile.btf
+===================================================================
+--- kalilinux.orig/scripts/Makefile.btf
++++ kalilinux/scripts/Makefile.btf
+@@ -20,6 +20,18 @@ pahole-flags-$(call test-ge, $(pahole-ve
  
  endif
  

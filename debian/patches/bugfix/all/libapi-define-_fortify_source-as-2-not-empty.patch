@@ -5,9 +5,11 @@ Forwarded: https://lore.kernel.org/lkml/20230424102049.58338-1-ukleinek@debian.o
 
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/tools/lib/api/Makefile
-+++ b/tools/lib/api/Makefile
-@@ -29,7 +29,7 @@ endif
+Index: kalilinux/tools/lib/api/Makefile
+===================================================================
+--- kalilinux.orig/tools/lib/api/Makefile
++++ kalilinux/tools/lib/api/Makefile
+@@ -35,7 +35,7 @@ ifeq ($(DEBUG),0)
  endif
  
  ifeq ($(DEBUG),0)

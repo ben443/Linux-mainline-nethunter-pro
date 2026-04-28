@@ -15,8 +15,10 @@ This hex dump is generated using:
  1 file changed, 1426 insertions(+)
  create mode 100644 net/wireless/certs/debian.hex
 
+Index: kalilinux/net/wireless/certs/debian.hex
+===================================================================
 --- /dev/null
-+++ b/net/wireless/certs/debian.hex
++++ kalilinux/net/wireless/certs/debian.hex
 @@ -0,0 +1,1426 @@
 +0x30,
 +0x82,

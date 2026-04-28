@@ -16,20 +16,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  fs/nfsd/nfsctl.c  | 3 +++
  4 files changed, 6 insertions(+), 2 deletions(-)
 
---- a/fs/btrfs/super.c
-+++ b/fs/btrfs/super.c
-@@ -2619,7 +2619,7 @@ module_exit(exit_btrfs_fs)
- 
- MODULE_DESCRIPTION("B-Tree File System (BTRFS)");
- MODULE_LICENSE("GPL");
--MODULE_SOFTDEP("pre: crc32c");
-+MODULE_SOFTDEP("pre: crypto-crc32c");
- MODULE_SOFTDEP("pre: xxhash64");
- MODULE_SOFTDEP("pre: sha256");
- MODULE_SOFTDEP("pre: blake2b-256");
---- a/fs/jbd2/journal.c
-+++ b/fs/jbd2/journal.c
-@@ -3194,6 +3194,7 @@ static void __exit journal_exit(void)
+Index: kalilinux/fs/jbd2/journal.c
+===================================================================
+--- kalilinux.orig/fs/jbd2/journal.c
++++ kalilinux/fs/jbd2/journal.c
+@@ -3174,6 +3174,7 @@ static void __exit journal_exit(void)
  
  MODULE_DESCRIPTION("Generic filesystem journal-writing module");
  MODULE_LICENSE("GPL");
@@ -37,9 +28,11 @@ Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
  module_init(journal_init);
  module_exit(journal_exit);
  
---- a/fs/nfsd/nfsctl.c
-+++ b/fs/nfsd/nfsctl.c
-@@ -2353,5 +2353,8 @@ static void __exit exit_nfsd(void)
+Index: kalilinux/fs/nfsd/nfsctl.c
+===================================================================
+--- kalilinux.orig/fs/nfsd/nfsctl.c
++++ kalilinux/fs/nfsd/nfsctl.c
+@@ -2336,5 +2336,8 @@ static void __exit exit_nfsd(void)
  MODULE_AUTHOR("Olaf Kirch <okir@monad.swb.de>");
  MODULE_DESCRIPTION("In-kernel NFS server");
  MODULE_LICENSE("GPL");

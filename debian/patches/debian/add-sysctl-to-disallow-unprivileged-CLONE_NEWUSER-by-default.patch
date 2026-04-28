@@ -19,9 +19,11 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  kernel/user_namespace.c |  3 +++
  3 files changed, 32 insertions(+)
 
---- a/kernel/fork.c
-+++ b/kernel/fork.c
-@@ -122,6 +122,12 @@
+Index: kalilinux/kernel/fork.c
+===================================================================
+--- kalilinux.orig/kernel/fork.c
++++ kalilinux/kernel/fork.c
+@@ -124,6 +124,12 @@
  
  #include <kunit/visibility.h>
  
@@ -34,7 +36,7 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  /*
   * Minimum number of threads to boot the kernel
   */
-@@ -1933,6 +1939,10 @@ __latent_entropy struct task_struct *cop
+@@ -1984,6 +1990,10 @@ __latent_entropy struct task_struct *cop
  	if ((clone_flags & (CLONE_NEWUSER|CLONE_FS)) == (CLONE_NEWUSER|CLONE_FS))
  		return ERR_PTR(-EINVAL);
  
@@ -45,7 +47,7 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  	/*
  	 * Thread groups must share signals as well, and detached threads
  	 * can only be started up within the thread group.
-@@ -3099,6 +3109,12 @@ int ksys_unshare(unsigned long unshare_f
+@@ -3151,6 +3161,12 @@ int ksys_unshare(unsigned long unshare_f
  	if (unshare_flags & CLONE_NEWNS)
  		unshare_flags |= CLONE_FS;
  
@@ -58,9 +60,11 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  	err = check_unshare_flags(unshare_flags);
  	if (err)
  		goto bad_unshare_out;
---- a/kernel/sysctl.c
-+++ b/kernel/sysctl.c
-@@ -77,6 +77,10 @@ EXPORT_SYMBOL_GPL(sysctl_long_vals);
+Index: kalilinux/kernel/sysctl.c
+===================================================================
+--- kalilinux.orig/kernel/sysctl.c
++++ kalilinux/kernel/sysctl.c
+@@ -35,6 +35,10 @@ EXPORT_SYMBOL_GPL(sysctl_long_vals);
  static const int ngroups_max = NGROUPS_MAX;
  static const int cap_last_cap = CAP_LAST_CAP;
  
@@ -71,7 +75,7 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  #ifdef CONFIG_PROC_SYSCTL
  
  /**
-@@ -1581,6 +1585,15 @@ int proc_do_static_key(const struct ctl_
+@@ -1372,6 +1376,15 @@ int proc_do_static_key(const struct ctl_
  }
  
  static const struct ctl_table sysctl_subsys_table[] = {
@@ -87,8 +91,10 @@ Signed-off-by: Serge Hallyn <serge.hallyn@ubuntu.com>
  #ifdef CONFIG_PROC_SYSCTL
  	{
  		.procname	= "sysctl_writes_strict",
---- a/kernel/user_namespace.c
-+++ b/kernel/user_namespace.c
+Index: kalilinux/kernel/user_namespace.c
+===================================================================
+--- kalilinux.orig/kernel/user_namespace.c
++++ kalilinux/kernel/user_namespace.c
 @@ -23,6 +23,9 @@
  #include <linux/sort.h>
  #include <linux/nstree.h>

@@ -1,0 +1,4 @@
+boot/config-*
+boot/System.map-*
+lib/modules/7.0.0+kali-arm64/modules.*  usr/lib/modules/7.0.0+kali-arm64
+lib/modules/7.0.0+kali-arm64/dtb        usr/lib/modules/7.0.0+kali-arm64

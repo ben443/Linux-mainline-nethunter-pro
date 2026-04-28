@@ -8,8 +8,10 @@ build: Make fixdep a hostprog" and is no longer needed.
 
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/tools/build/Makefile.include
-+++ b/tools/build/Makefile.include
+Index: kalilinux/tools/build/Makefile.include
+===================================================================
+--- kalilinux.orig/tools/build/Makefile.include
++++ kalilinux/tools/build/Makefile.include
 @@ -12,7 +12,7 @@ else
  endif
  

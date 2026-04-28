@@ -7,9 +7,11 @@ We never rebuild anything in-tree when building an out-of-tree
 modules, so external modules should not depend on the recordmcount
 sources.
 
---- a/scripts/Makefile.build
-+++ b/scripts/Makefile.build
-@@ -210,6 +210,11 @@ cmd_record_mcount = $(if $(findstring $(
+Index: kalilinux/scripts/Makefile.build
+===================================================================
+--- kalilinux.orig/scripts/Makefile.build
++++ kalilinux/scripts/Makefile.build
+@@ -270,6 +270,11 @@ cmd_record_mcount = $(if $(findstring $(
  	$(sub_cmd_record_mcount))
  endif # CONFIG_FTRACE_MCOUNT_USE_RECORDMCOUNT
  

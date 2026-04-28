@@ -38,9 +38,11 @@ arm-init to efi-init common for all arch") renamed arm-init.c to efi-init.c]
  include/linux/efi.h                |    3 ++-
  4 files changed, 23 insertions(+), 3 deletions(-)
 
---- a/drivers/firmware/efi/efi-init.c
-+++ b/drivers/firmware/efi/efi-init.c
-@@ -213,9 +213,10 @@ void __init efi_init(void)
+Index: kalilinux/drivers/firmware/efi/efi-init.c
+===================================================================
+--- kalilinux.orig/drivers/firmware/efi/efi-init.c
++++ kalilinux/drivers/firmware/efi/efi-init.c
+@@ -234,9 +234,10 @@ void __init efi_init(void)
  {
  	struct efi_memory_map_data data;
  	u64 efi_system_table;
@@ -52,7 +54,7 @@ arm-init to efi-init common for all arch") renamed arm-init.c to efi-init.c]
  	if (!efi_system_table)
  		return;
  
-@@ -237,6 +238,8 @@ void __init efi_init(void)
+@@ -258,6 +259,8 @@ void __init efi_init(void)
  		return;
  	}
  
@@ -61,8 +63,10 @@ arm-init to efi-init common for all arch") renamed arm-init.c to efi-init.c]
  	reserve_regions();
  	/*
  	 * For memblock manipulation, the cap should come after the memblock_add().
---- a/drivers/firmware/efi/fdtparams.c
-+++ b/drivers/firmware/efi/fdtparams.c
+Index: kalilinux/drivers/firmware/efi/fdtparams.c
+===================================================================
+--- kalilinux.orig/drivers/firmware/efi/fdtparams.c
++++ kalilinux/drivers/firmware/efi/fdtparams.c
 @@ -16,6 +16,7 @@ enum {
  	MMSIZE,
  	DCSIZE,
@@ -124,8 +128,10 @@ arm-init to efi-init common for all arch") renamed arm-init.c to efi-init.c]
  	};
  
  	BUILD_BUG_ON(ARRAY_SIZE(target) != ARRAY_SIZE(name));
---- a/drivers/firmware/efi/libstub/fdt.c
-+++ b/drivers/firmware/efi/libstub/fdt.c
+Index: kalilinux/drivers/firmware/efi/libstub/fdt.c
+===================================================================
+--- kalilinux.orig/drivers/firmware/efi/libstub/fdt.c
++++ kalilinux/drivers/firmware/efi/libstub/fdt.c
 @@ -132,6 +132,12 @@ static efi_status_t update_fdt(void *ori
  		}
  	}
@@ -139,9 +145,11 @@ arm-init to efi-init common for all arch") renamed arm-init.c to efi-init.c]
  	/* Shrink the FDT back to its minimum size: */
  	fdt_pack(fdt);
  
---- a/include/linux/efi.h
-+++ b/include/linux/efi.h
-@@ -764,7 +764,8 @@ extern int efi_mem_desc_lookup(u64 phys_
+Index: kalilinux/include/linux/efi.h
+===================================================================
+--- kalilinux.orig/include/linux/efi.h
++++ kalilinux/include/linux/efi.h
+@@ -758,7 +758,8 @@ extern int efi_mem_desc_lookup(u64 phys_
  extern int __efi_mem_desc_lookup(u64 phys_addr, efi_memory_desc_t *out_md);
  extern void efi_mem_reserve(phys_addr_t addr, u64 size);
  extern int efi_mem_reserve_persistent(phys_addr_t addr, u64 size);

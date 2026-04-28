@@ -4,7 +4,7 @@ Meta-Rules-Makeflags: INSTALLDOCS_LINK_DOC=linux-base-@abiname@@localversion@
 Build-Profiles: <!pkg.linux.nokernel>
 Build-Depends:
 # used by debian/rules.real to build udebs
- kernel-wedge (>= 2.105~),
+ kernel-wedge (>= 2.106),
 # used by kernel-wedge (only on Linux, thus not declared as a dependency)
  kmod,
 # used by upstream to build include/generated/timeconst.h
@@ -16,7 +16,7 @@ Build-Depends:
 # linux-kbuild), perf (host arch)
  libelf-dev:native,
 # used for bft debug info
- pahole,
+ pahole (>= 1.25),
 # used by upstream to compress kernel
  lz4,
  xz-utils,

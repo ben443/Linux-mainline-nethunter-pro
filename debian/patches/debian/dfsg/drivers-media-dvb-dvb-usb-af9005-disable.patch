@@ -3,8 +3,10 @@ Date: Mon, 17 Aug 2009 02:45:41 +0100
 Subject: dvb-usb-af9005: mark as broken
 Forwarded: not-needed
 
---- a/drivers/media/usb/dvb-usb/Kconfig
-+++ b/drivers/media/usb/dvb-usb/Kconfig
+Index: kalilinux/drivers/media/usb/dvb-usb/Kconfig
+===================================================================
+--- kalilinux.orig/drivers/media/usb/dvb-usb/Kconfig
++++ kalilinux/drivers/media/usb/dvb-usb/Kconfig
 @@ -35,6 +35,7 @@ config DVB_USB_A800
  
  config DVB_USB_AF9005

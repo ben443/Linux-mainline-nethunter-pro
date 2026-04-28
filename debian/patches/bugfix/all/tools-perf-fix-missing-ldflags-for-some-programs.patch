@@ -4,9 +4,11 @@ Subject: tools/perf: Fix missing LDFLAGS for some programs
 
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/tools/perf/Makefile.perf
-+++ b/tools/perf/Makefile.perf
-@@ -785,7 +785,7 @@ $(OUTPUT)dlfilters/%.o: dlfilters/%.c in
+Index: kalilinux/tools/perf/Makefile.perf
+===================================================================
+--- kalilinux.orig/tools/perf/Makefile.perf
++++ kalilinux/tools/perf/Makefile.perf
+@@ -931,7 +931,7 @@ $(OUTPUT)dlfilters/%.o: dlfilters/%.c in
  .SECONDARY: $(DLFILTERS:.so=.o)
  
  $(OUTPUT)dlfilters/%.so: $(OUTPUT)dlfilters/%.o

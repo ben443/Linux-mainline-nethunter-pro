@@ -29,9 +29,11 @@ cc: linux-efi@vger.kernel.org
  4 files changed, 51 insertions(+), 19 deletions(-)
  create mode 100644 drivers/firmware/efi/secureboot.c
 
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -1154,19 +1154,7 @@
+Index: kalilinux/arch/x86/kernel/setup.c
+===================================================================
+--- kalilinux.orig/arch/x86/kernel/setup.c
++++ kalilinux/arch/x86/kernel/setup.c
+@@ -1156,19 +1156,7 @@ void __init setup_arch(char **cmdline_p)
  	/* Allocate bigger log buffer */
  	setup_log_buf(1);
  
@@ -52,9 +54,11 @@ cc: linux-efi@vger.kernel.org
  
  	reserve_initrd();
  
---- a/drivers/firmware/efi/Makefile
-+++ b/drivers/firmware/efi/Makefile
-@@ -25,6 +25,7 @@
+Index: kalilinux/drivers/firmware/efi/Makefile
+===================================================================
+--- kalilinux.orig/drivers/firmware/efi/Makefile
++++ kalilinux/drivers/firmware/efi/Makefile
+@@ -25,6 +25,7 @@ subdir-$(CONFIG_EFI_STUB)		+= libstub
  obj-$(CONFIG_EFI_BOOTLOADER_CONTROL)	+= efibc.o
  obj-$(CONFIG_EFI_TEST)			+= test/
  obj-$(CONFIG_EFI_DEV_PATH_PARSER)	+= dev-path-parser.o
@@ -62,8 +66,10 @@ cc: linux-efi@vger.kernel.org
  obj-$(CONFIG_APPLE_PROPERTIES)		+= apple-properties.o
  obj-$(CONFIG_EFI_RCI2_TABLE)		+= rci2-table.o
  obj-$(CONFIG_EFI_EMBEDDED_FIRMWARE)	+= embedded-firmware.o
+Index: kalilinux/drivers/firmware/efi/secureboot.c
+===================================================================
 --- /dev/null
-+++ b/drivers/firmware/efi/secureboot.c
++++ kalilinux/drivers/firmware/efi/secureboot.c
 @@ -0,0 +1,39 @@
 +
 +/* Core kernel secure boot support.
@@ -104,9 +110,11 @@ cc: linux-efi@vger.kernel.org
 +		}
 +	}
 +}
---- a/include/linux/efi.h
-+++ b/include/linux/efi.h
-@@ -867,6 +867,14 @@
+Index: kalilinux/include/linux/efi.h
+===================================================================
+--- kalilinux.orig/include/linux/efi.h
++++ kalilinux/include/linux/efi.h
+@@ -868,6 +868,14 @@ static inline int efi_range_is_wc(unsign
  #define EFI_MEM_ATTR		9	/* Did firmware publish an EFI_MEMORY_ATTRIBUTES table? */
  #define EFI_MEM_NO_SOFT_RESERVE	10	/* Is the kernel configured to ignore soft reservations? */
  #define EFI_PRESERVE_BS_REGIONS	11	/* Are EFI boot-services memory segments available? */
@@ -121,7 +129,7 @@ cc: linux-efi@vger.kernel.org
  
  #ifdef CONFIG_EFI
  /*
-@@ -891,6 +899,7 @@
+@@ -892,6 +900,7 @@ static inline bool efi_rt_services_suppo
  	return (efi.runtime_supported_mask & mask) == mask;
  }
  extern void efi_find_mirror(void);
@@ -129,7 +137,7 @@ cc: linux-efi@vger.kernel.org
  #else
  static inline bool efi_enabled(int feature)
  {
-@@ -910,6 +919,7 @@
+@@ -911,6 +920,7 @@ static inline bool efi_rt_services_suppo
  }
  
  static inline void efi_find_mirror(void) {}
@@ -137,7 +145,7 @@ cc: linux-efi@vger.kernel.org
  #endif
  
  extern int efi_status_to_err(efi_status_t status);
-@@ -1130,13 +1140,6 @@
+@@ -1131,13 +1141,6 @@ extern unsigned long efi_call_virt_save_
  
  void efi_runtime_assert_lock_held(void);
  

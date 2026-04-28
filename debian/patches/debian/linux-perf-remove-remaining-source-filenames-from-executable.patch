@@ -13,9 +13,11 @@ Remove (1) since it is an unnecessary fallback.  Change (2)
 to the installed location.
 
 ---
---- a/tools/perf/builtin-report.c
-+++ b/tools/perf/builtin-report.c
-@@ -662,10 +662,12 @@ static int report__browse_hists(struct r
+Index: kalilinux/tools/perf/builtin-report.c
+===================================================================
+--- kalilinux.orig/tools/perf/builtin-report.c
++++ kalilinux/tools/perf/builtin-report.c
+@@ -670,10 +670,12 @@ static int report__browse_hists(struct r
  
  	path = system_path(TIPDIR);
  	if (perf_tip(&help, path) || help == NULL) {
@@ -28,8 +30,10 @@ to the installed location.
  			help = strdup("Cannot load tips.txt file, please install perf!");
  	}
  	free(path);
---- a/tools/perf/Build
-+++ b/tools/perf/Build
+Index: kalilinux/tools/perf/Build
+===================================================================
+--- kalilinux.orig/tools/perf/Build
++++ kalilinux/tools/perf/Build
 @@ -52,7 +52,7 @@ CFLAGS_perf.o              += -DPERF_HTM
  			      -DPREFIX="BUILD_STR($(prefix_SQ))"
  CFLAGS_builtin-trace.o	   += -DSTRACE_GROUPS_DIR="BUILD_STR($(STRACE_GROUPS_DIR_SQ))"

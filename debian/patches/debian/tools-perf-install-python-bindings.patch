@@ -8,9 +8,11 @@ Forwarded: not-needed
  tools/perf/Makefile.perf | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- a/tools/perf/Makefile.perf
-+++ b/tools/perf/Makefile.perf
-@@ -1154,7 +1154,7 @@ install-bin: install-tools install-tests
+Index: kalilinux/tools/perf/Makefile.perf
+===================================================================
+--- kalilinux.orig/tools/perf/Makefile.perf
++++ kalilinux/tools/perf/Makefile.perf
+@@ -1152,7 +1152,7 @@ install-bin: install-tools install-tests
  install: install-bin try-install-man
  
  install-python_ext:

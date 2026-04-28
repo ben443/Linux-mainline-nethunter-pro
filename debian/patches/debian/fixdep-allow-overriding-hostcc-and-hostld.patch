@@ -10,8 +10,10 @@ Add support for REALHOSTCC and REALHOSTLD variables which, if set,
 override HOSTCC and HOSTLD for fixdep only.
 
 ---
---- a/tools/build/Makefile.include
-+++ b/tools/build/Makefile.include
+Index: kalilinux/tools/build/Makefile.include
+===================================================================
+--- kalilinux.orig/tools/build/Makefile.include
++++ kalilinux/tools/build/Makefile.include
 @@ -12,7 +12,10 @@ else
  endif
  

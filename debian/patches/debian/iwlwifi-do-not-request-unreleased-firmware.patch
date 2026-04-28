@@ -13,8 +13,10 @@ The installer appears to report any failed request, and it is probably
 not easy to detect that this particular failure is harmless.  So stop
 requesting the unreleased firmware.
 
---- a/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
-+++ b/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
+Index: kalilinux/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
+===================================================================
+--- kalilinux.orig/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
++++ kalilinux/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
 @@ -12,7 +12,7 @@
  #include "dvm/commands.h" /* needed for BT for now */
  

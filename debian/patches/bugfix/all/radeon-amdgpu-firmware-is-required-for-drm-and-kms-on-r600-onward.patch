@@ -33,8 +33,10 @@ of the patch
  drivers/gpu/drm/radeon/radeon_drv.c     | 30 +++++++++++++++++++++++++
  1 files changed, 30 insertions(+)
 
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
+Index: kalilinux/drivers/gpu/drm/radeon/radeon_drv.c
+===================================================================
+--- kalilinux.orig/drivers/gpu/drm/radeon/radeon_drv.c
++++ kalilinux/drivers/gpu/drm/radeon/radeon_drv.c
 @@ -32,6 +32,8 @@
  #include <linux/aperture.h>
  #include <linux/compat.h>
@@ -44,7 +46,7 @@ of the patch
  #include <linux/pm_runtime.h>
  #include <linux/vga_switcheroo.h>
  #include <linux/mmu_notifier.h>
-@@ -303,6 +305,28 @@
+@@ -303,6 +305,28 @@ static bool radeon_support_enabled(struc
  	return false;
  }
  
@@ -73,7 +75,7 @@ of the patch
  static int radeon_pci_probe(struct pci_dev *pdev,
  			    const struct pci_device_id *ent)
  {
-@@ -324,6 +348,12 @@
+@@ -324,6 +348,12 @@ static int radeon_pci_probe(struct pci_d
  	if (vga_switcheroo_client_probe_defer(pdev))
  		return -EPROBE_DEFER;
  

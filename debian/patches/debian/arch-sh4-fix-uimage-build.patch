@@ -9,8 +9,10 @@ Forwarded: not-needed
  arch/sh/Makefile | 1 -
  1 file changed, 1 deletion(-)
 
---- a/arch/sh/Makefile
-+++ b/arch/sh/Makefile
+Index: kalilinux/arch/sh/Makefile
+===================================================================
+--- kalilinux.orig/arch/sh/Makefile
++++ kalilinux/arch/sh/Makefile
 @@ -81,7 +81,6 @@ OBJCOPYFLAGS	:= -O binary -R .note -R .n
  
  # Give the various platforms the opportunity to set default image types

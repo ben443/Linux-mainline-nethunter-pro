@@ -36,10 +36,10 @@ Signed-off-by: Ben Hutchings <benh@debian.org>
  tools/hv/hv_get_dhcp_info.sh | 87 +++++++++++++++++++++++++++++++-----
  1 file changed, 75 insertions(+), 12 deletions(-)
 
-diff --git a/tools/hv/hv_get_dhcp_info.sh b/tools/hv/hv_get_dhcp_info.sh
-index 2f2a3c7df3de..310b16a2f734 100755
---- a/tools/hv/hv_get_dhcp_info.sh
-+++ b/tools/hv/hv_get_dhcp_info.sh
+Index: kalilinux/tools/hv/hv_get_dhcp_info.sh
+===================================================================
+--- kalilinux.orig/tools/hv/hv_get_dhcp_info.sh
++++ kalilinux/tools/hv/hv_get_dhcp_info.sh
 @@ -12,18 +12,81 @@
  #	that DHCP is enabled on the interface. If DHCP is not enabled,
  #	the script prints the string "Disabled" to stdout.
@@ -48,10 +48,20 @@ index 2f2a3c7df3de..310b16a2f734 100755
 -# fashion. For instance, on Distros that ship with Network Manager enabled,
 -# this script can be based on the Network Manager APIs for retrieving DHCP
 -# information.
+-
+-if_file="/etc/sysconfig/network-scripts/ifcfg-"$1
+-
+-dhcp=$(grep "dhcp" $if_file 2>/dev/null)
+-
+-if [ "$dhcp" != "" ];
+-then
+-echo "Enabled"
+-else
+-echo "Disabled"
+-fi
 +# Distributions may need to adapt or replace this script for their
 +# preferred network configuration system.
- 
--if_file="/etc/sysconfig/network-scripts/ifcfg-"$1
++
 +# Report status based on result of previous command
 +report() {
 +    if [ $? -eq 0 ]; then
@@ -60,17 +70,10 @@ index 2f2a3c7df3de..310b16a2f734 100755
 +	echo "Disabled"
 +    fi
 +}
- 
--dhcp=$(grep "dhcp" $if_file 2>/dev/null)
++
 +check_network_manager() {
 +    local conn_name
- 
--if [ "$dhcp" != "" ];
--then
--echo "Enabled"
--else
--echo "Disabled"
--fi
++
 +    # Check that the interface has a configured connection, and get
 +    # its name
 +    if conn_name="$(nmcli -g GENERAL.CONNECTION device show "$1" 2>/dev/null)" &&

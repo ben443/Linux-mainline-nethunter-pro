@@ -18,8 +18,10 @@ and increase security attack surface on systems that don't need it.
  drivers/android/binder_alloc.c |    2 +-
  3 files changed, 6 insertions(+), 5 deletions(-)
 
---- a/drivers/android/Kconfig
-+++ b/drivers/android/Kconfig
+Index: kalilinux/drivers/android/Kconfig
+===================================================================
+--- kalilinux.orig/drivers/android/Kconfig
++++ kalilinux/drivers/android/Kconfig
 @@ -2,7 +2,7 @@
  menu "Android"
  
@@ -29,8 +31,10 @@ and increase security attack surface on systems that don't need it.
  	depends on MMU
  	depends on NET
  	default n
---- a/drivers/android/Makefile
-+++ b/drivers/android/Makefile
+Index: kalilinux/drivers/android/Makefile
+===================================================================
+--- kalilinux.orig/drivers/android/Makefile
++++ kalilinux/drivers/android/Makefile
 @@ -1,7 +1,8 @@
  # SPDX-License-Identifier: GPL-2.0-only
  ccflags-y += -I$(src)			# needed for trace events
@@ -43,18 +47,22 @@ and increase security attack surface on systems that don't need it.
 +binder_linux-$(CONFIG_ANDROID_BINDERFS)	+= binderfs.o
 +binder_linux-$(CONFIG_ANDROID_BINDER_ALLOC_KUNIT_TEST)	+= tests/
  obj-$(CONFIG_ANDROID_BINDER_IPC_RUST)	+= binder/
---- a/drivers/android/binder.c
-+++ b/drivers/android/binder.c
-@@ -7164,3 +7164,6 @@
+Index: kalilinux/drivers/android/binder.c
+===================================================================
+--- kalilinux.orig/drivers/android/binder.c
++++ kalilinux/drivers/android/binder.c
+@@ -7169,3 +7169,6 @@ device_initcall(binder_init);
  
  #define CREATE_TRACE_POINTS
  #include "binder_trace.h"
 +
 +MODULE_LICENSE("GPL v2");
 +MODULE_DESCRIPTION("Android Binder IPC Driver");
---- a/drivers/android/binder_alloc.c
-+++ b/drivers/android/binder_alloc.c
-@@ -39,7 +39,7 @@
+Index: kalilinux/drivers/android/binder_alloc.c
+===================================================================
+--- kalilinux.orig/drivers/android/binder_alloc.c
++++ kalilinux/drivers/android/binder_alloc.c
+@@ -39,7 +39,7 @@ enum {
  };
  static uint32_t binder_alloc_debug_mask = BINDER_DEBUG_USER_ERROR;
  

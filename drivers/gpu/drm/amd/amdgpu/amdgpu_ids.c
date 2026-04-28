@@ -68,8 +68,11 @@ int amdgpu_pasid_alloc(unsigned int bits)
 		return -EINVAL;
 
 	spin_lock(&amdgpu_pasid_idr_lock);
+	/* TODO: Need to replace the idr with an xarry, and then
+	 * handle the internal locking with ATOMIC safe paths.
+	 */
 	pasid = idr_alloc_cyclic(&amdgpu_pasid_idr, NULL, 1,
-				 1U << bits, GFP_KERNEL);
+				 1U << bits, GFP_ATOMIC);
 	spin_unlock(&amdgpu_pasid_idr_lock);
 
 	if (pasid >= 0)
@@ -126,7 +129,7 @@ void amdgpu_pasid_free_delayed(struct dma_resv *resv,
 		return;
 	}
 
-	cb = kmalloc(sizeof(*cb), GFP_KERNEL);
+	cb = kmalloc_obj(*cb);
 	if (!cb) {
 		/* Last resort when we are OOM */
 		dma_fence_wait(fence, false);

@@ -14,9 +14,11 @@ option.
 Fixes: 9dabf4003423 ("perf python: Switch module to linking libraries ...")
 Signed-off-by: Ben Hutchings <benh@debian.org>
 ---
---- a/tools/perf/Makefile.perf
-+++ b/tools/perf/Makefile.perf
-@@ -951,7 +951,7 @@ $(LIBAPI)-clean:
+Index: kalilinux/tools/perf/Makefile.perf
+===================================================================
+--- kalilinux.orig/tools/perf/Makefile.perf
++++ kalilinux/tools/perf/Makefile.perf
+@@ -957,7 +957,7 @@ $(LIBAPI)-clean:
  $(LIBBPF): FORCE | $(LIBBPF_OUTPUT)
  	$(Q)$(MAKE) -C $(LIBBPF_DIR) FEATURES_DUMP=$(FEATURE_DUMP_EXPORT) \
  		O= OUTPUT=$(LIBBPF_OUTPUT)/ DESTDIR=$(LIBBPF_DESTDIR) prefix= subdir= \

@@ -8,9 +8,11 @@ Forwarded: not-needed
  Documentation/Makefile | 6 ------
  1 file changed, 6 deletions(-)
 
---- a/Documentation/Makefile
-+++ b/Documentation/Makefile
-@@ -54,8 +54,6 @@
+Index: kalilinux/Documentation/Makefile
+===================================================================
+--- kalilinux.orig/Documentation/Makefile
++++ kalilinux/Documentation/Makefile
+@@ -54,8 +54,6 @@ else # HAVE_SPHINX
  
  # Common documentation targets
  htmldocs mandocs infodocs texinfodocs latexdocs epubdocs xmldocs pdfdocs linkcheckdocs:

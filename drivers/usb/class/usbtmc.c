@@ -172,7 +172,7 @@ static int usbtmc_open(struct inode *inode, struct file *filp)
 		return -ENODEV;
 	}
 
-	file_data = kzalloc(sizeof(*file_data), GFP_KERNEL);
+	file_data = kzalloc_obj(*file_data);
 	if (!file_data)
 		return -ENOMEM;
 
@@ -254,6 +254,9 @@ static int usbtmc_release(struct inode *inode, struct file *file)
 	list_del(&file_data->file_elem);
 
 	spin_unlock_irq(&file_data->data->dev_lock);
+
+	/* flush anchored URBs */
+	usbtmc_draw_down(file_data);
 	mutex_unlock(&file_data->data->io_mutex);
 
 	kref_put(&file_data->data->kref, usbtmc_delete);
@@ -2378,7 +2381,7 @@ static int usbtmc_probe(struct usb_interface *intf,
 
 	dev_dbg(&intf->dev, "%s called\n", __func__);
 
-	data = kzalloc(sizeof(*data), GFP_KERNEL);
+	data = kzalloc_obj(*data);
 	if (!data)
 		return -ENOMEM;
 

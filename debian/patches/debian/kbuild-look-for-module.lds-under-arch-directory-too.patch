@@ -25,9 +25,11 @@ rules.real and change Makefile.modfinal to look for it in both places.
  scripts/Makefile.modfinal | 6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
---- a/scripts/Makefile.modfinal
-+++ b/scripts/Makefile.modfinal
-@@ -32,11 +32,13 @@
+Index: kalilinux/scripts/Makefile.modfinal
+===================================================================
+--- kalilinux.orig/scripts/Makefile.modfinal
++++ kalilinux/scripts/Makefile.modfinal
+@@ -32,11 +32,13 @@ ifneq ($(WARN_ON_UNUSED_TRACEPOINTS),)
  cmd_check_tracepoint = $(objtree)/scripts/tracepoint-update --module $<;
  endif
  
@@ -42,7 +44,7 @@ rules.real and change Makefile.modfinal to look for it in both places.
  
  quiet_cmd_btf_ko = BTF [M] $@
        cmd_btf_ko = 							\
-@@ -56,7 +58,7 @@
+@@ -55,7 +57,7 @@ if_changed_except = $(if $(call newer_pr
  	printf '%s\n' 'savedcmd_$@ := $(make-cmd)' > $(dot-target).cmd, @:)
  
  # Re-generate module BTFs if either module's .ko or vmlinux changed
