@@ -1,10 +1,10 @@
 c9c42133d837f36809c7ffecd1959a63  debian/bin/gencontrol.py
-07ea5c5cc7fabbc22b865587da2f4c64  debian/build/version-info
+302a1a7678fbd458c2095f66cc7b641c  debian/build/version-info
 ba2c200f8c43f7ec8d8323561739379a  debian/config/alpha/defines.toml
-3869e8595cb41b980c028eb93f80abf7  debian/config/amd64/defines.toml
-cfb59dfe05a13900d4e962bde2fab8bb  debian/config/arm64/defines.toml
+fc5d6d91ce75516e35af76f5c5c3c64a  debian/config/amd64/defines.toml
+e9b72d7310f6eefa3ff3cc34ef1f4d59  debian/config/arm64/defines.toml
 bd6755d9b59c1b2cd883628dc59669d3  debian/config/armhf/defines.toml
-cbb780c96decdd9b834d28a9eaad9aea  debian/config/defines.toml
+68f8185ff124e5f7dc33c301563abb29  debian/config/defines.toml
 c840ab923e0857515675530f3f72496b  debian/config/hppa/defines.toml
 1cafeb7f6b8e93197877eed0bcba0019  debian/config/loong64/defines.toml
 0ee23490da620ce420b23b2d065ee2d3  debian/config/m68k/defines.toml
@@ -57,7 +57,7 @@ c2e9fb84eb2844cfbba13d21e5859335  debian/templates/signed.binary.control.in
 c73ff8d70d4ecc4b54c256736f0142ba  debian/templates/signed.binary.lintian-overrides.in
 3cae3a79a66a1b6b9c951f96dafd357b  debian/templates/signed.source.control.in
 a05f437ee230ed4795adc7785844f73f  debian/templates/signed.source.lintian-overrides.in
-ab6c0811c043c63c89c1a98d2cafeb22  debian/templates/source.control.in
+2177dd58529c45ddfc4f95c3ba6ede8e  debian/templates/source.control.in
 edfa7fed4bdffa5ce37dc67af2875954  debian/templates/sourcebin.control.in
 0f283d1deb7af77eba65072e1cd81de3  debian/templates/sourcebin.meta.control.in
 a20d83421667bad21739041d4e743ed1  debian/templates/sourcebin.meta.maintscript.in

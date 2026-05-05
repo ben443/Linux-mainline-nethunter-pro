@@ -1,4 +1,0 @@
-boot/config-*
-boot/System.map-*
-lib/modules/6.19.11+kali-riscv64/modules.*  usr/lib/modules/6.19.11+kali-riscv64
-lib/modules/6.19.11+kali-riscv64/dtb        usr/lib/modules/6.19.11+kali-riscv64

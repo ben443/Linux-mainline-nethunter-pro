@@ -1,0 +1,4 @@
+usr/lib/linux-kbuild-6.19.14+deb14/scripts                          usr/src/linux-headers-6.19.14+deb14-riscv64/scripts
+usr/lib/linux-kbuild-6.19.14+deb14/tools                            usr/src/linux-headers-6.19.14+deb14-riscv64/tools
+usr/src/linux-headers-6.19.14+deb14-riscv64                                               usr/lib/modules/6.19.14+deb14-riscv64/build
+usr/src/linux-headers-6.19.14+deb14-common  usr/lib/modules/6.19.14+deb14-riscv64/source
