@@ -1,3 +1,9 @@
+linux (6.19.14-1+kali1) kali-dev; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@kali.org>  Tue, 05 May 2026 08:54:43 +0200
+
 linux (6.19.14-1) unstable; urgency=medium
 
   * New upstream stable update:
