@@ -164,8 +164,7 @@ static int mana_ib_create_qp_rss(struct ib_qp *ibqp, struct ib_pd *pd,
 	ibdev_dbg(&mdev->ib_dev, "rx_hash_function %d port %d\n",
 		  ucmd.rx_hash_function, port);
 
-	mana_ind_table = kcalloc(ind_tbl_size, sizeof(mana_handle_t),
-				 GFP_KERNEL);
+	mana_ind_table = kzalloc_objs(mana_handle_t, ind_tbl_size);
 	if (!mana_ind_table) {
 		ret = -ENOMEM;
 		goto fail;
@@ -822,6 +821,21 @@ static int mana_ib_destroy_qp_rss(struct mana_ib_qp *qp,
 
 	ndev = mana_ib_get_netdev(qp->ibqp.device, qp->port);
 	mpc = netdev_priv(ndev);
+
+	/* Disable vPort RX steering before destroying RX WQ objects.
+	 * Otherwise firmware still routes traffic to the destroyed queues,
+	 * which can cause bogus completions on reused CQ IDs when the
+	 * ethernet driver later creates new queues on mana_open().
+	 *
+	 * Unlike the ethernet teardown path, mana_fence_rqs() cannot be
+	 * used here because the fence completion CQE is delivered on the
+	 * CQ which is polled by userspace (e.g. DPDK), so there is no way
+	 * for the kernel to wait for fence completion.
+	 *
+	 * This is best effort — if it fails there is not much we can do,
+	 * and mana_cfg_vport_steering() already logs the error.
+	 */
+	mana_disable_vport_rx(mpc);
 
 	for (i = 0; i < (1 << ind_tbl->log_ind_tbl_size); i++) {
 		ibwq = ind_tbl->ind_tbl[i];
