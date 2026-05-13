@@ -112,12 +112,12 @@ static inline unsigned int disk_zone_wplugs_hash_size(struct gendisk *disk)
 #define BLK_ZONE_WPLUG_UNHASHED		(1U << 2)
 
 /**
- * blk_zone_cond_str - Return string XXX in BLK_ZONE_COND_XXX.
- * @zone_cond: BLK_ZONE_COND_XXX.
+ * blk_zone_cond_str - Return a zone condition name string
+ * @zone_cond: a zone condition BLK_ZONE_COND_name
  *
- * Description: Centralize block layer function to convert BLK_ZONE_COND_XXX
- * into string format. Useful in the debugging and tracing zone conditions. For
- * invalid BLK_ZONE_COND_XXX it returns string "UNKNOWN".
+ * Convert a BLK_ZONE_COND_name zone condition into the string "name". Useful
+ * for the debugging and tracing zone conditions. For an invalid zone
+ * conditions, the string "UNKNOWN" is returned.
  */
 const char *blk_zone_cond_str(enum blk_zone_cond zone_cond)
 {
@@ -1198,13 +1198,17 @@ static void disk_zone_wplug_schedule_bio_work(struct gendisk *disk,
 	lockdep_assert_held(&zwplug->lock);
 
 	/*
-	 * Take a reference on the zone write plug and schedule the submission
-	 * of the next plugged BIO. blk_zone_wplug_bio_work() will release the
-	 * reference we take here.
+	 * Schedule the submission of the next plugged BIO. Taking a reference
+	 * to the zone write plug is required as the bio_work belongs to the
+	 * plug, and thus we must ensure that the write plug does not go away
+	 * while the work is being scheduled but has not run yet.
+	 * blk_zone_wplug_bio_work() will release the reference we take here,
+	 * and we also drop this reference if the work is already scheduled.
 	 */
 	WARN_ON_ONCE(!(zwplug->flags & BLK_ZONE_WPLUG_PLUGGED));
 	refcount_inc(&zwplug->ref);
-	queue_work(disk->zone_wplugs_wq, &zwplug->bio_work);
+	if (!queue_work(disk->zone_wplugs_wq, &zwplug->bio_work))
+		disk_put_zone_wplug(zwplug);
 }
 
 static inline void disk_zone_wplug_add_bio(struct gendisk *disk,
@@ -1804,8 +1808,8 @@ static int disk_alloc_zone_resources(struct gendisk *disk,
 		min(ilog2(pool_size) + 1, BLK_ZONE_WPLUG_MAX_HASH_BITS);
 
 	disk->zone_wplugs_hash =
-		kcalloc(disk_zone_wplugs_hash_size(disk),
-			sizeof(struct hlist_head), GFP_KERNEL);
+		kzalloc_objs(struct hlist_head,
+			     disk_zone_wplugs_hash_size(disk));
 	if (!disk->zone_wplugs_hash)
 		return -ENOMEM;
 

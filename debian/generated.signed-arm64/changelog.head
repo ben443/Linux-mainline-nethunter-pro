@@ -1,3 +1,3 @@
-linux-signed-arm64 (@signedtemplate_sourceversion@) kali-experimental; urgency=medium
+linux-signed-arm64 (@signedtemplate_sourceversion@) unstable; urgency=high
 
   * Sign kernel from linux @signedtemplate_binaryversion@

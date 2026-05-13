@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-6.19.14+kali/scripts                          usr/src/linux-headers-6.19.14+kali-sparc64-smp/scripts
-usr/lib/linux-kbuild-6.19.14+kali/tools                            usr/src/linux-headers-6.19.14+kali-sparc64-smp/tools
-usr/src/linux-headers-6.19.14+kali-sparc64-smp                                               usr/lib/modules/6.19.14+kali-sparc64-smp/build
-usr/src/linux-headers-6.19.14+kali-common  usr/lib/modules/6.19.14+kali-sparc64-smp/source

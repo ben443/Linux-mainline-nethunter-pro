@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-headers-6.19.14+kali-powerpc64le-64k.postinst.ppc64el
+version=6.19.14+kali-powerpc64le-64k
+========
+version=7.0.4+deb14-powerpc64le-64k
+>>>>>>>> debian:debian/linux-headers-7.0.4+deb14-powerpc64le-64k.postinst.ppc64el
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

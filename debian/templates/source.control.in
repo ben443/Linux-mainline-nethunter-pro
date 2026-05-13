@@ -10,11 +10,12 @@ Build-Depends:
  python3:native,
  python3-dacite:native,
  python3-jinja2:native,
- kernel-wedge (>= 2.105~),
 # used by debian/rules.real to prepare the source
  quilt,
 # used by debian/rules.real to build linux-perf
  dh-python <!pkg.linux.notools>,
+# used by kernel-wedge
+ cpio <!pkg.linux.noudeb>,
 Rules-Requires-Root: no
 XS-Debian-Vcs-Git: https://salsa.debian.org/kernel-team/linux.git
 XS-Debian-Vcs-Browser: https://salsa.debian.org/kernel-team/linux

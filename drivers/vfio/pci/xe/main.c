@@ -252,7 +252,7 @@ xe_vfio_pci_alloc_file(struct xe_vfio_pci_core_device *xe_vdev,
 	int flags;
 	int ret;
 
-	migf = kzalloc(sizeof(*migf), GFP_KERNEL_ACCOUNT);
+	migf = kzalloc_obj(*migf, GFP_KERNEL_ACCOUNT);
 	if (!migf)
 		return ERR_PTR(-ENOMEM);
 
@@ -504,6 +504,7 @@ static void xe_vfio_pci_release_dev(struct vfio_device *core_vdev)
 		container_of(core_vdev, struct xe_vfio_pci_core_device, core_device.vdev);
 
 	mutex_destroy(&xe_vdev->state_mutex);
+	vfio_pci_core_release_dev(core_vdev);
 }
 
 static const struct vfio_device_ops xe_vfio_pci_ops = {
