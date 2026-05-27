@@ -77,6 +77,7 @@ features/riscv64/riscv-dts-spacemit-enable-PCIe-ports-on-Milk-V-Jupit.patch
 # Miscellaneous bug fixes
 bugfix/all/disable-some-marvell-phys.patch
 bugfix/all/fs-add-module_softdep-declarations-for-hard-coded-cr.patch
+bugfix/all/parport-Fix-race-between-port-and-client-registratio.patch
 
 # Miscellaneous features
 
@@ -90,8 +91,7 @@ features/all/lockdown/arm64-add-kernel-config-option-to-lock-down-when.patch
 features/all/db-mok-keyring/KEYS-Make-use-of-platform-keyring-for-module-signature.patch
 
 # Security fixes
-bugfix/all/xfrm-esp-avoid-in-place-decrypt-on-shared-skb-frags.patch
-bugfix/all/rxrpc-Also-unshare-DATA-RESPONSE-packets-when-paged-.patch
+bugfix/all/smb-client-reject-userspace-cifs.spnego-descriptions.patch
 
 # Fix exported symbol versions
 bugfix/all/module-disable-matching-missing-version-crc.patch
