@@ -1,0 +1,4 @@
+usr/lib/linux-kbuild-7.0.10+kali/scripts                          usr/src/linux-headers-7.0.10+kali-powerpc-smp/scripts
+usr/lib/linux-kbuild-7.0.10+kali/tools                            usr/src/linux-headers-7.0.10+kali-powerpc-smp/tools
+usr/src/linux-headers-7.0.10+kali-powerpc-smp                                               usr/lib/modules/7.0.10+kali-powerpc-smp/build
+usr/src/linux-headers-7.0.10+kali-common  usr/lib/modules/7.0.10+kali-powerpc-smp/source

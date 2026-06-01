@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+version=7.0.10+kali-alpha-smp
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

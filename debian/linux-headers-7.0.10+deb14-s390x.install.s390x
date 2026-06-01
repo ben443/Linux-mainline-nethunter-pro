@@ -1,9 +1,0 @@
-<<<<<<<< HEAD:debian/linux-headers-7.0.4+kali-rt-amd64.install.amd64
-.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.4+kali-rt-amd64
-scripts/module.lds                       usr/src/linux-headers-7.0.4+kali-rt-amd64/arch/x86
-arch/x86/include             usr/src/linux-headers-7.0.4+kali-rt-amd64/arch/x86
-========
-.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.10+deb14-s390x
-scripts/module.lds                       usr/src/linux-headers-7.0.10+deb14-s390x/arch/s390
-arch/s390/include             usr/src/linux-headers-7.0.10+deb14-s390x/arch/s390
->>>>>>>> debian:debian/linux-headers-7.0.10+deb14-s390x.install.s390x
