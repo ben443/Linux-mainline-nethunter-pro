@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-7.0.4+kali/scripts                          usr/src/linux-headers-7.0.4+kali-test/scripts
-usr/lib/linux-kbuild-7.0.4+kali/tools                            usr/src/linux-headers-7.0.4+kali-test/tools
-usr/src/linux-headers-7.0.4+kali-test                                               usr/lib/modules/7.0.4+kali-test/build
-usr/src/linux-headers-7.0.4+kali-common  usr/lib/modules/7.0.4+kali-test/source

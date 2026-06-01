@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-image-7.0.4+kali-powerpc64-64k.postinst.ppc64
+version=7.0.4+kali-powerpc64-64k
+========
+version=7.0.10+deb14-powerpc-smp
+>>>>>>>> debian:debian/linux-image-7.0.10+deb14-powerpc-smp.postinst.powerpc
+image_path=/boot/vmlinux-$version
+
+if [ "$1" != configure ]; then
+    exit 0
+fi
+
+if [ -f /lib/modules/$version/.fresh-install ]; then
+    change=install
+else
+    change=upgrade
+fi
+linux-update-symlinks $change $version $image_path
+rm -f /lib/modules/$version/.fresh-install
+
+linux-run-hooks image postinst $version $image_path -- "$@"
+
+exit 0

@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-headers-7.0.4+kali-armmp.postinst.armhf
+version=7.0.4+kali-armmp
+========
+version=7.0.10+deb14-test
+>>>>>>>> debian:debian/linux-headers-7.0.10+deb14-test.postinst.arm64
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

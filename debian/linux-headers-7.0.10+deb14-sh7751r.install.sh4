@@ -1,0 +1,9 @@
+<<<<<<<< HEAD:debian/linux-headers-7.0.4+kali-s390x.install.s390x
+.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.4+kali-s390x
+scripts/module.lds                       usr/src/linux-headers-7.0.4+kali-s390x/arch/s390
+arch/s390/include             usr/src/linux-headers-7.0.4+kali-s390x/arch/s390
+========
+.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.10+deb14-sh7751r
+scripts/module.lds                       usr/src/linux-headers-7.0.10+deb14-sh7751r/arch/sh
+arch/sh/include             usr/src/linux-headers-7.0.10+deb14-sh7751r/arch/sh
+>>>>>>>> debian:debian/linux-headers-7.0.10+deb14-sh7751r.install.sh4
