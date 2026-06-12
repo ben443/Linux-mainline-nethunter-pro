@@ -1,1 +1,1 @@
-dir_to_symlink /usr/share/doc/linux-headers-sparc64 linux-headers-7.0.10+deb14-sparc64 5.7~rc5-1~exp1 linux-headers-sparc64
+dir_to_symlink /usr/share/doc/linux-headers-sparc64 linux-headers-7.0.12+deb14.1-sparc64 5.7~rc5-1~exp1 linux-headers-sparc64
