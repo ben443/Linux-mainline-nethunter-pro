@@ -1,3 +1,9 @@
+linux (7.0.12-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian 
+
+ -- Sophie Brun <sophie@kali.org>  Thu, 18 Jun 2026 11:48:10 +0200
+
 linux (7.0.12-2) unstable; urgency=high
 
   * bpf: Free reuseport cBPF prog after RCU grace period.
