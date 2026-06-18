@@ -1,0 +1,4 @@
+usr/lib/linux-kbuild-7.0.12+kali/scripts                          usr/src/linux-headers-7.0.12+kali-sparc64-smp/scripts
+usr/lib/linux-kbuild-7.0.12+kali/tools                            usr/src/linux-headers-7.0.12+kali-sparc64-smp/tools
+usr/src/linux-headers-7.0.12+kali-sparc64-smp                                               usr/lib/modules/7.0.12+kali-sparc64-smp/build
+usr/src/linux-headers-7.0.12+kali-common  usr/lib/modules/7.0.12+kali-sparc64-smp/source

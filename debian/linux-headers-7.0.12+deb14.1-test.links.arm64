@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-7.0.12+deb14.1/scripts                          usr/src/linux-headers-7.0.12+deb14.1-test/scripts
-usr/lib/linux-kbuild-7.0.12+deb14.1/tools                            usr/src/linux-headers-7.0.12+deb14.1-test/tools
-usr/src/linux-headers-7.0.12+deb14.1-test                                               usr/lib/modules/7.0.12+deb14.1-test/build
-usr/src/linux-headers-7.0.12+deb14.1-common  usr/lib/modules/7.0.12+deb14.1-test/source

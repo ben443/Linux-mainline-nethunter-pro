@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+version=7.0.12+kali-parisc
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0
