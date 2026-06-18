@@ -1,38 +1,38 @@
 {
   "packages": {
-    "linux-binary-unsigned-7.0.10+deb14-arm64": {
+    "linux-binary-unsigned-7.0.12+deb14.1-arm64": {
       "trusted_certs": [],
       "files": [
         {
           "sig_type": "efi",
-          "file": "boot/vmlinuz-7.0.10+deb14-arm64"
+          "file": "boot/vmlinuz-7.0.12+deb14.1-arm64"
         }
       ]
     },
-    "linux-binary-unsigned-7.0.10+deb14-cloud-arm64": {
+    "linux-binary-unsigned-7.0.12+deb14.1-cloud-arm64": {
       "trusted_certs": [],
       "files": [
         {
           "sig_type": "efi",
-          "file": "boot/vmlinuz-7.0.10+deb14-cloud-arm64"
+          "file": "boot/vmlinuz-7.0.12+deb14.1-cloud-arm64"
         }
       ]
     },
-    "linux-binary-unsigned-7.0.10+deb14-arm64-16k": {
+    "linux-binary-unsigned-7.0.12+deb14.1-arm64-16k": {
       "trusted_certs": [],
       "files": [
         {
           "sig_type": "efi",
-          "file": "boot/vmlinuz-7.0.10+deb14-arm64-16k"
+          "file": "boot/vmlinuz-7.0.12+deb14.1-arm64-16k"
         }
       ]
     },
-    "linux-binary-unsigned-7.0.10+deb14-rt-arm64": {
+    "linux-binary-unsigned-7.0.12+deb14.1-rt-arm64": {
       "trusted_certs": [],
       "files": [
         {
           "sig_type": "efi",
-          "file": "boot/vmlinuz-7.0.10+deb14-rt-arm64"
+          "file": "boot/vmlinuz-7.0.12+deb14.1-rt-arm64"
         }
       ]
     }

@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-modules-7.0.10+kali-powerpc64le-64k.postinst.ppc64el
+version=7.0.10+kali-powerpc64le-64k
+========
+version=7.0.12+deb14.1-cloud-amd64
+>>>>>>>> debian:debian/linux-modules-7.0.12+deb14.1-cloud-amd64.postinst.amd64
+
+if [ "$1" = configure ]; then
+  depmod "$version"
+fi
+
+exit 0

@@ -1,3 +1,0 @@
-.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.10+kali-loong64
-scripts/module.lds                       usr/src/linux-headers-7.0.10+kali-loong64/arch/loongarch
-arch/loongarch/include             usr/src/linux-headers-7.0.10+kali-loong64/arch/loongarch

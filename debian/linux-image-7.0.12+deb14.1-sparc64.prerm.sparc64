@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-image-7.0.10+kali-powerpc-smp.prerm.powerpc
+version=7.0.10+kali-powerpc-smp
+========
+version=7.0.12+deb14.1-sparc64
+>>>>>>>> debian:debian/linux-image-7.0.12+deb14.1-sparc64.prerm.sparc64
+image_path=/boot/vmlinux-$version
+
+if [ "$1" != remove ]; then
+    exit 0
+fi
+
+linux-check-removal $version
+
+linux-run-hooks image prerm $version $image_path -- "$@"
+
+exit 0

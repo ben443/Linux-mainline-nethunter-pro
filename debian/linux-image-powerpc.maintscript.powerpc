@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 dir_to_symlink /usr/share/doc/linux-image-powerpc linux-image-7.0.10+kali-powerpc 5.7~rc5-1~exp1 linux-image-powerpc
+=======
+dir_to_symlink /usr/share/doc/linux-image-powerpc linux-image-7.0.12+deb14.1-powerpc 5.7~rc5-1~exp1 linux-image-powerpc
+>>>>>>> debian

@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-headers-7.0.10+kali-m68k.postinst.m68k
+version=7.0.10+kali-m68k
+========
+version=7.0.12+deb14.1-test
+>>>>>>>> debian:debian/linux-headers-7.0.12+deb14.1-test.postinst.arm64
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

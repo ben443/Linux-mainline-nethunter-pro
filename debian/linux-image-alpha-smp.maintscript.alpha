@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 dir_to_symlink /usr/share/doc/linux-image-alpha-smp linux-image-7.0.10+kali-alpha-smp 5.7~rc5-1~exp1 linux-image-alpha-smp
+=======
+dir_to_symlink /usr/share/doc/linux-image-alpha-smp linux-image-7.0.12+deb14.1-alpha-smp 5.7~rc5-1~exp1 linux-image-alpha-smp
+>>>>>>> debian

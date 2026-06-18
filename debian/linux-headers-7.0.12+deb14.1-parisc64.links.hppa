@@ -1,0 +1,4 @@
+usr/lib/linux-kbuild-7.0.12+deb14.1/scripts                          usr/src/linux-headers-7.0.12+deb14.1-parisc64/scripts
+usr/lib/linux-kbuild-7.0.12+deb14.1/tools                            usr/src/linux-headers-7.0.12+deb14.1-parisc64/tools
+usr/src/linux-headers-7.0.12+deb14.1-parisc64                                               usr/lib/modules/7.0.12+deb14.1-parisc64/build
+usr/src/linux-headers-7.0.12+deb14.1-common  usr/lib/modules/7.0.12+deb14.1-parisc64/source

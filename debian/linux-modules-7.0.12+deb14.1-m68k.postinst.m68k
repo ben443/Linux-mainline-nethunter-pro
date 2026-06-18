@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-modules-7.0.10+kali-parisc.postinst.hppa
+version=7.0.10+kali-parisc
+========
+version=7.0.12+deb14.1-m68k
+>>>>>>>> debian:debian/linux-modules-7.0.12+deb14.1-m68k.postinst.m68k
+
+if [ "$1" = configure ]; then
+  depmod "$version"
+fi
+
+exit 0

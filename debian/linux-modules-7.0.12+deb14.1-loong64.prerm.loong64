@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-modules-7.0.10+kali-armmp-lpae.prerm.armhf
+version=7.0.10+kali-armmp-lpae
+========
+version=7.0.12+deb14.1-loong64
+>>>>>>>> debian:debian/linux-modules-7.0.12+deb14.1-loong64.prerm.loong64
+
+if [ "$1" = remove ]; then
+  find "/usr/lib/modules/${version}" \
+    -maxdepth 1 \
+    -type f \
+    -name "modules.*" \
+    -not -name "modules.builtin" \
+    -not -name "modules.builtin.modinfo" \
+    -not -name "modules.order" \
+    -delete
+fi
+
+exit 0

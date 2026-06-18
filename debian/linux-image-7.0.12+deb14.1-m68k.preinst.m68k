@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-image-7.0.10+kali-m68k.preinst.m68k
+version=7.0.10+kali-m68k
+========
+version=7.0.12+deb14.1-m68k
+>>>>>>>> debian:debian/linux-image-7.0.12+deb14.1-m68k.preinst.m68k
+image_path=/boot/vmlinux-$version
+
+if [ "$1" = abort-upgrade ]; then
+    exit 0
+fi
+
+if [ "$1" = install ]; then
+    # Create a flag file for postinst
+    mkdir -p /lib/modules/$version
+    touch /lib/modules/$version/.fresh-install
+fi
+
+linux-run-hooks image preinst $version $image_path -- "$@"
+
+exit 0

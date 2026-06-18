@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-image-7.0.10+kali-parisc.prerm.hppa
+version=7.0.10+kali-parisc
+========
+version=7.0.12+deb14.1-arm64
+>>>>>>>> debian:debian/generated.signed-arm64/linux-image-7.0.12+deb14.1-arm64.prerm.arm64
+image_path=/boot/vmlinuz-$version
+
+if [ "$1" != remove ]; then
+    exit 0
+fi
+
+linux-check-removal $version
+
+linux-run-hooks image prerm $version $image_path -- "$@"
+
+exit 0

@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-headers-7.0.10+kali-loong64.postinst.loong64
+version=7.0.10+kali-loong64
+========
+version=7.0.12+deb14.1-test
+>>>>>>>> debian:debian/linux-headers-7.0.12+deb14.1-test.postinst.amd64
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

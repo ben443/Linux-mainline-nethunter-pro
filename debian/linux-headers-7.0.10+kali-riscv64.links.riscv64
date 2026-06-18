@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-7.0.10+kali/scripts                          usr/src/linux-headers-7.0.10+kali-riscv64/scripts
-usr/lib/linux-kbuild-7.0.10+kali/tools                            usr/src/linux-headers-7.0.10+kali-riscv64/tools
-usr/src/linux-headers-7.0.10+kali-riscv64                                               usr/lib/modules/7.0.10+kali-riscv64/build
-usr/src/linux-headers-7.0.10+kali-common  usr/lib/modules/7.0.10+kali-riscv64/source
