@@ -1299,7 +1299,7 @@ static int btrfs_remount_rw(struct btrfs_fs_info *fs_info)
 {
 	int ret;
 
-	if (BTRFS_FS_ERROR(fs_info)) {
+	if (unlikely(BTRFS_FS_ERROR(fs_info))) {
 		btrfs_err(fs_info,
 			  "remounting read-write after error is not allowed");
 		return -EINVAL;
@@ -1740,7 +1740,8 @@ static int btrfs_statfs(struct dentry *dentry, struct kstatfs *buf)
 	int mixed = 0;
 
 	list_for_each_entry(found, &fs_info->space_info, list) {
-		if (found->flags & BTRFS_BLOCK_GROUP_DATA) {
+		if (found->flags & BTRFS_BLOCK_GROUP_DATA &&
+		    found->subgroup_id != BTRFS_SUB_GROUP_DATA_RELOC) {
 			int i;
 
 			total_free_data += found->disk_total - found->disk_used;
@@ -1873,6 +1874,7 @@ static int btrfs_get_tree_super(struct fs_context *fc)
 	fs_info->fs_devices = fs_devices;
 	mutex_unlock(&uuid_mutex);
 
+	fc->sb_flags |= SB_NOSEC;
 
 	sb = sget_fc(fc, btrfs_fc_test_super, set_anon_super_fc);
 	if (IS_ERR(sb)) {
@@ -2423,7 +2425,6 @@ static long btrfs_free_cached_objects(struct super_block *sb, struct shrink_cont
 	return 0;
 }
 
-#ifdef CONFIG_BTRFS_EXPERIMENTAL
 static int btrfs_remove_bdev(struct super_block *sb, struct block_device *bdev)
 {
 	struct btrfs_fs_info *fs_info = btrfs_sb(sb);
@@ -2481,7 +2482,6 @@ static void btrfs_shutdown(struct super_block *sb)
 
 	btrfs_force_shutdown(fs_info);
 }
-#endif
 
 static int btrfs_show_stats(struct seq_file *seq, struct dentry *root)
 {
@@ -2511,10 +2511,8 @@ static const struct super_operations btrfs_super_ops = {
 	.nr_cached_objects = btrfs_nr_cached_objects,
 	.free_cached_objects = btrfs_free_cached_objects,
 	.show_stats	= btrfs_show_stats,
-#ifdef CONFIG_BTRFS_EXPERIMENTAL
 	.remove_bdev	= btrfs_remove_bdev,
 	.shutdown	= btrfs_shutdown,
-#endif
 };
 
 static const struct file_operations btrfs_ctl_fops = {
