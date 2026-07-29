@@ -1,9 +1,0 @@
-<<<<<<<< HEAD:debian/linux-headers-7.0.12+kali-amd64.install.amd64
-.config .kernel* Module.symvers include  usr/src/linux-headers-7.0.12+kali-amd64
-scripts/module.lds                       usr/src/linux-headers-7.0.12+kali-amd64/arch/x86
-arch/x86/include             usr/src/linux-headers-7.0.12+kali-amd64/arch/x86
-========
-.config .kernel* Module.symvers include  usr/src/linux-headers-7.1.5+deb14-amd64
-scripts/module.lds                       usr/src/linux-headers-7.1.5+deb14-amd64/arch/x86
-arch/x86/include             usr/src/linux-headers-7.1.5+deb14-amd64/arch/x86
->>>>>>>> debian:debian/linux-headers-7.1.5+deb14-amd64.install.amd64

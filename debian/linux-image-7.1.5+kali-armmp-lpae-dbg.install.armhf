@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-armmp-lpae/kernel      usr/lib/debug/lib/modules/7.1.5+kali-armmp-lpae
+lib/modules/7.1.5+kali-armmp-lpae/System.map  usr/lib/debug/lib/modules/7.1.5+kali-armmp-lpae
+lib/modules/7.1.5+kali-armmp-lpae/vdso        usr/lib/debug/lib/modules/7.1.5+kali-armmp-lpae
+lib/modules/7.1.5+kali-armmp-lpae/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-armmp-lpae

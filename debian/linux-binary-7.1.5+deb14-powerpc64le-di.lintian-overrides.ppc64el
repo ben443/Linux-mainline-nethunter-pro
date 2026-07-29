@@ -1,6 +1,0 @@
-# vmlinux needs extra sections that would normally be stripped.
-<<<<<<<< HEAD:debian/linux-binary-7.0.12+kali-powerpc64le-di.lintian-overrides.ppc64el
-linux-binary-7.0.12+kali-powerpc64le-di: unstripped-binary-or-object *boot/vmlinu*
-========
-linux-binary-7.1.5+deb14-powerpc64le-di: unstripped-binary-or-object *boot/vmlinu*
->>>>>>>> debian:debian/linux-binary-7.1.5+deb14-powerpc64le-di.lintian-overrides.ppc64el

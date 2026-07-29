@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-parisc/kernel      usr/lib/debug/lib/modules/7.1.5+kali-parisc
+lib/modules/7.1.5+kali-parisc/System.map  usr/lib/debug/lib/modules/7.1.5+kali-parisc
+lib/modules/7.1.5+kali-parisc/vdso        usr/lib/debug/lib/modules/7.1.5+kali-parisc
+lib/modules/7.1.5+kali-parisc/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-parisc

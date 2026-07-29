@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-alpha-smp/kernel      usr/lib/debug/lib/modules/7.1.5+kali-alpha-smp
+lib/modules/7.1.5+kali-alpha-smp/System.map  usr/lib/debug/lib/modules/7.1.5+kali-alpha-smp
+lib/modules/7.1.5+kali-alpha-smp/vdso        usr/lib/debug/lib/modules/7.1.5+kali-alpha-smp
+lib/modules/7.1.5+kali-alpha-smp/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-alpha-smp

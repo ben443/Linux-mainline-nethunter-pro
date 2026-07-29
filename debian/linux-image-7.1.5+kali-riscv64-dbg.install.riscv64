@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-riscv64/kernel      usr/lib/debug/lib/modules/7.1.5+kali-riscv64
+lib/modules/7.1.5+kali-riscv64/System.map  usr/lib/debug/lib/modules/7.1.5+kali-riscv64
+lib/modules/7.1.5+kali-riscv64/vdso        usr/lib/debug/lib/modules/7.1.5+kali-riscv64
+lib/modules/7.1.5+kali-riscv64/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-riscv64
