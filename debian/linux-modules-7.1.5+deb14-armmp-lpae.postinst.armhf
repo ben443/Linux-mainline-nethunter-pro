@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-modules-7.0.12+kali-armmp-lpae.postinst.armhf
+version=7.0.12+kali-armmp-lpae
+========
+version=7.1.5+deb14-armmp-lpae
+>>>>>>>> debian:debian/linux-modules-7.1.5+deb14-armmp-lpae.postinst.armhf
+
+if [ "$1" = configure ]; then
+  depmod "$version"
+fi
+
+exit 0

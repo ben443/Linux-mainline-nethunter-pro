@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+<<<<<<<< HEAD:debian/linux-headers-7.0.12+kali-parisc64.postinst.hppa
+version=7.0.12+kali-parisc64
+========
+version=7.1.5+deb14-parisc64
+>>>>>>>> debian:debian/linux-headers-7.1.5+deb14-parisc64.postinst.hppa
+
+linux-run-hooks headers postinst $version -- "$@"
+
+exit 0

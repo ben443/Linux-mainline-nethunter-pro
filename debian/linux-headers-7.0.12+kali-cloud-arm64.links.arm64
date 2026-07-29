@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-7.0.12+kali/scripts                          usr/src/linux-headers-7.0.12+kali-cloud-arm64/scripts
-usr/lib/linux-kbuild-7.0.12+kali/tools                            usr/src/linux-headers-7.0.12+kali-cloud-arm64/tools
-usr/src/linux-headers-7.0.12+kali-cloud-arm64                                               usr/lib/modules/7.0.12+kali-cloud-arm64/build
-usr/src/linux-headers-7.0.12+kali-common  usr/lib/modules/7.0.12+kali-cloud-arm64/source

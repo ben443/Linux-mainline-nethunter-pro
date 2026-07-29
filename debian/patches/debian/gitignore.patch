@@ -34,8 +34,8 @@ Forwarded: not-needed
  /include/config/
 @@ -184,3 +169,10 @@ sphinx_*/
  
- # Rust analyzer configuration
- /rust-project.json
+ # bc language scripts (not LLVM bitcode)
+ !kernel/time/timeconst.bc
 +
 +#
 +# Debian packaging: ignore everything at the top level, since it isn't
