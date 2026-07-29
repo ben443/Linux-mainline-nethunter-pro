@@ -16,9 +16,9 @@ Change-Id: Ia1c8c29d3f69c6ba5d630279c4cc98119b68ab71
 
 --- a/drivers/hid/hid-ids.h
 +++ b/drivers/hid/hid-ids.h
-@@ -1546,4 +1546,10 @@
- #define USB_VENDOR_ID_JIELI_SDK_DEFAULT		0x4c4a
- #define USB_DEVICE_ID_JIELI_SDK_4155		0x4155
+@@ -1624,4 +1624,10 @@
+ #define USB_VENDOR_ID_HUAWEI			0x12d1
+ #define USB_DEVICE_ID_HUAWEI_CD30KBD		0x109b
  
 +#define USB_DEVICE_ID_DWAV_MULTITOUCH	0x0005
 +
@@ -29,7 +29,7 @@ Change-Id: Ia1c8c29d3f69c6ba5d630279c4cc98119b68ab71
  #endif
 --- a/drivers/hid/hid-quirks.c
 +++ b/drivers/hid/hid-quirks.c
-@@ -915,6 +915,9 @@ static const struct hid_device_id hid_ig
+@@ -966,6 +966,9 @@ static const struct hid_device_id hid_ig
  #endif
  	{ HID_USB_DEVICE(USB_VENDOR_ID_YEALINK, USB_DEVICE_ID_YEALINK_P1K_P4K_B2K) },
  	{ HID_USB_DEVICE(USB_VENDOR_ID_QUANTA, USB_DEVICE_ID_QUANTA_HP_5MP_CAMERA_5473) },
@@ -41,7 +41,7 @@ Change-Id: Ia1c8c29d3f69c6ba5d630279c4cc98119b68ab71
  
 --- a/drivers/input/touchscreen/Kconfig
 +++ b/drivers/input/touchscreen/Kconfig
-@@ -1402,4 +1402,14 @@ config TOUCHSCREEN_HIMAX_HX83112B
+@@ -1412,4 +1412,14 @@ config TOUCHSCREEN_HIMAX_HX83112B
  	  To compile this driver as a module, choose M here: the
  	  module will be called himax_hx83112b.
  
@@ -58,7 +58,7 @@ Change-Id: Ia1c8c29d3f69c6ba5d630279c4cc98119b68ab71
  endif
 --- a/drivers/input/touchscreen/Makefile
 +++ b/drivers/input/touchscreen/Makefile
-@@ -118,3 +118,4 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5
+@@ -119,3 +119,4 @@ obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5
  obj-$(CONFIG_TOUCHSCREEN_IQS7211)	+= iqs7211.o
  obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
  obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX83112B)	+= himax_hx83112b.o
