@@ -1,0 +1,63 @@
+name: Build Mainline Kernel & modules (sm8250)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-kernel:
+    name: Build sm8250 Kernel
+    runs-on: ubuntu-latest
+    env:
+      ARCH: arm64
+      CROSS_COMPILE: aarch64-linux-gnu-
+
+    steps:
+      - name: Checkout kernel source
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bc bison flex libssl-dev \
+            libelf-dev gcc-aarch64-linux-gnu cpio kmod
+
+      - name: Configure Kernel
+        run: |
+          make defconfig
+          ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/sm8250.config
+          make olddefconfig
+
+      - name: Compile Kernel, DTBs, and Modules
+        run: |
+          # Added 'modules' target to compile loadable kernel modules (LKMs)
+          make -j$(nproc) Image.gz dtbs modules
+
+      - name: Install Modules and Generate Initrd
+        run: |
+          # 1. Create a clean staging directory for the ramdisk
+          mkdir -p initramfs_staging
+          
+          # 2. Install compiled modules into the staging directory
+          make modules_install INSTALL_MOD_PATH=./initramfs_staging
+          
+          # 3. Remove build and source symlinks. If left in, they point to absolute 
+          #    paths on the GitHub runner, which bloats the initrd and breaks on the device.
+          rm -f initramfs_staging/lib/modules/*/build
+          rm -f initramfs_staging/lib/modules/*/source
+          
+          # 4. Pack the staging directory into a gzipped cpio archive (standard initrd format)
+          cd initramfs_staging
+          find . | cpio -H newc -o | gzip -9 > ../initrd.img
+
+      - name: Upload Kernel Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm8250-kernel-release
+          path: |
+            arch/arm64/boot/Image.gz
+            arch/arm64/boot/dts/qcom/sm8250*.dtb
+            initrd.img
