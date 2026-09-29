@@ -1,0 +1,55 @@
+name: Build Mainline Kernel (sm8250)
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-kernel:
+    name: Build sm8250 Kernel
+    runs-on: ubuntu-latest
+    env:
+      ARCH: arm64
+      CROSS_COMPILE: aarch64-linux-gnu-
+
+    steps:
+      - name: Checkout kernel source
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential bc bison flex libssl-dev \
+            libelf-dev gcc-aarch64-linux-gnu
+
+      - name: Configure Kernel
+        run: |
+          # 1. Generate the base configuration
+          make defconfig
+          
+          # 2. Merge the sm8250 specific configuration fragment
+          # NOTE: Adjust the path below if sm8250.config is located somewhere else in your repo
+          ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/sm8250.config
+          
+          # 3. Validate and apply the merged configuration
+          make olddefconfig
+
+      - name: Compile Kernel and DTBs
+        run: |
+          # Build the compressed kernel image and device tree blobs
+          make -j$(nproc) Image.gz dtbs
+
+      - name: Upload Kernel Image (Image.gz)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm8250-Image.gz
+          path: arch/arm64/boot/Image.gz
+
+      - name: Upload Device Tree Blobs (DTBs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm8250-dtbs
+          path: arch/arm64/boot/dts/qcom/sm8250*.dtb
