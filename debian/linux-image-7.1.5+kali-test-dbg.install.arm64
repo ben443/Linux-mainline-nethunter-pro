@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-test/kernel      usr/lib/debug/lib/modules/7.1.5+kali-test
+lib/modules/7.1.5+kali-test/System.map  usr/lib/debug/lib/modules/7.1.5+kali-test
+lib/modules/7.1.5+kali-test/vdso        usr/lib/debug/lib/modules/7.1.5+kali-test
+lib/modules/7.1.5+kali-test/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-test

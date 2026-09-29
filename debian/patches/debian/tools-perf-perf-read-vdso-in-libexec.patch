@@ -4,7 +4,7 @@ Subject: linux-tools: Install perf-read-vdso{,x}32 in directory under /usr/lib
 
 --- a/tools/perf/Makefile.perf
 +++ b/tools/perf/Makefile.perf
-@@ -943,21 +943,21 @@ install-tools: all install-gtk
+@@ -1075,21 +1075,21 @@ install-tools: all install-gtk
  		$(LN) '$(DESTDIR_SQ)$(bindir_SQ)/perf' '$(DESTDIR_SQ)$(bindir_SQ)/trace'; \
  		$(INSTALL) -d -m 755 '$(DESTDIR_SQ)$(includedir_SQ)/perf'; \
  		$(INSTALL) -m 644 include/perf/perf_dlfilter.h -t '$(DESTDIR_SQ)$(includedir_SQ)/perf'

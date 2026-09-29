@@ -15,7 +15,7 @@ requesting the unreleased firmware.
 
 --- a/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
 +++ b/drivers/net/wireless/intel/iwlwifi/cfg/6000.c
-@@ -31,7 +31,7 @@
+@@ -12,7 +12,7 @@
  #include "dvm/commands.h" /* needed for BT for now */
  
  /* Highest firmware API version supported */

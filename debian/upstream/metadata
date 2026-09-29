@@ -1,0 +1,6 @@
+Name: linux
+Homepage: https://www.kernel.org/
+Repository: https://gitlab.com/kalilinux/packages/linux.git
+Repository-Browse: https://gitlab.com/kalilinux/packages/linux
+Bug-Database: https://bugs.kali.org
+Bug-Submit: https://bugs.kali.org/bug_report_page.php

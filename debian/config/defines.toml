@@ -154,6 +154,10 @@ name_regex = 'bookworm-backports'
 abi_suffix = '+deb12'
 revision_regex = '\d+(\.\d+)?(\+deb13u\d+)?~bpo12\+\d+'
 
+[[debianrelease]]
+name_regex = 'kali-(dev|experimental)'
+abi_suffix = '+kali'
+
 # Use default rules for any suite with no explicit config
 [[debianrelease]]
 name_regex = '.*'

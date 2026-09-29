@@ -1,0 +1,3 @@
+boot/vmlinu?-6.18.9+kali-parisc
+lib/modules/6.18.9+kali-parisc/modules.builtin  lib/modules/6.18.9+kali-parisc
+lib/modules/6.18.9+kali-parisc/modules.order    lib/modules/6.18.9+kali-parisc

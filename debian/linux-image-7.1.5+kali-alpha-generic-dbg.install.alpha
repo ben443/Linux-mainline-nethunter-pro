@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-alpha-generic/kernel      usr/lib/debug/lib/modules/7.1.5+kali-alpha-generic
+lib/modules/7.1.5+kali-alpha-generic/System.map  usr/lib/debug/lib/modules/7.1.5+kali-alpha-generic
+lib/modules/7.1.5+kali-alpha-generic/vdso        usr/lib/debug/lib/modules/7.1.5+kali-alpha-generic
+lib/modules/7.1.5+kali-alpha-generic/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-alpha-generic

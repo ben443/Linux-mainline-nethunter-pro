@@ -24,7 +24,7 @@ this with the check-missing-firmware.sh in hw-detect.
 
 --- a/drivers/base/firmware_loader/main.c
 +++ b/drivers/base/firmware_loader/main.c
-@@ -586,6 +586,10 @@ fw_get_filesystem_firmware(struct device
+@@ -590,6 +590,10 @@ fw_get_filesystem_firmware(struct device
  	}
  	__putname(path);
  

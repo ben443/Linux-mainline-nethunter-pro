@@ -116,3 +116,10 @@ CONFIG_POWER_SUPPLY_HWMON=y
 ## file: kernel/power/Kconfig
 ##
 CONFIG_PM=y
+
+##
+## file: drivers/gpu/drm/vmwgfx/Kconfig
+##
+CONFIG_DRM_VMWGFX=m
+CONFIG_DRM_VMWGFX_FBCON=y
+

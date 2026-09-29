@@ -11,10 +11,8 @@ kernel image reproducible.
 Make mkcompile_h use $KBUILD_BUILD_VERSION_TIMESTAMP in preference to
 $KBUILD_BUILD_TIMESTAMP.
 
-Index: linux/init/Makefile
-===================================================================
---- linux.orig/init/Makefile
-+++ linux/init/Makefile
+--- a/init/Makefile
++++ b/init/Makefile
 @@ -29,7 +29,7 @@ preempt-flag-$(CONFIG_PREEMPT_DYNAMIC)	:
  preempt-flag-$(CONFIG_PREEMPT_RT)	:= PREEMPT_RT
  

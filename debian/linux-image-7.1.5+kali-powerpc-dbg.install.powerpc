@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-powerpc/kernel      usr/lib/debug/lib/modules/7.1.5+kali-powerpc
+lib/modules/7.1.5+kali-powerpc/System.map  usr/lib/debug/lib/modules/7.1.5+kali-powerpc
+lib/modules/7.1.5+kali-powerpc/vdso        usr/lib/debug/lib/modules/7.1.5+kali-powerpc
+lib/modules/7.1.5+kali-powerpc/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-powerpc

@@ -722,6 +722,7 @@ CONFIG_SERIO_SUN4I_PS2=m
 ## file: drivers/input/touchscreen/Kconfig
 ##
 CONFIG_INPUT_TOUCHSCREEN=y
+CONFIG_TOUCHSCREEN_DWAV_USB_MT=m
 # CONFIG_TOUCHSCREEN_EETI is not set
 CONFIG_TOUCHSCREEN_EDT_FT5X06=m
 CONFIG_TOUCHSCREEN_TI_AM335X_TSC=m
@@ -1024,6 +1025,11 @@ CONFIG_SUN4I_EMAC=m
 CONFIG_EMAC_ROCKCHIP=m
 
 ##
+## file: drivers/net/ethernet/broadcom/Kconfig
+##
+CONFIG_BCMGENET=m
+
+##
 ## file: drivers/net/ethernet/calxeda/Kconfig
 ##
 CONFIG_NET_CALXEDA_XGMAC=m
@@ -1201,6 +1207,7 @@ CONFIG_PCI=y
 CONFIG_PCI_HOST_GENERIC=y
 CONFIG_PCI_MVEBU=y
 CONFIG_PCI_TEGRA=y
+CONFIG_PCIE_BRCMSTB=y
 
 ##
 ## file: drivers/pci/controller/dwc/Kconfig
@@ -1558,6 +1565,7 @@ CONFIG_ARMADA_THERMAL=y
 ##
 ## file: drivers/thermal/broadcom/Kconfig
 ##
+CONFIG_BCM2711_THERMAL=m
 CONFIG_BCM2835_THERMAL=m
 
 ##

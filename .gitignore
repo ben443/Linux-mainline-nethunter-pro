@@ -86,7 +86,12 @@ modules.order
 #
 # Debian directory (make deb-pkg)
 #
-/debian/
+# Disabled in Kali because we care about the content of the debian
+# directory!
+#/debian/
+# juste ignore these files in Kali
+/debian/build/
+/debian/lib/python/debian_linux/__pycache__/
 
 #
 # Snap directory (make snap-pkg)
@@ -128,10 +133,6 @@ modules.order
 
 # stgit generated dirs
 patches-*
-
-# quilt's files
-patches
-series
 
 # ctags files
 tags

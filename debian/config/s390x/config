@@ -183,6 +183,7 @@ CONFIG_DEBUG_INFO_BTF=y
 # CONFIG_FLATMEM_MANUAL is not set
 CONFIG_SPARSEMEM_MANUAL=y
 ## end choice
+CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=n
 
 ##
 ## file: net/appletalk/Kconfig

@@ -1,3 +1,9 @@
+linux (4.19.37-5kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 20 Jun 2019 14:01:44 +0200
+
 linux (4.19.37-5) unstable; urgency=medium
 
   [ Romain Perier ]
@@ -9,6 +15,12 @@ linux (4.19.37-5) unstable; urgency=medium
   * Add ABI reference for 4.19.0-5
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 19 Jun 2019 23:16:58 +0100
+
+linux (4.19.37-4kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 19 Jun 2019 09:23:02 +0200
 
 linux (4.19.37-4) unstable; urgency=high
 
@@ -71,6 +83,12 @@ linux (4.19.37-3) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 15 May 2019 23:07:16 +0100
 
+linux (4.19.37-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 15 May 2019 09:08:08 +0200
+
 linux (4.19.37-2) unstable; urgency=high
 
   * debian/bin: Fix Python static checker regressions (Closes: #928618)
@@ -110,6 +128,12 @@ linux (4.19.37-2) unstable; urgency=high
   * [x86] linux-cpupower: Update CPPFLAGS for change in <asm/msr-index.h>
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 14 May 2019 17:34:37 +0100
+
+linux (4.19.37-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 09 May 2019 10:41:49 +0200
 
 linux (4.19.37-1) unstable; urgency=medium
 
@@ -1296,6 +1320,12 @@ linux (4.19.37-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 05 May 2019 19:32:32 +0100
 
+linux (4.19.28-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 18 Mar 2019 14:06:33 +0100
+
 linux (4.19.28-2) unstable; urgency=medium
 
   [ Ben Hutchings ]
@@ -1314,6 +1344,12 @@ linux (4.19.28-2) unstable; urgency=medium
     closes: #924545
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 15 Mar 2019 02:16:04 +0000
+
+linux (4.19.28-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 13 Mar 2019 09:03:58 +0100
 
 linux (4.19.28-1) unstable; urgency=medium
 
@@ -2058,6 +2094,12 @@ linux (4.19.28-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 12 Mar 2019 05:06:28 +0000
 
+linux (4.19.20-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian.
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 14 Feb 2019 10:30:23 +0100
+
 linux (4.19.20-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -2561,6 +2603,12 @@ linux (4.19.20-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 11 Feb 2019 16:55:59 +0000
 
+linux (4.19.16-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 21 Jan 2019 13:41:42 +0100
+
 linux (4.19.16-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -2788,6 +2836,12 @@ linux (4.19.16-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 17 Jan 2019 18:56:17 +0000
 
+linux (4.19.13-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 03 Jan 2019 08:34:08 +0100
+
 linux (4.19.13-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -2859,6 +2913,12 @@ linux (4.19.13-1) unstable; urgency=medium
   * [rt] Update to 4.19.10-rt8
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 30 Dec 2018 10:04:03 +0100
+
+linux (4.19.12-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 28 Dec 2018 11:22:02 +0100
 
 linux (4.19.12-1) unstable; urgency=medium
 
@@ -3074,6 +3134,15 @@ linux (4.19.12-1) unstable; urgency=medium
     iomap_page_create/release()"
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 22 Dec 2018 09:06:45 +0100
+
+linux (4.19.9-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+  * Refresh kali-wifi-injection.patch
+  * Update the debian/config/*/defines to disable signed-code for
+    architectures in Kali
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 20 Dec 2018 11:03:06 +0100
 
 linux (4.19.9-1) unstable; urgency=medium
 
@@ -3318,11 +3387,29 @@ linux (4.19~rc2-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 03 Sep 2018 21:34:41 +0100
 
+linux (4.18.20-2kali2) kali-experimental; urgency=medium
+
+  * Enable CONFIG_ATH10K_USB (see 5125)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 30 Nov 2018 09:21:49 +0100
+
+linux (4.18.20-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 26 Nov 2018 11:09:28 +0100
+
 linux (4.18.20-2) unstable; urgency=medium
 
   * linux-kbuild: Include scripts/subarch.include (Closes: #910348)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 23 Nov 2018 19:15:55 +0000
+
+linux (4.18.20-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 23 Nov 2018 15:48:49 +0100
 
 linux (4.18.20-1) unstable; urgency=medium
 
@@ -4571,6 +4658,12 @@ linux (4.18.20-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 21 Nov 2018 20:55:46 +0000
 
+linux (4.18.10-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 09 Oct 2018 14:47:19 +0200
+
 linux (4.18.10-2) unstable; urgency=medium
 
   [ Ben Hutchings ]
@@ -4587,6 +4680,12 @@ linux (4.18.10-2) unstable; urgency=medium
     (CVE-2018-18021)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 07 Oct 2018 21:57:06 +0100
+
+linux (4.18.10-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 05 Oct 2018 11:29:52 +0200
 
 linux (4.18.10-1) unstable; urgency=medium
 
@@ -4975,6 +5074,12 @@ linux (4.18.10-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 30 Sep 2018 18:02:51 +0100
 
+linux (4.18.8-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 20 Sep 2018 09:31:04 +0200
+
 linux (4.18.8-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -5338,6 +5443,12 @@ linux (4.18.8-1) unstable; urgency=medium
   * [rt] Update to 4.18.7-rt5
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 18 Sep 2018 03:05:01 +0100
+
+linux (4.18.6-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 10 Sep 2018 14:11:44 +0200
 
 linux (4.18.6-1) unstable; urgency=medium
 
@@ -5724,6 +5835,12 @@ linux (4.18~rc3-1~exp1) experimental; urgency=medium
   * [mips*r6*/mipsn32*] build linux-perf in rules.real.
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 03 Jul 2018 17:26:05 +0100
+
+linux (4.17.17-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 21 Aug 2018 10:33:06 +0200
 
 linux (4.17.17-1) unstable; urgency=medium
 
@@ -6470,6 +6587,12 @@ linux (4.17.14-1) unstable; urgency=high
 
  -- Bastian Blank <waldi@debian.org>  Mon, 13 Aug 2018 15:33:58 +0200
 
+linux (4.17.8-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 24 Jul 2018 14:39:38 +0200
+
 linux (4.17.8-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -6558,6 +6681,12 @@ linux (4.17.8-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 20 Jul 2018 23:08:27 +0200
 
+linux (4.17.6-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 17 Jul 2018 14:40:22 +0200
+
 linux (4.17.6-2) unstable; urgency=medium
 
   [ Ben Hutchings ]
@@ -6581,6 +6710,15 @@ linux (4.17.6-2) unstable; urgency=medium
     Thanks to Manuel A. Fernandez Montecelo.
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 15 Jul 2018 23:45:56 +0100
+
+linux (4.17.6-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+  * Remove CONFIG_HARDENED_USERCOPY_FALLBACK=y (debian/config/config). Bug
+    fixed in  nvidia-graphics-drivers version: 390.67-2
+
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 13 Jul 2018 16:55:17 +0200
 
 linux (4.17.6-1) unstable; urgency=medium
 
@@ -7233,12 +7371,30 @@ linux (4.17~rc3-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 30 Apr 2018 00:13:06 +0100
 
+linux (4.16.16-2kali2) kali-experimental; urgency=medium
+
+  * debian/config/config: add CONFIG_HARDENED_USERCOPY_FALLBACK=y (fixes 4834)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 04 Jul 2018 10:56:59 +0200
+
+linux (4.16.16-2kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 25 Jun 2018 11:15:15 +0200
+
 linux (4.16.16-2) unstable; urgency=medium
 
   * [powerpc*] Ignore further ABI changes in cxl.
   * [ia64] Add compress-modules udeb.
 
  -- Bastian Blank <waldi@debian.org>  Fri, 22 Jun 2018 11:50:22 +0200
+
+linux (4.16.16-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 22 Jun 2018 10:09:34 +0200
 
 linux (4.16.16-1) unstable; urgency=medium
 
@@ -7688,6 +7844,12 @@ linux (4.16.16-1) unstable; urgency=medium
   * [arm64,armhf] Add device-tree to support Raspberry PI 3b+.
 
  -- Bastian Blank <waldi@debian.org>  Tue, 19 Jun 2018 20:23:54 +0200
+
+linux (4.16.12-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 28 May 2018 15:24:36 +0200
 
 linux (4.16.12-1) unstable; urgency=medium
 
@@ -8341,6 +8503,12 @@ linux (4.16.12-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 27 May 2018 14:05:03 +0200
 
+linux (4.16.5-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 11 May 2018 10:07:20 +0200
+
 linux (4.16.5-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -8524,6 +8692,12 @@ linux (4.16~rc5-1~exp1) experimental; urgency=medium
   * debian/rules.d/tools/kconfig/Makefile: Use bison and flex to build kconfig
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 13 Mar 2018 02:06:57 +0000
+
+linux (4.15.17-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 25 Apr 2018 15:31:49 +0200
 
 linux (4.15.17-1) unstable; urgency=medium
 
@@ -9056,6 +9230,12 @@ linux (4.15.17-1) unstable; urgency=medium
   * [armhf] Add patch to fix loading of imx6q-cpufreq module.
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 19 Apr 2018 11:13:03 +0100
+
+linux (4.15.11-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 21 Mar 2018 10:09:22 +0100
 
 linux (4.15.11-1) unstable; urgency=medium
 
@@ -9734,6 +9914,13 @@ linux (4.15.11-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Tue, 20 Mar 2018 09:31:07 +0100
 
+linux (4.15.4-1kali1) kali-experimental; urgency=medium
+
+  * Sync with Debian
+  * Drop patch bugfix/all/failure_to_fsync.patch, merged upstream
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 23 Feb 2018 09:10:20 +0100
+
 linux (4.15.4-1) unstable; urgency=medium
 
   * New upstream release: https://kernelnewbies.org/Linux_4.15
@@ -10108,6 +10295,12 @@ linux (4.15~rc5-1~exp1) experimental; urgency=medium
   * linux-kbuild: Add objtool
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 27 Dec 2017 02:48:14 +0000
+
+linux (4.14.17-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 16 Feb 2018 09:38:47 +0100
 
 linux (4.14.17-1) unstable; urgency=medium
 
@@ -10554,6 +10747,13 @@ linux (4.14.17-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 14 Feb 2018 06:56:06 +0100
 
+linux (4.14.13-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+  * Drop libelf-dev dependency on -headers package (fixed in Debian)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 25 Jan 2018 15:15:08 +0100
+
 linux (4.14.13-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -10613,6 +10813,19 @@ linux (4.14.13-1) unstable; urgency=medium
       modules"
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 14 Jan 2018 19:45:05 +0000
+
+linux (4.14.12-2kali2) kali-dev; urgency=medium
+
+  * Temporarily add a libelf-dev dependency on -headers package
+    to please the current Makefile used to build modules. (FS #4464)
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 11 Jan 2018 20:36:41 +0100
+
+linux (4.14.12-2kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 08 Jan 2018 16:09:45 +0100
 
 linux (4.14.12-2) unstable; urgency=medium
 
@@ -10694,6 +10907,12 @@ linux (4.14.12-1) unstable; urgency=medium
   * x86/tlb: Drop the _GPL from the cpu_tlbstate export
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 05 Jan 2018 21:20:26 +0100
+
+linux (4.14.7-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 02 Jan 2018 18:02:44 +0100
 
 linux (4.14.7-1) unstable; urgency=medium
 
@@ -11251,6 +11470,12 @@ linux (4.14.7-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 22 Dec 2017 14:12:23 +0000
 
+linux (4.14.2-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 04 Dec 2017 16:18:51 +0100
+
 linux (4.14.2-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -11382,6 +11607,12 @@ linux (4.14~rc3-1~exp1) experimental; urgency=medium
   * aufs: Update support patchset to aufs4.x-rcN-20171002
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 02 Oct 2017 04:47:08 +0100
+
+linux (4.13.13-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 17 Nov 2017 14:41:56 +0100
 
 linux (4.13.13-1) unstable; urgency=medium
 
@@ -11529,6 +11760,19 @@ linux (4.13.13-1) unstable; urgency=medium
   * netfilter: nat: Avoid ABI change in 4.13.13
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 16 Nov 2017 21:04:10 +0000
+
+linux (4.13.10-1kali2) kali-dev; urgency=medium
+
+  * Add a patch to fix failure to fsync lower dir (overlayfs)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 08 Nov 2017 09:32:46 +0100
+
+linux (4.13.10-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+  * Drop the bugfix/all/drop-division-by-zero.patch (merged upstream)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 03 Nov 2017 15:12:39 +0100
 
 linux (4.13.10-1) unstable; urgency=medium
 
@@ -11947,6 +12191,12 @@ linux (4.13.10-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 30 Oct 2017 15:32:11 +0000
 
+linux (4.13.4-2kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 16 Oct 2017 15:34:31 +0200
+
 linux (4.13.4-2) unstable; urgency=medium
 
   [ Ben Hutchings ]
@@ -11968,6 +12218,13 @@ linux (4.13.4-2) unstable; urgency=medium
   * [x86] KVM: MMU: always terminate page walks at level 1 (CVE-2017-12188)
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 15 Oct 2017 08:57:36 +0200
+
+linux (4.13.4-1kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+  * Add a patch to fix issue 4288
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 03 Oct 2017 10:15:27 +0200
 
 linux (4.13.4-1) unstable; urgency=medium
 
@@ -12082,6 +12339,20 @@ linux (4.13~rc5-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 14 Aug 2017 23:20:50 +0100
 
+linux (4.12.13-1kali2) kali-dev; urgency=medium
+
+  * Update auto-generated files
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 03 Oct 2017 08:58:46 +0200
+
+linux (4.12.13-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+  * Add a patch wireless-carl9170-Enable-sniffer-mode-promisc-flag-t.patch
+    (see Kali bug: 4220)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 03 Oct 2017 07:01:02 +0200
+
 linux (4.12.13-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -12126,6 +12397,13 @@ linux (4.12.13-1) unstable; urgency=medium
   * nfs: Ignore ABI change
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 19 Sep 2017 01:59:17 +0100
+
+linux (4.12.12-2kali1) kali-experimental; urgency=medium
+
+  * Synchronize with Debian
+  * Drop patch bugfix/all/vmwgfx-fix-wayland-rendering.patch merged upstream
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 13 Sep 2017 11:49:30 +0200
 
 linux (4.12.12-2) unstable; urgency=medium
 
@@ -12414,6 +12692,45 @@ linux (4.12.12-1) unstable; urgency=medium
   * mtd: nandsim: remove debugfs entries in error path
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 10 Sep 2017 19:42:51 +0100
+
+linux (4.12.6-1kali6) kali-dev; urgency=medium
+
+  * Use VMWare provided patch to fix the Wayland rendering issue.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 30 Aug 2017 09:49:25 +0200
+
+linux (4.12.6-1kali5) kali-dev; urgency=medium
+
+  * New try to fix the build, this time with the Debian patch here:
+    https://anonscm.debian.org/cgit/kernel/linux.git/commit/?h=sid&id=4895a85e769d51fd6b3aa1fcc689d9c6784582bc
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 25 Aug 2017 21:09:39 +0200
+
+linux (4.12.6-1kali4) kali-dev; urgency=medium
+
+  * Use the provided asm/msr-index.h instead of the system wide copy
+    for the build of turbostat.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 25 Aug 2017 20:55:03 +0200
+
+linux (4.12.6-1kali3) kali-dev; urgency=medium
+
+  * New try, this time with proper auto-generated files.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 25 Aug 2017 16:20:06 +0200
+
+linux (4.12.6-1kali2) kali-dev; urgency=medium
+
+  * Add a small patch to fix rendering of graphics on Wayland in VMWare
+    virtual machines.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 25 Aug 2017 14:41:58 +0200
+
+linux (4.12.6-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 18 Aug 2017 11:17:20 +0200
 
 linux (4.12.6-1) unstable; urgency=medium
 
@@ -12789,6 +13106,14 @@ linux (4.11.11-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 17 Jul 2017 03:01:21 +0100
 
+linux (4.11.6-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian 
+  * Drop patch bugfix/all/allocate-physically-contiguous-params.patch (merged
+    upstream)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 21 Jun 2017 15:10:26 +0200
+
 linux (4.11.6-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -12959,6 +13284,12 @@ linux (4.9.30-2) unstable; urgency=high
     (Closes: #862357)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 12 Jun 2017 16:24:30 +0100
+
+linux (4.9.30-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 06 Jun 2017 14:24:37 +0200
 
 linux (4.9.30-1) unstable; urgency=medium
 
@@ -13418,6 +13749,12 @@ linux (4.9.30-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 04 Jun 2017 03:03:01 +0100
 
+linux (4.9.25-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 04 May 2017 16:10:26 +0200
+
 linux (4.9.25-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -13837,6 +14174,12 @@ linux (4.9.25-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 02 May 2017 16:21:44 +0100
 
+linux (4.9.18-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 04 Apr 2017 11:13:04 +0200
+
 linux (4.9.18-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -13993,6 +14336,12 @@ linux (4.9.18-1) unstable; urgency=medium
   * [sparc64] udeb: Re-add ufs-modules (Closes: #858049)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 30 Mar 2017 02:16:33 +0100
+
+linux (4.9.16-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 24 Mar 2017 09:39:39 +0100
 
 linux (4.9.16-1) unstable; urgency=medium
 
@@ -14253,6 +14602,25 @@ linux (4.9.16-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 22 Mar 2017 17:01:40 +0100
 
+linux (4.9.13-1kali3) kali-experimental; urgency=medium
+
+  * Add a patch that allows for PCI pass though on Microsoft azure (see Kali bug
+    3915)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 13 Mar 2017 13:47:59 +0100
+
+linux (4.9.13-1kali2) kali-dev; urgency=medium
+
+  * Bump the ABI to kali3
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 07 Mar 2017 15:57:29 +0100
+
+linux (4.9.13-1kali1) kali-dev; urgency=medium
+
+  * Synchronize with Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 01 Mar 2017 09:56:22 +0100
+
 linux (4.9.13-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -14357,6 +14725,12 @@ linux (4.9.13-1) unstable; urgency=medium
     - Change export of rt_mutex_destroy() back to GPL-only
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 27 Feb 2017 15:58:07 +0000
+
+linux (4.9.10-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 20 Feb 2017 13:44:35 +0100
 
 linux (4.9.10-1) unstable; urgency=medium
 
@@ -14631,6 +15005,18 @@ linux (4.9.10-1) unstable; urgency=medium
   * sctp: avoid BUG_ON on sctp_wait_for_sndbuf (CVE-2017-5986)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 17 Feb 2017 13:18:17 +0000
+
+linux (4.9.6-3kali2) kali-dev; urgency=medium
+
+  * Update kali-wifi-injection patch for Linux 4.9.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Mon, 30 Jan 2017 20:30:58 +0100
+
+linux (4.9.6-3kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 30 Jan 2017 14:27:13 +0100
 
 linux (4.9.6-3) unstable; urgency=medium
 
@@ -15130,6 +15516,12 @@ linux (4.9.6-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 27 Jan 2017 07:44:54 +0000
 
+linux (4.9.2-2kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 30 Jan 2017 12:15:06 +0100
+
 linux (4.9.2-2) unstable; urgency=medium
 
   * [sparc64] Export memcpy and memset to modules again (fixes FTBFS)
@@ -15327,6 +15719,12 @@ linux (4.8.15-2) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 04 Jan 2017 19:39:36 +0000
 
+linux (4.8.15-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 23 Dec 2016 11:08:03 +0100
+
 linux (4.8.15-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -15505,6 +15903,12 @@ linux (4.8.15-1) unstable; urgency=medium
   * debian/rules: Tighten binNMU version matching, consistent with linux-latest
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Mon, 19 Dec 2016 12:35:29 +0100
+
+linux (4.8.11-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 08 Dec 2016 09:33:19 +0100
 
 linux (4.8.11-1) unstable; urgency=medium
 
@@ -15755,6 +16159,12 @@ linux (4.8.11-1) unstable; urgency=medium
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 02 Dec 2016 06:35:22 +0100
 
+linux (4.8.7-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 28 Nov 2016 15:20:05 +0100
+
 linux (4.8.7-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -16002,6 +16412,12 @@ linux (4.8.7-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 13 Nov 2016 04:38:09 +0000
 
+linux (4.8.5-1kali1) kali-experimental; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 04 Nov 2016 14:49:48 +0100
+
 linux (4.8.5-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -16127,6 +16543,13 @@ linux (4.8~rc5-1~exp1) experimental; urgency=medium
     - Exclude RST sources from the package
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 07 Sep 2016 21:52:47 +0100
+
+linux (4.7.8-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+  * In debian/config/ architecture /defines, keep "signed-modules: false"
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 24 Oct 2016 16:59:37 +0200
 
 linux (4.7.8-1) unstable; urgency=high
 
@@ -16293,6 +16716,13 @@ linux (4.7.8-1) unstable; urgency=high
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Wed, 19 Oct 2016 17:56:57 +0200
 
+linux (4.7.6-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+  * In debian/config/ architecture /defines, keep "signed-modules: false"
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 17 Oct 2016 15:54:33 +0200
+
 linux (4.7.6-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -16371,6 +16801,27 @@ linux (4.7.6-1) unstable; urgency=medium
     mounts within the Debian Installer. (Closes: #839552)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 07 Oct 2016 02:11:50 +0100
+
+linux (4.7.5-1kali3) kali-experimental; urgency=medium
+
+  * Revert "Drop '-unsigned' suffix to packages". Change config for
+    each architecture instead: signed-modules disabled
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 29 Sep 2016 12:00:41 +0200
+
+linux (4.7.5-1kali2) kali-experimental; urgency=medium
+
+  * Drop '-unsigned' suffix to packages (revert commit
+    72f58e83eaacb07b7dc5d077890f2be7d548300b in git Debian)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 27 Sep 2016 09:21:16 +0200
+
+linux (4.7.5-1kali1) kali-experimental; urgency=medium
+
+  * Import new version from Debian
+  * Drop debian/patches/bugfix/all/drm-vmwgfx-Fix-corner-case-screen-target-management.patch
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 26 Sep 2016 15:49:31 +0200
 
 linux (4.7.5-1) unstable; urgency=medium
 
@@ -16891,6 +17342,12 @@ linux (4.7~rc3-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sat, 18 Jun 2016 23:50:39 +0100
 
+linux (4.6.4-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 21 Jul 2016 10:07:03 +0200
+
 linux (4.6.4-1) unstable; urgency=medium
 
   * Team upload.
@@ -16938,6 +17395,12 @@ linux (4.6.4-1) unstable; urgency=medium
   * [rt] Update to 4.6.4-rt6 (no functional change)
 
  -- Salvatore Bonaccorso <carnil@debian.org>  Mon, 18 Jul 2016 21:57:31 +0200
+
+linux (4.6.3-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 12 Jul 2016 17:37:44 +0200
 
 linux (4.6.3-1) unstable; urgency=medium
 
@@ -17017,6 +17480,18 @@ linux (4.6.3-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 04 Jul 2016 20:10:24 +0200
 
+linux (4.6.2-2kali2) kali-dev; urgency=medium
+
+  * Add bugfix/all/drm-vmwgfx-Fix-corner-case-screen-target-management.patch
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 28 Jun 2016 15:21:28 +0200
+
+linux (4.6.2-2kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 28 Jun 2016 12:12:03 +0200
+
 linux (4.6.2-2) unstable; urgency=medium
 
   * [mips*] Fix ABI changes in 4.6.2
@@ -17050,6 +17525,12 @@ linux (4.6.2-2) unstable; urgency=medium
   * nfsd: check permissions when setting ACLs (CVE-2016-1237)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sat, 25 Jun 2016 11:22:27 +0200
+
+linux (4.6.2-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 17 Jun 2016 14:47:38 +0200
 
 linux (4.6.2-1) unstable; urgency=medium
 
@@ -17318,6 +17799,18 @@ linux (4.6~rc3-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 14 Apr 2016 23:55:15 +0100
 
+linux (4.5.5-1kali1) kali-dev; urgency=medium
+
+  [ Sophie Brun ]
+  * Import new version from debian
+  [ Raphaël Hertzog ]
+  * Drop aufs support, we no longer need it. The only remaining difference
+    with Debian is the wifi injection patch.
+  * Change maintainer field to point to devel@kali.org (on request of Ben
+    Hutchings).
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 06 Jun 2016 15:09:46 +0200
+
 linux (4.5.5-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -17568,6 +18061,12 @@ linux (4.5.4-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 16 May 2016 19:17:22 +0100
 
+linux (4.5.3-2kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 09 May 2016 15:00:25 +0200
+
 linux (4.5.3-2) unstable; urgency=medium
 
   * [s390x] PCI: Ignore zpci ABI changes; these functions are not used by
@@ -17772,6 +18271,13 @@ linux (4.5.3-1) unstable; urgency=medium
   * stable-update: Rewrite stable-update.sh in Python
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sat, 07 May 2016 21:59:15 +0100
+
+linux (4.5.2-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+  * Refresh patches
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 03 May 2016 10:05:27 +0200
 
 linux (4.5.2-1) unstable; urgency=medium
 
@@ -18331,6 +18837,14 @@ linux-tools (4.4.6-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 20 Mar 2016 16:23:48 +0000
 
+linux (4.4.6-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+  * Drop bugfix/x86/x86-efi-dont-free-reserved-regions.patch: it's in Debian
+    bugfix/x86/x86-efi-fix-boot-crash-by-always-mapping-boot-servic.patch
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 18 Mar 2016 10:17:36 +0100
+
 linux (4.4.6-1) unstable; urgency=medium
 
   [ Salvatore Bonaccorso ]
@@ -18471,6 +18985,18 @@ linux (4.4.6-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 17 Mar 2016 01:25:23 +0000
 
+linux (4.4.4-2kali2) kali-dev; urgency=medium
+
+  * Add a patch x86-efi-dont-free-reserved-regions.patch
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 11 Mar 2016 09:59:34 +0100
+
+linux (4.4.4-2kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 10 Mar 2016 09:14:23 +0100
+
 linux (4.4.4-2) unstable; urgency=medium
 
   * Ignore ABI changes in sdhci* modules (fixes FTBFS on armhf)
@@ -18480,6 +19006,13 @@ linux (4.4.4-2) unstable; urgency=medium
     to fix #808043 and causes a regression on ppc64el
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 09 Mar 2016 02:15:48 +0000
+
+linux (4.4.4-1kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+  * Refresh aufs4 patches
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 08 Mar 2016 11:18:21 +0100
 
 linux (4.4.4-1) unstable; urgency=medium
 
@@ -18963,6 +19496,13 @@ linux-tools (4.4-3) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 21 Feb 2016 15:07:55 +0000
 
+linux (4.4.2-3kali1) kali-dev; urgency=medium
+
+  * Import new version from Debian
+  * debian/config/defines: disable featureset-rt_base
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 23 Feb 2016 17:45:54 +0100
+
 linux (4.4.2-3) unstable; urgency=medium
 
   * [x86] efi-bgrt: Fix kernel panic when mapping BGRT data (Closes: #815125)
@@ -18998,6 +19538,15 @@ linux-tools (4.4-1) unstable; urgency=medium
   * Upload to unstable
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 18 Feb 2016 01:30:50 +0000
+
+linux (4.4.2-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian unstable
+  * Update aufs4 patches
+  * Refresh debian/patches/features/all/kali-wifi-injection.patch
+  * Drop debian/patches/bugfix/all/vmwgfx-fixes-*.patch (included upstream)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 18 Feb 2016 14:42:00 +0100
 
 linux (4.4.2-1) unstable; urgency=medium
 
@@ -19261,6 +19810,15 @@ linux (4.4~rc4-1~exp1) experimental; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 13 Dec 2015 16:25:45 +0000
 
+linux (4.3.5-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+  * Update aufs4 patches
+  * Drop bugfix/all/rt2x00-fix-monitor-mode.patch (included
+    in debian now)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 11 Feb 2016 14:58:36 +0100
+
 linux (4.3.5-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -19419,6 +19977,22 @@ linux (4.3.5-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sat, 06 Feb 2016 23:25:14 +0000
 
+linux (4.3.3-7kali2) kali-dev; urgency=medium
+
+  * Add new patch fixing monitor mode in Ralink cards using the
+    rt2x00 driver. (FS #3014)
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 27 Jan 2016 14:17:00 +0100
+
+linux (4.3.3-7kali1) kali-dev; urgency=medium
+
+  * Import new release from debian
+  * Drop bugfix/all/drm-vmwgfx-Fix-a-width-pitch-mismatch-on-framebuffer.patch
+    in kali/section. It's now included in the debian release.
+  * Refresh aufs4 patches
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 21 Jan 2016 09:52:34 +0100
+
 linux (4.3.3-7) unstable; urgency=medium
 
   * linux-image-dbg: Don't rely on upstream makefile to make .build-id
@@ -19460,6 +20034,33 @@ linux (4.3.3-6) unstable; urgency=medium
   * unix: properly account for FDs passed over unix sockets (CVE-2013-4312)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 19 Jan 2016 00:41:31 +0000
+
+linux (4.3.3-5kali4) kali-dev; urgency=medium
+
+  * Add hid-logitech-hidpp to input-modules udeb to fix some wireless
+    keyboards in debian-installer (FS #2563).
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 13 Jan 2016 16:10:39 +0100
+
+linux (4.3.3-5kali3) kali-dev; urgency=medium
+
+  * Add more fixes for vmwgfx.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Tue, 12 Jan 2016 11:18:57 +0100
+
+linux (4.3.3-5kali2) kali-dev; urgency=medium
+
+  * Add bugfix/all/drm-vmwgfx-Fix-a-width-pitch-mismatch-on-framebuffer.patch
+    to fix issue with gdm in VMware when 3D is disabled.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 08 Jan 2016 11:03:54 +0100
+
+linux (4.3.3-5kali1) kali-dev; urgency=medium
+
+  * Import new release from Debian.
+  * Update aufs patches for Linux 4.3.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Tue, 05 Jan 2016 16:13:07 +0100
 
 linux (4.3.3-5) unstable; urgency=medium
 
@@ -19887,6 +20488,14 @@ linux (4.2.6-1) unstable; urgency=medium
     (CVE-2015-5307)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 10 Nov 2015 14:35:05 +0000
+
+linux (4.2.5-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+  * Refresh kali-wifi-injection.patch
+  * Update aufs4 patches for kernel 4.2
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 03 Nov 2015 11:07:05 +0100
 
 linux (4.2.5-1) unstable; urgency=medium
 
@@ -20535,6 +21144,21 @@ linux (4.2~rc6-1~exp1) experimental; urgency=medium
   * debian/control: Drop Frederik Schüler from Uploaders
 
  -- Ben Hutchings <ben@decadent.org.uk>  Wed, 12 Aug 2015 20:48:00 +0200
+
+linux (4.1.6-1kali2) kali-dev; urgency=medium
+
+  * debian/rules: add a check for missing files debian/linux-*
+  * Add missing files debian/linux-*
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 14 Sep 2015 16:08:02 +0200
+
+linux (4.1.6-1kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+  * Refresh aufs4 patches
+  * Refresh kali-wifi-injection.patch
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 08 Sep 2015 10:04:55 +0200
 
 linux (4.1.6-1) unstable; urgency=medium
 
@@ -21258,6 +21882,23 @@ linux (4.0.5-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Tue, 16 Jun 2015 15:40:49 +0100
 
+linux (4.0.4-1+kali2) kali-dev; urgency=medium
+
+  * Properly add all missing maintainer scripts.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 03 Jun 2015 08:29:06 +0200
+
+linux (4.0.4-1+kali1) kali-dev; urgency=medium
+
+  * Import new version from debian unstable
+  * Refresh patch features/all/kali-wifi-injection.patch
+  * Update patches aufs3 with patches aufs4
+  * Disable rt mode
+  * udeb: Remove i2o modules (fixes FTBFS on amd64)
+  * [armhf] Add stmmac-platform module to nic-modules udeb. (Closes: #786716)
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 29 May 2015 11:57:46 +0200
+
 linux (4.0.4-1) unstable; urgency=medium
 
   * New upstream stable update:
@@ -21661,6 +22302,12 @@ linux (3.19-1~exp1) experimental; urgency=medium
 
  -- maximilian attems <maks@debian.org>  Thu, 12 Feb 2015 23:41:05 +0100
 
+linux (3.18.6-1+kali1) kali-dev; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 24 Feb 2015 14:19:00 +0100
+
 linux (3.18.6-1~exp1) experimental; urgency=medium
 
   [ Ben Hutchings ]
@@ -21695,6 +22342,26 @@ linux (3.18.5-1~exp1) experimental; urgency=medium
   * [hppa] Enable CONFIG_PPDEV to avoid CUPS complaining with systemd
 
  -- maximilian attems <maks@debian.org>  Sat, 31 Jan 2015 22:20:40 +0100
+
+linux (3.18.3-1+kali2) kali-dev; urgency=medium
+
+  * Increase check-size for armel build (orion5x)
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 20 Feb 2015 17:44:00 +0100
+
+linux (3.18.3-1+kali1) kali-dev; urgency=medium
+
+  * Bump ABI to "kali2" and rebuild with gcc 4.9.
+  * Add aufs3 back and update it for Linux 3.18. We're not ready yet to use
+    overlayfs...
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 19 Feb 2015 14:55:59 +0100
+
+linux (3.18.3-1~kali1) kali; urgency=medium
+
+  * Import new version from debian
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 19 Jan 2015 15:11:01 +0100
 
 linux (3.18.3-1~exp1) experimental; urgency=medium
 
@@ -22897,6 +23564,18 @@ linux (3.16.7-ckt2-1) unstable; urgency=high
   * [arm64] Enable reboot on the Xgene platform.
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 08 Dec 2014 20:03:18 +0000
+
+linux (3.16.7-2kali2) kali-dev; urgency=medium
+
+  * Use compiler gcc-4.8
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 04 Dec 2014 15:25:28 +0100
+
+linux (3.16.7-2kali1) kali-dev; urgency=medium
+
+  * Import new debian version
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 03 Dec 2014 16:19:10 +0100
 
 linux (3.16.7-2) unstable; urgency=medium
 
@@ -24535,6 +25214,22 @@ linux (3.14.7-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Mon, 16 Jun 2014 09:51:49 +0100
 
+linux (3.14.5-1kali2) kali; urgency=medium
+
+  * Merge changes from SVN commits 21407-21409 on the Debian repository:
+    http://anonscm.debian.org/viewvc/kernel?view=revision&revision=21407
+    http://anonscm.debian.org/viewvc/kernel?view=revision&revision=21408
+    http://anonscm.debian.org/viewvc/kernel?view=revision&revision=21409
+    This should fix the FTBFS on armhf.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Sat, 07 Jun 2014 18:22:46 +0200
+
+linux (3.14.5-1kali1) kali; urgency=medium
+
+  * Import into Kali.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 06 Jun 2014 11:16:06 +0200
+
 linux (3.14.5-1) unstable; urgency=high
 
   * New upstream stable update:
@@ -24640,6 +25335,13 @@ linux (3.14.5-1) unstable; urgency=high
   * [mips,mipsel] Fix branch emulation of branch likely instructions. 
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 05 Jun 2014 13:49:15 +0100
+
+linux (3.14.4-1kali1) kali-dev; urgency=medium
+
+  * Import into Kali.
+  * Refresh debian/patches/features/all/kali-wifi-injection.patch
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 14 May 2014 16:23:15 +0200
 
 linux (3.14.4-1) unstable; urgency=high
 
@@ -25342,6 +26044,12 @@ linux-tools (3.12.6-2) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 02 Feb 2014 11:51:18 +0100
 
+linux (3.12.9-1kali1) kali; urgency=medium
+
+  * Merge into Kali.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Tue, 13 May 2014 16:40:15 +0200
+
 linux (3.12.9-1) unstable; urgency=high
 
   * New upstream stable update:
@@ -25521,6 +26229,14 @@ linux (3.12.8-1) unstable; urgency=medium
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sun, 19 Jan 2014 19:22:22 +0000
 
+linux (3.12.6-2kali1) kali; urgency=medium
+
+  * Merge to Kali.
+  * Drop linux-kali source package in favor of regular fork of linux.
+  * Use our own "kali1" ABI version for clarity.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Mon, 06 Jan 2014 16:34:27 +0100
+
 linux (3.12.6-2) unstable; urgency=medium
 
   [ Bastian Blank ]
@@ -25644,6 +26360,23 @@ linux (3.12.6-1) unstable; urgency=medium
   * [armel/kirkwood+orion] Reenable MARVELL_PHY (Closes: #723177)
 
  -- Ben Hutchings <ben@decadent.org.uk>  Sat, 21 Dec 2013 03:12:38 +0000
+
+linux-kali (3.12.3-1~kali2) kali-dev; urgency=medium
+
+  * debina/rules.real: add kali-dev to the list of distributions built
+    with non-fatal kernel-wedge checks.
+  * udeb: Add ohci-pci to usb-modules (Closes: #730789)
+  * Change abiname to "kali1" to differentiate from Debian.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Fri, 20 Dec 2013 09:03:25 +0100
+
+linux-kali (3.12.3-1~kali1) kali-dev; urgency=low
+
+  * Backport into Kali.
+  * Update debian/patches/features/all/kali-wifi-injection.patch.
+  * Switch default compiler back to gcc-4.7
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 19 Dec 2013 11:27:41 +0100
 
 linux (3.12.3-1~exp1) experimental; urgency=medium
 
@@ -26118,6 +26851,14 @@ linux (3.11~rc4-1~exp1) experimental; urgency=low
   * [armhf/armmp] Enable NET_CALXEDA_XGMAC as module (Closes: #717269) 
 
  -- Ben Hutchings <ben@decadent.org.uk>  Thu, 08 Aug 2013 13:09:47 +0200
+
+linux-kali (3.10.11-1kali1) kali-dev; urgency=low
+
+  * Integrate new upstream release in Kali.
+  * Refresh Kali injection patches and disable debian/gitignore.patch (already
+    patched in the Kali git repository).
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Tue, 08 Oct 2013 09:46:15 +0200
 
 linux (3.10.11-1) unstable; urgency=low
 
@@ -27256,6 +27997,59 @@ linux (3.7.3-1~experimental.1) experimental; urgency=low
   * [x86/xen] Update microcode driver to use new API.
 
  -- Ben Hutchings <ben@decadent.org.uk>  Fri, 18 Jan 2013 01:36:15 +0000
+
+linux-kali (3.7.2-0+kali8) kali; urgency=low
+
+  * Fixed rtl8187 connectivity issues
+
+ -- Mati Aharoni <muts@kali.org>  Mon, 03 Jun 2013 14:18:54 -0400
+
+linux-kali (3.7.2-0+kali7) kali; urgency=low
+
+  * Add bugfix/all/perf_local_root_vulnerability.patch to fix a local root
+    vulnerability.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 22 May 2013 12:46:16 +0200
+
+linux-kali (3.7.2-0+kali6) kali; urgency=low
+
+  * Add hid-generic to the input-modules udeb. Relates to FS#63.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 14 Mar 2013 22:13:20 +0100
+
+linux-kali (3.7.2-0+kali5) kali; urgency=low
+
+  * Update kali's injection patch.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 07 Mar 2013 10:55:52 +0100
+
+linux-kali (3.7.2-0+kali4) kali; urgency=low
+
+  * Fix out-of-bounds access to sock_diag_handlers[] which can lead
+    to privilege escalation. New patch:
+    bugfix/all/sock_diag-Fix-out-of-bounds-access-to-sock_diag_hand.patch
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 27 Feb 2013 17:44:08 +0100
+
+linux-kali (3.7.2-0+kali3) kali; urgency=low
+
+  * Really set DEBIAN_KERNEL_JOBS to 4 to speed up the builds.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Thu, 17 Jan 2013 00:08:32 +0100
+
+linux-kali (3.7.2-0+kali2) kali; urgency=low
+
+  * New release that should fix the armel FTBFS.
+  * Set DEBIAN_KERNEL_JOBS to 4 to speed up the builds.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Wed, 16 Jan 2013 23:25:58 +0100
+
+linux-kali (3.7.2-0+kali1) kali; urgency=low
+
+  * New upstream release based on a SVN snapshot of the official Debian
+    package.
+
+ -- Raphaël Hertzog <hertzog@debian.org>  Mon, 14 Jan 2013 22:42:09 +0100
 
 linux (3.7.1-1~experimental.2) experimental; urgency=low
 
@@ -39857,4 +40651,3 @@ linux-2.6 (2.6.12-1) unstable; urgency=low
       (Frederik Schüler)
 
  -- Andres Salomon <dilinger@debian.org>  Wed, 20 Jul 2005 17:16:04 -0400
-

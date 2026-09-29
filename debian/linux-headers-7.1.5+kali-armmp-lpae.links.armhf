@@ -1,0 +1,4 @@
+usr/lib/linux-kbuild-7.1.5+kali/scripts                          usr/src/linux-headers-7.1.5+kali-armmp-lpae/scripts
+usr/lib/linux-kbuild-7.1.5+kali/tools                            usr/src/linux-headers-7.1.5+kali-armmp-lpae/tools
+usr/src/linux-headers-7.1.5+kali-armmp-lpae                                               usr/lib/modules/7.1.5+kali-armmp-lpae/build
+usr/src/linux-headers-7.1.5+kali-common  usr/lib/modules/7.1.5+kali-armmp-lpae/source

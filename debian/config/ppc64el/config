@@ -1,0 +1,4 @@
+##
+## file: mm/Kconfig
+##
+CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=n

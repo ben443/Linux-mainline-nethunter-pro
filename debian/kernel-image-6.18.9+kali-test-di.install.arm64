@@ -1,0 +1,4 @@
+boot/vmlinu?-6.18.9+kali-test
+lib/modules/6.18.9+kali-test/modules.builtin  lib/modules/6.18.9+kali-test
+lib/modules/6.18.9+kali-test/modules.order    lib/modules/6.18.9+kali-test
+lib/modules/6.18.9+kali-test/dtb              lib/modules/6.18.9+kali-test

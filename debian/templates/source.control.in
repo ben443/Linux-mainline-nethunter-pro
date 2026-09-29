@@ -1,7 +1,8 @@
 Section: kernel
 Priority: optional
-Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
-Uploaders: Bastian Blank <waldi@debian.org>, maximilian attems <maks@debian.org>, Ben Hutchings <benh@debian.org>, Salvatore Bonaccorso <carnil@debian.org>
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: Raphaël Hertzog <hertzog@debian.org>, Sophie Brun <sophie@offensive-security.com>
+XSBC-Original-Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
 Standards-Version: 4.2.0
 Build-Depends:
  debhelper-compat (= 13),
@@ -16,6 +17,8 @@ Build-Depends:
 # used by kernel-wedge
  cpio <!pkg.linux.noudeb>,
 Rules-Requires-Root: no
-Vcs-Git: https://salsa.debian.org/kernel-team/linux.git
-Vcs-Browser: https://salsa.debian.org/kernel-team/linux
+XS-Debian-Vcs-Git: https://salsa.debian.org/kernel-team/linux.git
+XS-Debian-Vcs-Browser: https://salsa.debian.org/kernel-team/linux
+Vcs-Git: https://gitlab.com/kalilinux/packages/linux.git
+Vcs-Browser: https://gitlab.com/kalilinux/packages/linux
 Homepage: https://www.kernel.org/

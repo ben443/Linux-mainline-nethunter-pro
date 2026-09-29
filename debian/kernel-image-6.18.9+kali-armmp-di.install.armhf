@@ -1,0 +1,4 @@
+boot/vmlinu?-6.18.9+kali-armmp
+lib/modules/6.18.9+kali-armmp/modules.builtin  lib/modules/6.18.9+kali-armmp
+lib/modules/6.18.9+kali-armmp/modules.order    lib/modules/6.18.9+kali-armmp
+lib/modules/6.18.9+kali-armmp/dtb              lib/modules/6.18.9+kali-armmp

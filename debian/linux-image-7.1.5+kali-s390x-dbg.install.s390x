@@ -1,0 +1,4 @@
+lib/modules/7.1.5+kali-s390x/kernel      usr/lib/debug/lib/modules/7.1.5+kali-s390x
+lib/modules/7.1.5+kali-s390x/System.map  usr/lib/debug/lib/modules/7.1.5+kali-s390x
+lib/modules/7.1.5+kali-s390x/vdso        usr/lib/debug/lib/modules/7.1.5+kali-s390x
+lib/modules/7.1.5+kali-s390x/vmlinux     usr/lib/debug/lib/modules/7.1.5+kali-s390x

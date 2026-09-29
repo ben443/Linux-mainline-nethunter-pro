@@ -1,0 +1,3 @@
+boot/vmlinu?-6.18.12+kali-m68k
+lib/modules/6.18.12+kali-m68k/modules.builtin  lib/modules/6.18.12+kali-m68k
+lib/modules/6.18.12+kali-m68k/modules.order    lib/modules/6.18.12+kali-m68k
