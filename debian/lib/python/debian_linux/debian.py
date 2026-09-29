@@ -605,18 +605,6 @@ class SourcePackage(_BasePackage):
         'XS-Autobuild',
         default=None,
     )
-    original_maintainer: Optional[str] = field_deb822(
-        'XSBC-Original-Maintainer',
-        default=None,
-    )
-    old_vcs_browser: Optional[str] = field_deb822(
-        'XS-Debian-Vcs-Browser',
-        default=None,
-    )
-    old_vcs_git: Optional[str] = field_deb822(
-        'XS-Debian-Vcs-Git',
-        default=None,
-    )
 
 
 @dataclasses.dataclass

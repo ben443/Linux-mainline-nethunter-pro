@@ -4,7 +4,6 @@
 CONFIG_SCHED_SMT=y
 CONFIG_SCHED_MC=y
 CONFIG_SECCOMP=y
-
 ##
 ## file: arch/arm64/Kconfig
 ##
@@ -32,7 +31,6 @@ CONFIG_ARM64_MPAM=y
 CONFIG_RANDOMIZE_BASE=y
 CONFIG_RANDOMIZE_MODULE_REGION_FULL=y
 CONFIG_ARM64_ACPI_PARKING_PROTOCOL=y
-
 ##
 ## file: arch/arm64/Kconfig.platforms
 ##
@@ -61,7 +59,6 @@ CONFIG_ARCH_THUNDER2=y
 CONFIG_ARCH_VEXPRESS=y
 CONFIG_ARCH_XGENE=y
 CONFIG_ARCH_ZYNQMP=y
-
 ##
 ## file: arch/arm64/crypto/Kconfig
 ##
@@ -70,13 +67,11 @@ CONFIG_CRYPTO_AES_ARM64_CE_BLK=m
 # CONFIG_CRYPTO_AES_ARM64_NEON_BLK is not set
 CONFIG_CRYPTO_AES_ARM64_BS=m
 CONFIG_CRYPTO_AES_ARM64_CE_CCM=m
-
 ##
 ## file: arch/arm64/kvm/Kconfig
 ##
 CONFIG_VIRTUALIZATION=y
 CONFIG_KVM=y
-
 ##
 ## file: drivers/acpi/Kconfig
 ##
@@ -86,7 +81,6 @@ CONFIG_ACPI_IPMI=m
 CONFIG_ACPI_PCI_SLOT=y
 CONFIG_ACPI_HED=y
 CONFIG_ACPI_BGRT=y
-
 ##
 ## file: drivers/acpi/apei/Kconfig
 ##
@@ -95,12 +89,10 @@ CONFIG_ACPI_APEI_GHES=y
 CONFIG_ACPI_APEI_PCIEAER=y
 CONFIG_ACPI_APEI_MEMORY_FAILURE=y
 CONFIG_ACPI_APEI_EINJ=m
-
 ##
 ## file: drivers/android/Kconfig
 ##
 CONFIG_ANDROID_BINDER_IPC=m
-
 ##
 ## file: drivers/ata/Kconfig
 ##
@@ -112,7 +104,6 @@ CONFIG_AHCI_TEGRA=m
 CONFIG_AHCI_XGENE=m
 CONFIG_AHCI_QORIQ=m
 CONFIG_SATA_AHCI_SEATTLE=m
-
 ##
 ## file: drivers/bluetooth/Kconfig
 ##
@@ -120,7 +111,6 @@ CONFIG_BT_HCIUART=m
 CONFIG_BT_MRVL_SDIO=m
 CONFIG_BT_MTKSDIO=m
 CONFIG_BT_QCOMSMD=m
-
 ##
 ## file: drivers/bus/Kconfig
 ##
@@ -128,13 +118,11 @@ CONFIG_MOXTET=m
 CONFIG_HISILICON_LPC=y
 CONFIG_QCOM_EBI2=y
 CONFIG_TEGRA_ACONNECT=y
-
 ##
 ## file: drivers/bus/fsl-mc/Kconfig
 ##
 CONFIG_FSL_MC_BUS=y
 CONFIG_FSL_MC_UAPI_SUPPORT=y
-
 ##
 ## file: drivers/char/hw_random/Kconfig
 ##
@@ -150,7 +138,6 @@ CONFIG_HW_RANDOM_OPTEE=m
 CONFIG_HW_RANDOM_ARM_SMCCC_TRNG=m
 CONFIG_HW_RANDOM_CN10K=m
 CONFIG_HW_RANDOM_ROCKCHIP=m
-
 ##
 ## file: drivers/char/ipmi/Kconfig
 ##
@@ -159,14 +146,12 @@ CONFIG_IPMI_DEVICE_INTERFACE=m
 CONFIG_IPMI_SSIF=m
 CONFIG_IPMI_WATCHDOG=m
 CONFIG_IPMI_POWEROFF=m
-
 ##
 ## file: drivers/char/tpm/Kconfig
 ##
 CONFIG_TCG_TIS_SPI_CR50=y
 CONFIG_TCG_TIS_I2C_CR50=m
 CONFIG_TCG_TIS_I2C_INFINEON=m
-
 ##
 ## file: drivers/clk/Kconfig
 ##
@@ -182,17 +167,14 @@ CONFIG_CLK_QORIQ=y
 CONFIG_CLK_LS1028A_PLLDIG=y
 CONFIG_COMMON_CLK_XGENE=y
 CONFIG_COMMON_CLK_PWM=m
-
 ##
 ## file: drivers/clk/bcm/Kconfig
 ##
 CONFIG_CLK_RASPBERRYPI=y
-
 ##
 ## file: drivers/clk/hisilicon/Kconfig
 ##
 CONFIG_STUB_CLK_HI6220=y
-
 ##
 ## file: drivers/clk/imx/Kconfig
 ##
@@ -200,12 +182,10 @@ CONFIG_CLK_IMX8MM=y
 CONFIG_CLK_IMX8MN=y
 CONFIG_CLK_IMX8MP=y
 CONFIG_CLK_IMX8MQ=y
-
 ##
 ## file: drivers/clk/keystone/Kconfig
 ##
 CONFIG_TI_SCI_CLK=y
-
 ##
 ## file: drivers/clk/mediatek/Kconfig
 ##
@@ -341,7 +321,6 @@ CONFIG_COMMON_CLK_MT8365_VDEC=m
 CONFIG_COMMON_CLK_MT8365_VENC=m
 CONFIG_COMMON_CLK_MT8516=m
 CONFIG_COMMON_CLK_MT8516_AUDSYS=m
-
 ##
 ## file: drivers/clk/qcom/Kconfig
 ##
@@ -412,7 +391,6 @@ CONFIG_SA_VIDEOCC_8775P=m
 CONFIG_SM_VIDEOCC_8250=m
 CONFIG_QCOM_HFPLL=y
 CONFIG_CLK_GFM_LPASS_SM8250=m
-
 ##
 ## file: drivers/clk/rockchip/Kconfig
 ##
@@ -420,29 +398,24 @@ CONFIG_CLK_RK3328=y
 CONFIG_CLK_RK3399=y
 CONFIG_CLK_RK3568=y
 CONFIG_CLK_RK3588=y
-
 ##
 ## file: drivers/clk/samsung/Kconfig
 ##
 CONFIG_EXYNOS_CLKOUT=m
-
 ##
 ## file: drivers/clk/sunxi-ng/Kconfig
 ##
 CONFIG_SUN8I_DE2_CCU=y
-
 ##
 ## file: drivers/clk/zynqmp/Kconfig
 ##
 CONFIG_COMMON_CLK_ZYNQMP=y
-
 ##
 ## file: drivers/clocksource/Kconfig
 ##
 CONFIG_ROCKCHIP_TIMER=y
 CONFIG_MTK_TIMER=y
 CONFIG_MTK_CPUX_TIMER=y
-
 ##
 ## file: drivers/cpufreq/Kconfig
 ##
@@ -454,7 +427,6 @@ CONFIG_CPUFREQ_DT=m
 CONFIG_CPUFREQ_DT_PLATDEV=y
 CONFIG_QORIQ_CPUFREQ=m
 CONFIG_ACPI_CPPC_CPUFREQ=m
-
 ##
 ## file: drivers/cpufreq/Kconfig.arm
 ##
@@ -467,13 +439,11 @@ CONFIG_ARM_MEDIATEK_CPUFREQ_HW=m
 CONFIG_ARM_QCOM_CPUFREQ_NVMEM=m
 CONFIG_ARM_QCOM_CPUFREQ_HW=m
 CONFIG_ARM_RASPBERRYPI_CPUFREQ=m
-
 ##
 ## file: drivers/cpuidle/Kconfig.arm
 ##
 CONFIG_ARM_PSCI_CPUIDLE=y
 CONFIG_ARM_PSCI_CPUIDLE_DOMAIN=y
-
 ##
 ## file: drivers/crypto/Kconfig
 ##
@@ -481,39 +451,32 @@ CONFIG_CRYPTO_DEV_QCE=m
 CONFIG_CRYPTO_DEV_QCOM_RNG=m
 CONFIG_CRYPTO_DEV_ROCKCHIP=m
 CONFIG_CRYPTO_DEV_SAFEXCEL=m
-
 ##
 ## file: drivers/crypto/allwinner/Kconfig
 ##
 CONFIG_CRYPTO_DEV_SUN8I_CE=m
-
 ##
 ## file: drivers/crypto/caam/Kconfig
 ##
 CONFIG_CRYPTO_DEV_FSL_CAAM=m
 CONFIG_CRYPTO_DEV_FSL_CAAM_JR=m
 CONFIG_CRYPTO_DEV_FSL_DPAA2_CAAM=m
-
 ##
 ## file: drivers/crypto/cavium/cpt/Kconfig
 ##
 CONFIG_CAVIUM_CPT=m
-
 ##
 ## file: drivers/crypto/cavium/nitrox/Kconfig
 ##
 CONFIG_CRYPTO_DEV_NITROX_CNN55XX=m
-
 ##
 ## file: drivers/crypto/marvell/Kconfig
 ##
 CONFIG_CRYPTO_DEV_MARVELL_CESA=m
-
 ##
 ## file: drivers/cxl/Kconfig
 ##
 CONFIG_CXL_BUS=y
-
 ##
 ## file: drivers/devfreq/Kconfig
 ##
@@ -523,13 +486,11 @@ CONFIG_ARM_IMX_BUS_DEVFREQ=m
 CONFIG_ARM_IMX8M_DDRC_DEVFREQ=m
 CONFIG_ARM_MEDIATEK_CCI_DEVFREQ=m
 CONFIG_ARM_RK3399_DMC_DEVFREQ=m
-
 ##
 ## file: drivers/devfreq/event/Kconfig
 ##
 CONFIG_PM_DEVFREQ_EVENT=y
 CONFIG_DEVFREQ_EVENT_ROCKCHIP_DFI=m
-
 ##
 ## file: drivers/dma/Kconfig
 ##
@@ -546,13 +507,11 @@ CONFIG_PL330_DMA=m
 CONFIG_TEGRA20_APB_DMA=y
 CONFIG_TEGRA210_ADMA=y
 CONFIG_XGENE_DMA=m
-
 ##
 ## file: drivers/dma/mediatek/Kconfig
 ##
 CONFIG_MTK_HSDMA=m
 CONFIG_MTK_UART_APDMA=m
-
 ##
 ## file: drivers/dma/qcom/Kconfig
 ##
@@ -560,18 +519,15 @@ CONFIG_QCOM_BAM_DMA=m
 CONFIG_QCOM_GPI_DMA=m
 CONFIG_QCOM_HIDMA_MGMT=m
 CONFIG_QCOM_HIDMA=m
-
 ##
 ## file: drivers/dma/ti/Kconfig
 ##
 CONFIG_TI_K3_UDMA=y
 CONFIG_TI_K3_UDMA_GLUE_LAYER=y
-
 ##
 ## file: drivers/dma-buf/Kconfig
 ##
 CONFIG_UDMABUF=y
-
 ##
 ## file: drivers/edac/Kconfig
 ##
@@ -580,7 +536,6 @@ CONFIG_EDAC_LAYERSCAPE=m
 CONFIG_EDAC_THUNDERX=m
 CONFIG_EDAC_XGENE=m
 CONFIG_EDAC_QCOM=m
-
 ##
 ## file: drivers/extcon/Kconfig
 ##
@@ -589,7 +544,6 @@ CONFIG_EXTCON_PTN5150=m
 CONFIG_EXTCON_QCOM_SPMI_MISC=m
 CONFIG_EXTCON_USB_GPIO=m
 CONFIG_EXTCON_USBC_CROS_EC=m
-
 ##
 ## file: drivers/firmware/Kconfig
 ##
@@ -597,39 +551,32 @@ CONFIG_ARM_SCPI_PROTOCOL=m
 CONFIG_RASPBERRYPI_FIRMWARE=y
 CONFIG_MTK_ADSP_IPC=m
 CONFIG_TURRIS_MOX_RWTM=m
-
 ##
 ## file: drivers/firmware/arm_ffa/Kconfig
 ##
 CONFIG_ARM_FFA_TRANSPORT=m
-
 ##
 ## file: drivers/firmware/arm_scmi/Kconfig
 ##
 CONFIG_ARM_SCMI_PROTOCOL=y
-
 ##
 ## file: drivers/firmware/arm_scmi/transports/Kconfig
 ##
 CONFIG_ARM_SCMI_TRANSPORT_SMC=y
-
 ##
 ## file: drivers/firmware/google/Kconfig
 ##
 CONFIG_GOOGLE_COREBOOT_TABLE=y
 CONFIG_GOOGLE_FRAMEBUFFER_COREBOOT=y
-
 ##
 ## file: drivers/firmware/qcom/Kconfig
 ##
 CONFIG_QCOM_QSEECOM=y
 CONFIG_QCOM_QSEECOM_UEFISECAPP=y
-
 ##
 ## file: drivers/gpib/Kconfig
 ##
 CONFIG_GPIB_GPIO=m
-
 ##
 ## file: drivers/gpio/Kconfig
 ##
@@ -655,28 +602,23 @@ CONFIG_GPIO_PCA953X_IRQ=y
 CONFIG_GPIO_MAX77620=y
 CONFIG_GPIO_SL28CPLD=m
 CONFIG_GPIO_MOXTET=m
-
 ##
 ## file: drivers/gpu/drm/Kconfig
 ##
 CONFIG_DRM=m
-
 ##
 ## file: drivers/gpu/drm/amd/amdkfd/Kconfig
 ##
 CONFIG_HSA_AMD_SVM=y
-
 ##
 ## file: drivers/gpu/drm/arm/Kconfig
 ##
 CONFIG_DRM_HDLCD=m
 CONFIG_DRM_MALI_DISPLAY=m
-
 ##
 ## file: drivers/gpu/drm/ast/Kconfig
 ##
 CONFIG_DRM_AST=m
-
 ##
 ## file: drivers/gpu/drm/bridge/Kconfig
 ##
@@ -691,72 +633,59 @@ CONFIG_DRM_PARADE_PS8640=m
 CONFIG_DRM_SII902X=m
 CONFIG_DRM_SIMPLE_BRIDGE=m
 CONFIG_DRM_TI_SN65DSI86=m
-
 ##
 ## file: drivers/gpu/drm/bridge/adv7511/Kconfig
 ##
 CONFIG_DRM_I2C_ADV7511=m
 CONFIG_DRM_I2C_ADV7511_AUDIO=y
-
 ##
 ## file: drivers/gpu/drm/bridge/analogix/Kconfig
 ##
 CONFIG_DRM_ANALOGIX_ANX6345=m
 CONFIG_DRM_ANALOGIX_ANX7625=m
-
 ##
 ## file: drivers/gpu/drm/bridge/cadence/Kconfig
 ##
 CONFIG_DRM_CDNS_MHDP8546=m
-
 ##
 ## file: drivers/gpu/drm/bridge/synopsys/Kconfig
 ##
 CONFIG_DRM_DW_HDMI_I2S_AUDIO=m
 CONFIG_DRM_DW_HDMI_CEC=m
-
 ##
 ## file: drivers/gpu/drm/etnaviv/Kconfig
 ##
 CONFIG_DRM_ETNAVIV=m
-
 ##
 ## file: drivers/gpu/drm/hisilicon/hibmc/Kconfig
 ##
 CONFIG_DRM_HISI_HIBMC=m
-
 ##
 ## file: drivers/gpu/drm/hisilicon/kirin/Kconfig
 ##
 CONFIG_DRM_HISI_KIRIN=m
-
 ##
 ## file: drivers/gpu/drm/hyperv/Kconfig
 ##
 CONFIG_DRM_HYPERV=m
-
 ##
 ## file: drivers/gpu/drm/imx/dcss/Kconfig
 ##
 CONFIG_DRM_IMX_DCSS=m
-
 ##
 ## file: drivers/gpu/drm/lima/Kconfig
 ##
 CONFIG_DRM_LIMA=m
-
 ##
 ## file: drivers/gpu/drm/mediatek/Kconfig
 ##
 CONFIG_DRM_MEDIATEK=m
 CONFIG_DRM_MEDIATEK_DP=m
 CONFIG_DRM_MEDIATEK_HDMI=m
-
 ##
 ## file: drivers/gpu/drm/meson/Kconfig
 ##
 CONFIG_DRM_MESON=m
-
 ##
 ## file: drivers/gpu/drm/msm/Kconfig
 ##
@@ -764,17 +693,14 @@ CONFIG_DRM_MSM=m
 CONFIG_DRM_MSM_DSI=y
 CONFIG_DRM_MSM_DSI_28NM_PHY=y
 CONFIG_DRM_MSM_DSI_20NM_PHY=y
-
 ##
 ## file: drivers/gpu/drm/mxsfb/Kconfig
 ##
 CONFIG_DRM_MXSFB=m
-
 ##
 ## file: drivers/gpu/drm/nouveau/Kconfig
 ##
 CONFIG_NOUVEAU_PLATFORM_DRIVER=y
-
 ##
 ## file: drivers/gpu/drm/panel/Kconfig
 ##
@@ -792,22 +718,18 @@ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
 CONFIG_DRM_PANEL_SITRONIX_ST7789V=m
 CONFIG_DRM_PANEL_EDP=m
 CONFIG_DRM_PANEL_SIMPLE=m
-
 ##
 ## file: drivers/gpu/drm/panfrost/Kconfig
 ##
 CONFIG_DRM_PANFROST=m
-
 ##
 ## file: drivers/gpu/drm/panthor/Kconfig
 ##
 CONFIG_DRM_PANTHOR=m
-
 ##
 ## file: drivers/gpu/drm/radeon/Kconfig
 ##
 CONFIG_DRM_RADEON=m
-
 ##
 ## file: drivers/gpu/drm/rockchip/Kconfig
 ##
@@ -819,7 +741,6 @@ CONFIG_ROCKCHIP_CDN_DP=y
 CONFIG_ROCKCHIP_DW_HDMI=y
 CONFIG_ROCKCHIP_DW_HDMI_QP=y
 CONFIG_ROCKCHIP_DW_MIPI_DSI=y
-
 ##
 ## file: drivers/gpu/drm/sun4i/Kconfig
 ##
@@ -827,44 +748,36 @@ CONFIG_DRM_SUN4I=m
 CONFIG_DRM_SUN6I_DSI=m
 CONFIG_DRM_SUN8I_DW_HDMI=m
 CONFIG_DRM_SUN8I_MIXER=m
-
 ##
 ## file: drivers/gpu/drm/tegra/Kconfig
 ##
 CONFIG_DRM_TEGRA=m
 CONFIG_DRM_TEGRA_STAGING=y
-
 ##
 ## file: drivers/gpu/drm/tidss/Kconfig
 ##
 CONFIG_DRM_TIDSS=m
-
 ##
 ## file: drivers/gpu/drm/v3d/Kconfig
 ##
 CONFIG_DRM_V3D=m
-
 ##
 ## file: drivers/gpu/drm/vc4/Kconfig
 ##
 CONFIG_DRM_VC4=m
 CONFIG_DRM_VC4_HDMI_CEC=y
-
 ##
 ## file: drivers/gpu/drm/vmwgfx/Kconfig
 ##
 CONFIG_DRM_VMWGFX=m
-
 ##
 ## file: drivers/gpu/host1x/Kconfig
 ##
 CONFIG_TEGRA_HOST1X=m
-
 ##
 ## file: drivers/hid/Kconfig
 ##
 CONFIG_HID_HYPERV_MOUSE=m
-
 ##
 ## file: drivers/hid/i2c-hid/Kconfig
 ##
@@ -872,14 +785,12 @@ CONFIG_I2C_HID_ACPI=m
 CONFIG_I2C_HID_OF=m
 CONFIG_I2C_HID_OF_ELAN=m
 CONFIG_I2C_HID_OF_GOODIX=m
-
 ##
 ## file: drivers/hv/Kconfig
 ##
 CONFIG_HYPERV=y
 CONFIG_HYPERV_UTILS=m
 CONFIG_HYPERV_BALLOON=m
-
 ##
 ## file: drivers/hwmon/Kconfig
 ##
@@ -891,18 +802,15 @@ CONFIG_SENSORS_PWM_FAN=m
 CONFIG_SENSORS_QNAP_MCU_HWMON=m
 CONFIG_SENSORS_SL28CPLD=m
 CONFIG_SENSORS_XGENE=m
-
 ##
 ## file: drivers/hwmon/pmbus/Kconfig
 ##
 CONFIG_SENSORS_LTC2978=m
-
 ##
 ## file: drivers/hwspinlock/Kconfig
 ##
 CONFIG_HWSPINLOCK=y
 CONFIG_HWSPINLOCK_QCOM=m
-
 ##
 ## file: drivers/hwtracing/coresight/Kconfig
 ##
@@ -917,13 +825,11 @@ CONFIG_CORESIGHT_STM=m
 CONFIG_CORESIGHT_CPU_DEBUG=m
 CONFIG_CORESIGHT_CTI=m
 CONFIG_CORESIGHT_TRBE=m
-
 ##
 ## file: drivers/i2c/Kconfig
 ##
 CONFIG_I2C=y
 CONFIG_I2C_MUX=m
-
 ##
 ## file: drivers/i2c/busses/Kconfig
 ##
@@ -947,14 +853,12 @@ CONFIG_I2C_THUNDERX=m
 CONFIG_I2C_XLP9XX=m
 CONFIG_I2C_CROS_EC_TUNNEL=m
 CONFIG_I2C_XGENE_SLIMPRO=m
-
 ##
 ## file: drivers/i2c/muxes/Kconfig
 ##
 CONFIG_I2C_MUX_PCA954x=m
 CONFIG_I2C_MUX_PINCTRL=m
 CONFIG_I2C_MUX_REG=m
-
 ##
 ## file: drivers/iio/adc/Kconfig
 ##
@@ -964,35 +868,29 @@ CONFIG_QCOM_SPMI_VADC=m
 CONFIG_QCOM_SPMI_ADC5=m
 CONFIG_ROCKCHIP_SARADC=m
 CONFIG_TI_ADS8688=m
-
 ##
 ## file: drivers/iio/common/cros_ec_sensors/Kconfig
 ##
 CONFIG_IIO_CROS_EC_SENSORS_CORE=m
 CONFIG_IIO_CROS_EC_SENSORS=m
 CONFIG_IIO_CROS_EC_SENSORS_LID_ANGLE=m
-
 ##
 ## file: drivers/iio/humidity/Kconfig
 ##
 CONFIG_DHT11=m
-
 ##
 ## file: drivers/iio/proximity/Kconfig
 ##
 CONFIG_CROS_EC_MKBP_PROXIMITY=m
 CONFIG_SX9324=m
-
 ##
 ## file: drivers/infiniband/hw/hns/Kconfig
 ##
 CONFIG_INFINIBAND_HNS_HIP08=y
-
 ##
 ## file: drivers/infiniband/hw/mana/Kconfig
 ##
 CONFIG_MANA_INFINIBAND=m
-
 ##
 ## file: drivers/input/keyboard/Kconfig
 ##
@@ -1002,7 +900,6 @@ CONFIG_KEYBOARD_GPIO_POLLED=m
 CONFIG_KEYBOARD_SNVS_PWRKEY=m
 CONFIG_KEYBOARD_TEGRA=m
 CONFIG_KEYBOARD_CROS_EC=m
-
 ##
 ## file: drivers/input/misc/Kconfig
 ##
@@ -1015,39 +912,32 @@ CONFIG_INPUT_UINPUT=m
 CONFIG_INPUT_RK805_PWRKEY=m
 CONFIG_INPUT_HISI_POWERKEY=m
 CONFIG_INPUT_QNAP_MCU=m
-
 ##
 ## file: drivers/input/mouse/Kconfig
 ##
 CONFIG_MOUSE_ELAN_I2C=m
-
 ##
 ## file: drivers/input/serio/Kconfig
 ##
 CONFIG_HYPERV_KEYBOARD=m
-
 ##
 ## file: drivers/input/touchscreen/Kconfig
 ##
 CONFIG_INPUT_TOUCHSCREEN=y
-CONFIG_TOUCHSCREEN_DWAV_USB_MT=m
 CONFIG_TOUCHSCREEN_ELAN=m
 CONFIG_TOUCHSCREEN_MELFAS_MIP4=m
 CONFIG_TOUCHSCREEN_EDT_FT5X06=m
 CONFIG_TOUCHSCREEN_RASPBERRYPI_FW=m
 CONFIG_TOUCHSCREEN_ST1232=m
-
 ##
 ## file: drivers/interconnect/Kconfig
 ##
 CONFIG_INTERCONNECT=y
-
 ##
 ## file: drivers/interconnect/imx/Kconfig
 ##
 CONFIG_INTERCONNECT_IMX=m
 CONFIG_INTERCONNECT_IMX8MQ=m
-
 ##
 ## file: drivers/interconnect/qcom/Kconfig
 ##
@@ -1067,7 +957,6 @@ CONFIG_INTERCONNECT_QCOM_SDM845=y
 CONFIG_INTERCONNECT_QCOM_SM6115=y
 CONFIG_INTERCONNECT_QCOM_SM8250=y
 CONFIG_INTERCONNECT_QCOM_X1E80100=y
-
 ##
 ## file: drivers/iommu/Kconfig
 ##
@@ -1078,14 +967,12 @@ CONFIG_SUN50I_IOMMU=y
 CONFIG_TEGRA_IOMMU_SMMU=y
 CONFIG_MTK_IOMMU=m
 CONFIG_VIRTIO_IOMMU=m
-
 ##
 ## file: drivers/iommu/arm/Kconfig
 ##
 CONFIG_ARM_SMMU=y
 CONFIG_ARM_SMMU_V3=y
 CONFIG_QCOM_IOMMU=y
-
 ##
 ## file: drivers/irqchip/Kconfig
 ##
@@ -1094,26 +981,22 @@ CONFIG_QCOM_IRQ_COMBINER=y
 CONFIG_QCOM_PDC=y
 CONFIG_QCOM_MPM=y
 CONFIG_MST_IRQ=y
-
 ##
 ## file: drivers/leds/Kconfig
 ##
 CONFIG_LEDS_GPIO=m
 CONFIG_LEDS_QNAP_MCU=m
 CONFIG_LEDS_PWM=m
-
 ##
 ## file: drivers/leds/rgb/Kconfig
 ##
 CONFIG_LEDS_GROUP_MULTICOLOR=m
 CONFIG_LEDS_PWM_MULTICOLOR=m
 CONFIG_LEDS_QCOM_LPG=m
-
 ##
 ## file: drivers/leds/trigger/Kconfig
 ##
 CONFIG_LEDS_TRIGGER_HEARTBEAT=y
-
 ##
 ## file: drivers/mailbox/Kconfig
 ##
@@ -1132,13 +1015,11 @@ CONFIG_MTK_ADSP_MBOX=m
 CONFIG_MTK_CMDQ_MBOX=m
 CONFIG_QCOM_CPUCP_MBOX=m
 CONFIG_QCOM_IPCC=m
-
 ##
 ## file: drivers/media/cec/platform/Kconfig
 ##
 CONFIG_CEC_MESON_AO=m
 CONFIG_CEC_MESON_G12A_AO=m
-
 ##
 ## file: drivers/media/i2c/Kconfig
 ##
@@ -1147,101 +1028,82 @@ CONFIG_VIDEO_OV5648=m
 CONFIG_VIDEO_OV5675=m
 CONFIG_VIDEO_OV5695=m
 CONFIG_VIDEO_DW9714=m
-
 ##
 ## file: drivers/media/platform/amlogic/meson-ge2d/Kconfig
 ##
 CONFIG_VIDEO_MESON_GE2D=m
-
 ##
 ## file: drivers/media/platform/mediatek/jpeg/Kconfig
 ##
 CONFIG_VIDEO_MEDIATEK_JPEG=m
-
 ##
 ## file: drivers/media/platform/mediatek/mdp/Kconfig
 ##
 CONFIG_VIDEO_MEDIATEK_MDP=m
-
 ##
 ## file: drivers/media/platform/mediatek/mdp3/Kconfig
 ##
 CONFIG_VIDEO_MEDIATEK_MDP3=m
-
 ##
 ## file: drivers/media/platform/mediatek/vcodec/Kconfig
 ##
 CONFIG_VIDEO_MEDIATEK_VCODEC=m
-
 ##
 ## file: drivers/media/platform/mediatek/vpu/Kconfig
 ##
 CONFIG_VIDEO_MEDIATEK_VPU=m
-
 ##
 ## file: drivers/media/platform/nxp/Kconfig
 ##
 CONFIG_VIDEO_IMX7_CSI=m
 CONFIG_VIDEO_IMX8MQ_MIPI_CSI2=m
 CONFIG_VIDEO_IMX_MIPI_CSIS=m
-
 ##
 ## file: drivers/media/platform/qcom/camss/Kconfig
 ##
 CONFIG_VIDEO_QCOM_CAMSS=m
-
 ##
 ## file: drivers/media/platform/qcom/venus/Kconfig
 ##
 CONFIG_VIDEO_QCOM_VENUS=m
-
 ##
 ## file: drivers/media/platform/raspberrypi/pisp_be/Kconfig
 ##
 CONFIG_VIDEO_RASPBERRYPI_PISP_BE=m
-
 ##
 ## file: drivers/media/platform/raspberrypi/rp1-cfe/Kconfig
 ##
 CONFIG_VIDEO_RP1_CFE=m
-
 ##
 ## file: drivers/media/platform/rockchip/rga/Kconfig
 ##
 CONFIG_VIDEO_ROCKCHIP_RGA=m
-
 ##
 ## file: drivers/media/platform/rockchip/rkisp1/Kconfig
 ##
 CONFIG_VIDEO_ROCKCHIP_ISP1=m
-
 ##
 ## file: drivers/media/platform/rockchip/rkvdec/Kconfig
 ##
 CONFIG_VIDEO_ROCKCHIP_VDEC=m
-
 ##
 ## file: drivers/media/platform/verisilicon/Kconfig
 ##
 CONFIG_VIDEO_HANTRO=m
-
 ##
 ## file: drivers/media/rc/Kconfig
 ##
 CONFIG_IR_GPIO_CIR=m
 CONFIG_IR_MESON=m
 CONFIG_IR_SUNXI=m
-
 ##
 ## file: drivers/memory/Kconfig
 ##
 CONFIG_MTK_SMI=m
-
 ##
 ## file: drivers/memory/tegra/Kconfig
 ##
 CONFIG_TEGRA_MC=y
-
 ##
 ## file: drivers/mfd/Kconfig
 ##
@@ -1263,7 +1125,6 @@ CONFIG_MFD_WCD934X=m
 CONFIG_MFD_KHADAS_MCU=m
 CONFIG_MFD_QCOM_PM8008=m
 CONFIG_MFD_QNAP_MCU=m
-
 ##
 ## file: drivers/misc/Kconfig
 ##
@@ -1271,23 +1132,19 @@ CONFIG_QCOM_COINCELL=m
 CONFIG_QCOM_FASTRPC=m
 CONFIG_SRAM=y
 CONFIG_NSM=m
-
 ##
 ## file: drivers/misc/rp1/Kconfig
 ##
 CONFIG_MISC_RP1=m
-
 ##
 ## file: drivers/mmc/Kconfig
 ##
 CONFIG_MMC=y
-
 ##
 ## file: drivers/mmc/core/Kconfig
 ##
 CONFIG_PWRSEQ_EMMC=y
 CONFIG_PWRSEQ_SIMPLE=y
-
 ##
 ## file: drivers/mmc/host/Kconfig
 ##
@@ -1317,52 +1174,41 @@ CONFIG_MMC_MTK=m
 CONFIG_MMC_SDHCI_BRCMSTB=m
 CONFIG_MMC_SDHCI_XENON=m
 CONFIG_MMC_SDHCI_AM654=m
-
 ##
 ## file: drivers/mtd/nand/Kconfig
 ##
 CONFIG_MTD_NAND_ECC_MEDIATEK=m
-
 ##
 ## file: drivers/mtd/nand/spi/Kconfig
 ##
 CONFIG_MTD_SPI_NAND=m
-
 ##
 ## file: drivers/mtd/spi-nor/controllers/Kconfig
 ##
 CONFIG_SPI_HISI_SFC=m
-
 ##
 ## file: drivers/mux/Kconfig
 ##
 CONFIG_MUX_GPIO=m
 CONFIG_MUX_MMIO=m
-
 ##
 ## file: drivers/net/Kconfig
 ##
-CONFIG_BONDING=m
-CONFIG_TUN=m
 CONFIG_VMXNET3=m
-
 ##
 ## file: drivers/net/can/Kconfig
 ##
 CONFIG_CAN_FLEXCAN=m
-
 ##
 ## file: drivers/net/can/c_can/Kconfig
 ##
 CONFIG_CAN_C_CAN=m
 CONFIG_CAN_C_CAN_PLATFORM=m
-
 ##
 ## file: drivers/net/can/m_can/Kconfig
 ##
 CONFIG_CAN_M_CAN=m
 CONFIG_CAN_M_CAN_PLATFORM=m
-
 ##
 ## file: drivers/net/dsa/Kconfig
 ##
@@ -1370,62 +1216,51 @@ CONFIG_NET_DSA_MT7530=m
 CONFIG_NET_DSA_MT7530_MDIO=m
 CONFIG_NET_DSA_MT7530_MMIO=m
 CONFIG_NET_DSA_MV88E6060=m
-
 ##
 ## file: drivers/net/dsa/mv88e6xxx/Kconfig
 ##
 CONFIG_NET_DSA_MV88E6XXX=m
-
 ##
 ## file: drivers/net/dsa/ocelot/Kconfig
 ##
 CONFIG_NET_DSA_MSCC_FELIX=m
-
 ##
 ## file: drivers/net/ethernet/3com/Kconfig
 ##
 CONFIG_NET_VENDOR_3COM=y
 CONFIG_VORTEX=m
 CONFIG_TYPHOON=m
-
 ##
 ## file: drivers/net/ethernet/8390/Kconfig
 ##
 CONFIG_NET_VENDOR_8390=y
 CONFIG_NE2K_PCI=m
-
 ##
 ## file: drivers/net/ethernet/adaptec/Kconfig
 ##
 CONFIG_NET_VENDOR_ADAPTEC=y
 CONFIG_ADAPTEC_STARFIRE=m
-
 ##
 ## file: drivers/net/ethernet/amd/Kconfig
 ##
 CONFIG_AMD_XGBE=m
-
 ##
 ## file: drivers/net/ethernet/apm/xgene/Kconfig
 ##
 CONFIG_NET_XGENE=m
-
 ##
 ## file: drivers/net/ethernet/apm/xgene-v2/Kconfig
 ##
 CONFIG_NET_XGENE_V2=m
-
 ##
 ## file: drivers/net/ethernet/broadcom/Kconfig
 ##
 CONFIG_BCMGENET=m
-
 ##
 ## file: drivers/net/ethernet/cadence/Kconfig
 ##
 CONFIG_NET_VENDOR_CADENCE=y
 CONFIG_MACB=m
-
 ##
 ## file: drivers/net/ethernet/cavium/Kconfig
 ##
@@ -1434,7 +1269,6 @@ CONFIG_THUNDER_NIC_PF=m
 CONFIG_THUNDER_NIC_VF=m
 CONFIG_THUNDER_NIC_BGX=m
 CONFIG_THUNDER_NIC_RGX=m
-
 ##
 ## file: drivers/net/ethernet/dec/tulip/Kconfig
 ##
@@ -1445,25 +1279,21 @@ CONFIG_TULIP=m
 # CONFIG_TULIP_MMIO is not set
 CONFIG_WINBOND_840=m
 CONFIG_DM9102=m
-
 ##
 ## file: drivers/net/ethernet/dlink/Kconfig
 ##
 CONFIG_NET_VENDOR_DLINK=y
-
 ##
 ## file: drivers/net/ethernet/freescale/Kconfig
 ##
 CONFIG_NET_VENDOR_FREESCALE=y
 CONFIG_FEC=m
 CONFIG_FSL_XGMAC_MDIO=m
-
 ##
 ## file: drivers/net/ethernet/freescale/dpaa2/Kconfig
 ##
 CONFIG_FSL_DPAA2_ETH=m
 CONFIG_FSL_DPAA2_PTP_CLOCK=m
-
 ##
 ## file: drivers/net/ethernet/freescale/enetc/Kconfig
 ##
@@ -1472,13 +1302,11 @@ CONFIG_FSL_ENETC_VF=m
 CONFIG_FSL_ENETC_MDIO=m
 CONFIG_FSL_ENETC_PTP_CLOCK=m
 CONFIG_FSL_ENETC_QOS=y
-
 ##
 ## file: drivers/net/ethernet/google/Kconfig
 ##
 CONFIG_NET_VENDOR_GOOGLE=y
 CONFIG_GVE=m
-
 ##
 ## file: drivers/net/ethernet/hisilicon/Kconfig
 ##
@@ -1493,77 +1321,64 @@ CONFIG_HNS3_HCLGE=m
 CONFIG_HNS3_DCB=y
 CONFIG_HNS3_HCLGEVF=m
 CONFIG_HNS3_ENET=m
-
 ##
 ## file: drivers/net/ethernet/intel/Kconfig
 ##
 CONFIG_NET_VENDOR_INTEL=y
 CONFIG_E100=m
-
 ##
 ## file: drivers/net/ethernet/intel/idpf/Kconfig
 ##
 CONFIG_IDPF=m
-
 ##
 ## file: drivers/net/ethernet/marvell/Kconfig
 ##
 CONFIG_MVMDIO=m
 CONFIG_MVNETA=m
 CONFIG_MVPP2=m
-
 ##
 ## file: drivers/net/ethernet/marvell/octeontx2/Kconfig
 ##
 CONFIG_OCTEONTX2_AF=m
 CONFIG_OCTEONTX2_PF=m
 CONFIG_OCTEONTX2_VF=m
-
 ##
 ## file: drivers/net/ethernet/mediatek/Kconfig
 ##
 CONFIG_NET_VENDOR_MEDIATEK=y
 CONFIG_NET_MEDIATEK_SOC=m
 CONFIG_NET_MEDIATEK_STAR_EMAC=m
-
 ##
 ## file: drivers/net/ethernet/microsoft/Kconfig
 ##
 CONFIG_NET_VENDOR_MICROSOFT=y
 CONFIG_MICROSOFT_MANA=m
-
 ##
 ## file: drivers/net/ethernet/mscc/Kconfig
 ##
 CONFIG_NET_VENDOR_MICROSEMI=y
-
 ##
 ## file: drivers/net/ethernet/natsemi/Kconfig
 ##
 CONFIG_NET_VENDOR_NATSEMI=y
 CONFIG_NATSEMI=m
-
 ##
 ## file: drivers/net/ethernet/qualcomm/Kconfig
 ##
 CONFIG_QCOM_EMAC=m
-
 ##
 ## file: drivers/net/ethernet/qualcomm/rmnet/Kconfig
 ##
 CONFIG_RMNET=m
-
 ##
 ## file: drivers/net/ethernet/realtek/Kconfig
 ##
 CONFIG_8139CP=m
 CONFIG_8139TOO=m
-
 ##
 ## file: drivers/net/ethernet/renesas/Kconfig
 ##
 CONFIG_RAVB=m
-
 ##
 ## file: drivers/net/ethernet/smsc/Kconfig
 ##
@@ -1571,12 +1386,10 @@ CONFIG_NET_VENDOR_SMSC=y
 CONFIG_SMC91X=m
 CONFIG_EPIC100=m
 CONFIG_SMSC911X=m
-
 ##
 ## file: drivers/net/ethernet/socionext/Kconfig
 ##
 CONFIG_SNI_NETSEC=m
-
 ##
 ## file: drivers/net/ethernet/stmicro/stmmac/Kconfig
 ##
@@ -1587,30 +1400,25 @@ CONFIG_DWMAC_IPQ806X=m
 CONFIG_DWMAC_MEDIATEK=m
 CONFIG_DWMAC_MESON=m
 CONFIG_DWMAC_ROCKCHIP=m
-
 ##
 ## file: drivers/net/ethernet/ti/Kconfig
 ##
 CONFIG_TI_K3_AM65_CPSW_NUSS=m
 CONFIG_TI_K3_AM65_CPTS=m
 CONFIG_TI_ICSSG_PRUETH=m
-
 ##
 ## file: drivers/net/fddi/Kconfig
 ##
 CONFIG_FDDI=y
 CONFIG_SKFP=m
-
 ##
 ## file: drivers/net/hyperv/Kconfig
 ##
 CONFIG_HYPERV_NET=m
-
 ##
 ## file: drivers/net/ipa/Kconfig
 ##
 CONFIG_QCOM_IPA=m
-
 ##
 ## file: drivers/net/mdio/Kconfig
 ##
@@ -1618,7 +1426,6 @@ CONFIG_MDIO_XGENE=m
 CONFIG_MDIO_HISI_FEMAC=m
 CONFIG_MDIO_THUNDER=m
 CONFIG_MDIO_BUS_MUX_MMIOREG=m
-
 ##
 ## file: drivers/net/phy/Kconfig
 ##
@@ -1631,105 +1438,74 @@ CONFIG_MARVELL_10G_PHY=m
 CONFIG_MICROSEMI_PHY=m
 CONFIG_MOTORCOMM_PHY=m
 CONFIG_DP83869_PHY=m
-
 ##
 ## file: drivers/net/phy/qcom/Kconfig
 ##
 CONFIG_AT803X_PHY=m
-
 ##
 ## file: drivers/net/phy/realtek/Kconfig
 ##
 CONFIG_REALTEK_PHY=m
-
 ##
 ## file: drivers/net/usb/Kconfig
 ##
 CONFIG_USB_NET_SMSC95XX=m
-
 ##
 ## file: drivers/net/wireless/ath/ath10k/Kconfig
 ##
 CONFIG_ATH10K_AHB=y
 CONFIG_ATH10K_SDIO=m
 CONFIG_ATH10K_SNOC=m
-
-##
-## file: drivers/net/wireless/ath/ath9k/Kconfig
-##
-CONFIG_ATH9K_HTC=m
-
 ##
 ## file: drivers/net/wireless/ath/wcn36xx/Kconfig
 ##
 CONFIG_WCN36XX=m
-
 ##
 ## file: drivers/net/wireless/broadcom/brcm80211/brcmfmac/Kconfig
 ##
 CONFIG_BRCMFMAC_SDIO=y
-
 ##
 ## file: drivers/net/wireless/marvell/mwifiex/Kconfig
 ##
 CONFIG_MWIFIEX=m
 CONFIG_MWIFIEX_SDIO=m
 CONFIG_MWIFIEX_PCIE=m
-
 ##
 ## file: drivers/net/wireless/mediatek/mt76/mt7615/Kconfig
 ##
 CONFIG_MT7622_WMAC=y
-
 ##
 ## file: drivers/net/wireless/mediatek/mt76/mt7915/Kconfig
 ##
 CONFIG_MT798X_WMAC=y
-
 ##
 ## file: drivers/net/wireless/mediatek/mt76/mt7921/Kconfig
 ##
 CONFIG_MT7921S=m
-
-##
-## file: drivers/net/wireless/ralink/rt2x00/Kconfig
-##
-CONFIG_RT2800USB=m
-
-##
-## file: drivers/net/wireless/realtek/rtl818x/Kconfig
-##
-CONFIG_RTL8187=m
-
 ##
 ## file: drivers/net/wireless/ti/Kconfig
 ##
 CONFIG_WLAN_VENDOR_TI=y
-
 ##
 ## file: drivers/net/wireless/ti/wl1251/Kconfig
 ##
 CONFIG_WL1251=m
 CONFIG_WL1251_SPI=m
 CONFIG_WL1251_SDIO=m
-
 ##
 ## file: drivers/net/wireless/ti/wl12xx/Kconfig
 ##
 CONFIG_WL12XX=m
-
 ##
 ## file: drivers/net/wireless/ti/wl18xx/Kconfig
 ##
 CONFIG_WL18XX=m
-
 ##
 ## file: drivers/net/wireless/ti/wlcore/Kconfig
 ##
 CONFIG_WLCORE=m
 CONFIG_WLCORE_SPI=m
 CONFIG_WLCORE_SDIO=m
-
 ##
 ## file: drivers/nvmem/Kconfig
 ##
@@ -1743,12 +1519,10 @@ CONFIG_NVMEM_ROCKCHIP_EFUSE=m
 CONFIG_NVMEM_ROCKCHIP_OTP=m
 CONFIG_NVMEM_SPMI_SDAM=m
 CONFIG_NVMEM_SUNXI_SID=m
-
 ##
 ## file: drivers/of/Kconfig
 ##
 CONFIG_OF_OVERLAY=y
-
 ##
 ## file: drivers/pci/Kconfig
 ##
@@ -1757,7 +1531,6 @@ CONFIG_PCI_PRI=y
 CONFIG_PCI_PASID=y
 CONFIG_PCI_P2PDMA=y
 CONFIG_PCI_HYPERV=m
-
 ##
 ## file: drivers/pci/controller/Kconfig
 ##
@@ -1771,14 +1544,12 @@ CONFIG_PCI_TEGRA=y
 CONFIG_PCIE_ROCKCHIP_HOST=y
 CONFIG_PCI_XGENE=y
 CONFIG_PCIE_XILINX_NWL=y
-
 ##
 ## file: drivers/pci/controller/cadence/Kconfig
 ##
 CONFIG_PCI_SKY1_HOST=y
 CONFIG_PCI_J721E_HOST=y
 CONFIG_PCI_J721E_EP=y
-
 ##
 ## file: drivers/pci/controller/dwc/Kconfig
 ##
@@ -1791,17 +1562,14 @@ CONFIG_PCIE_ARMADA_8K=y
 CONFIG_PCIE_QCOM=y
 CONFIG_PCIE_ROCKCHIP_DW_HOST=y
 CONFIG_PCIE_ROCKCHIP_DW_EP=y
-
 ##
 ## file: drivers/pci/controller/mobiveil/Kconfig
 ##
 CONFIG_PCIE_LAYERSCAPE_GEN4=y
-
 ##
 ## file: drivers/pci/endpoint/Kconfig
 ##
 CONFIG_PCI_ENDPOINT=y
-
 ##
 ## file: drivers/pci/hotplug/Kconfig
 ##
@@ -1811,12 +1579,10 @@ CONFIG_HOTPLUG_PCI_ACPI_IBM=m
 CONFIG_HOTPLUG_PCI_CPCI_ZT5550=m
 CONFIG_HOTPLUG_PCI_CPCI_GENERIC=m
 CONFIG_HOTPLUG_PCI_SHPC=y
-
 ##
 ## file: drivers/pci/pcie/Kconfig
 ##
 CONFIG_HOTPLUG_PCI_PCIE=y
-
 ##
 ## file: drivers/perf/Kconfig
 ##
@@ -1833,35 +1599,29 @@ CONFIG_QCOM_L2_PMU=y
 CONFIG_QCOM_L3_PMU=y
 CONFIG_XGENE_PMU=y
 CONFIG_ARM_SPE_PMU=m
-
 ##
 ## file: drivers/perf/hisilicon/Kconfig
 ##
 CONFIG_HISI_PMU=y
-
 ##
 ## file: drivers/phy/Kconfig
 ##
 CONFIG_PHY_NXP_PTN3222=m
 CONFIG_PHY_SNPS_EUSB2=m
 CONFIG_PHY_XGENE=m
-
 ##
 ## file: drivers/phy/allwinner/Kconfig
 ##
 CONFIG_PHY_SUN4I_USB=m
 CONFIG_PHY_SUN50I_USB3=m
-
 ##
 ## file: drivers/phy/amlogic/Kconfig
 ##
 CONFIG_PHY_MESON8B_USB2=m
-
 ##
 ## file: drivers/phy/cadence/Kconfig
 ##
 CONFIG_PHY_CADENCE_TORRENT=m
-
 ##
 ## file: drivers/phy/freescale/Kconfig
 ##
@@ -1869,12 +1629,10 @@ CONFIG_PHY_FSL_IMX8MQ_USB=m
 CONFIG_PHY_MIXEL_MIPI_DPHY=m
 CONFIG_PHY_FSL_IMX8M_PCIE=m
 CONFIG_PHY_FSL_LYNX_28G=m
-
 ##
 ## file: drivers/phy/hisilicon/Kconfig
 ##
 CONFIG_PHY_HI6220_USB=m
-
 ##
 ## file: drivers/phy/marvell/Kconfig
 ##
@@ -1882,7 +1640,6 @@ CONFIG_PHY_MVEBU_A3700_COMPHY=m
 CONFIG_PHY_MVEBU_A3700_UTMI=m
 CONFIG_PHY_MVEBU_CP110_COMPHY=m
 CONFIG_PHY_MVEBU_CP110_UTMI=m
-
 ##
 ## file: drivers/phy/mediatek/Kconfig
 ##
@@ -1892,7 +1649,6 @@ CONFIG_PHY_MTK_UFS=m
 CONFIG_PHY_MTK_HDMI=m
 CONFIG_PHY_MTK_MIPI_DSI=m
 CONFIG_PHY_MTK_DP=m
-
 ##
 ## file: drivers/phy/qualcomm/Kconfig
 ##
@@ -1907,12 +1663,10 @@ CONFIG_PHY_QCOM_EUSB2_REPEATER=m
 CONFIG_PHY_QCOM_USB_HS=m
 CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
 CONFIG_PHY_QCOM_USB_HSIC=m
-
 ##
 ## file: drivers/phy/renesas/Kconfig
 ##
 CONFIG_PHY_RCAR_GEN3_USB2=m
-
 ##
 ## file: drivers/phy/rockchip/Kconfig
 ##
@@ -1930,28 +1684,23 @@ CONFIG_PHY_ROCKCHIP_SNPS_PCIE3=m
 CONFIG_PHY_ROCKCHIP_TYPEC=m
 CONFIG_PHY_ROCKCHIP_USB=m
 CONFIG_PHY_ROCKCHIP_USBDP=m
-
 ##
 ## file: drivers/phy/samsung/Kconfig
 ##
 CONFIG_PHY_SAMSUNG_UFS=m
 CONFIG_PHY_EXYNOS5_USBDRD=m
-
 ##
 ## file: drivers/phy/tegra/Kconfig
 ##
 CONFIG_PHY_TEGRA_XUSB=m
-
 ##
 ## file: drivers/phy/ti/Kconfig
 ##
 CONFIG_PHY_J721E_WIZ=m
-
 ##
 ## file: drivers/phy/xilinx/Kconfig
 ##
 CONFIG_PHY_XILINX_ZYNQMP=m
-
 ##
 ## file: drivers/pinctrl/Kconfig
 ##
@@ -1961,22 +1710,18 @@ CONFIG_PINCTRL_MAX77620=y
 CONFIG_PINCTRL_RK805=y
 CONFIG_PINCTRL_ROCKCHIP=y
 CONFIG_PINCTRL_SINGLE=y
-
 ##
 ## file: drivers/pinctrl/bcm/Kconfig
 ##
 CONFIG_PINCTRL_BRCMSTB=m
-
 ##
 ## file: drivers/pinctrl/bcm/Kconfig.stb
 ##
 CONFIG_PINCTRL_BCM2712=m
-
 ##
 ## file: drivers/pinctrl/cix/Kconfig
 ##
 CONFIG_PINCTRL_SKY1=y
-
 ##
 ## file: drivers/pinctrl/freescale/Kconfig
 ##
@@ -1984,7 +1729,6 @@ CONFIG_PINCTRL_IMX8MM=y
 CONFIG_PINCTRL_IMX8MN=y
 CONFIG_PINCTRL_IMX8MP=y
 CONFIG_PINCTRL_IMX8MQ=y
-
 ##
 ## file: drivers/pinctrl/mediatek/Kconfig
 ##
@@ -2007,7 +1751,6 @@ CONFIG_PINCTRL_MT8195=y
 CONFIG_PINCTRL_MT8365=y
 CONFIG_PINCTRL_MT8516=y
 CONFIG_PINCTRL_MT6397=y
-
 ##
 ## file: drivers/pinctrl/qcom/Kconfig
 ##
@@ -2020,7 +1763,6 @@ CONFIG_PINCTRL_SM6115_LPASS_LPI=m
 CONFIG_PINCTRL_SM8250_LPASS_LPI=m
 CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
 CONFIG_PINCTRL_SM8550_LPASS_LPI=m
-
 ##
 ## file: drivers/pinctrl/qcom/Kconfig.msm
 ##
@@ -2039,7 +1781,6 @@ CONFIG_PINCTRL_SDM845=y
 CONFIG_PINCTRL_SM6115=m
 CONFIG_PINCTRL_SM8250=m
 CONFIG_PINCTRL_X1E80100=m
-
 ##
 ## file: drivers/platform/arm64/Kconfig
 ##
@@ -2048,7 +1789,6 @@ CONFIG_EC_ACER_ASPIRE1=m
 CONFIG_EC_HUAWEI_GAOKUN=m
 CONFIG_EC_LENOVO_YOGA_C630=m
 CONFIG_EC_LENOVO_THINKPAD_T14S=m
-
 ##
 ## file: drivers/platform/chrome/Kconfig
 ##
@@ -2059,34 +1799,28 @@ CONFIG_CROS_EC_I2C=m
 CONFIG_CROS_EC_RPMSG=m
 CONFIG_CROS_EC_SPI=m
 CONFIG_CROS_KBD_LED_BACKLIGHT=m
-
 ##
 ## file: drivers/pmdomain/bcm/Kconfig
 ##
 CONFIG_RASPBERRYPI_POWER=y
-
 ##
 ## file: drivers/pmdomain/mediatek/Kconfig
 ##
 CONFIG_MTK_SCPSYS=y
 CONFIG_MTK_SCPSYS_PM_DOMAINS=y
-
 ##
 ## file: drivers/pmdomain/qcom/Kconfig
 ##
 CONFIG_QCOM_RPMHPD=y
 CONFIG_QCOM_RPMPD=y
-
 ##
 ## file: drivers/pmdomain/rockchip/Kconfig
 ##
 CONFIG_ROCKCHIP_PM_DOMAINS=y
-
 ##
 ## file: drivers/pmdomain/ti/Kconfig
 ##
 CONFIG_TI_SCI_PM_DOMAINS=y
-
 ##
 ## file: drivers/power/reset/Kconfig
 ##
@@ -2098,12 +1832,10 @@ CONFIG_POWER_RESET_XGENE=y
 CONFIG_POWER_RESET_SYSCON=y
 CONFIG_POWER_RESET_SYSCON_POWEROFF=y
 CONFIG_SYSCON_REBOOT_MODE=m
-
 ##
 ## file: drivers/power/sequencing/Kconfig
 ##
 CONFIG_POWER_SEQUENCING_PCIE_M2=m
-
 ##
 ## file: drivers/power/supply/Kconfig
 ##
@@ -2124,17 +1856,14 @@ CONFIG_CHARGER_BQ25890=m
 CONFIG_CHARGER_RK817=m
 CONFIG_CHARGER_CROS_USBPD=m
 CONFIG_CHARGER_QCOM_SMB2=m
-
 ##
 ## file: drivers/pps/clients/Kconfig
 ##
 CONFIG_PPS_CLIENT_GPIO=m
-
 ##
 ## file: drivers/ptp/Kconfig
 ##
 CONFIG_PTP_1588_CLOCK_QORIQ=m
-
 ##
 ## file: drivers/pwm/Kconfig
 ##
@@ -2151,7 +1880,6 @@ CONFIG_PWM_SL28CPLD=m
 CONFIG_PWM_SUN4I=m
 CONFIG_PWM_TEGRA=m
 CONFIG_PWM_TIECAP=m
-
 ##
 ## file: drivers/regulator/Kconfig
 ##
@@ -2185,7 +1913,6 @@ CONFIG_REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY=m
 CONFIG_REGULATOR_RK808=m
 CONFIG_REGULATOR_TPS6286X=m
 CONFIG_REGULATOR_VCTRL=m
-
 ##
 ## file: drivers/remoteproc/Kconfig
 ##
@@ -2199,7 +1926,6 @@ CONFIG_QCOM_Q6V5_WCSS=m
 CONFIG_QCOM_SYSMON=m
 CONFIG_QCOM_WCNSS_PIL=m
 CONFIG_TI_K3_R5_REMOTEPROC=m
-
 ##
 ## file: drivers/reset/Kconfig
 ##
@@ -2211,7 +1937,6 @@ CONFIG_RESET_QCOM_PDC=m
 CONFIG_RESET_RZG2L_USBPHY_CTRL=m
 CONFIG_RESET_SCMI=y
 CONFIG_RESET_TI_SCI=y
-
 ##
 ## file: drivers/rpmsg/Kconfig
 ##
@@ -2219,7 +1944,6 @@ CONFIG_RPMSG_MTK_SCP=m
 CONFIG_RPMSG_QCOM_GLINK_RPM=m
 CONFIG_RPMSG_QCOM_GLINK_SMEM=y
 CONFIG_RPMSG_QCOM_SMD=m
-
 ##
 ## file: drivers/rtc/Kconfig
 ##
@@ -2249,31 +1973,26 @@ CONFIG_RTC_DRV_TEGRA=y
 CONFIG_RTC_DRV_SNVS=m
 CONFIG_RTC_DRV_MT6397=m
 CONFIG_RTC_DRV_XGENE=y
-
 ##
 ## file: drivers/scsi/Kconfig
 ##
 CONFIG_HYPERV_STORAGE=m
 CONFIG_SCSI_DMX3191D=m
-
 ##
 ## file: drivers/scsi/hisi_sas/Kconfig
 ##
 CONFIG_SCSI_HISI_SAS=m
 CONFIG_SCSI_HISI_SAS_PCI=m
-
 ##
 ## file: drivers/slimbus/Kconfig
 ##
 CONFIG_SLIM_QCOM_NGD_CTRL=m
-
 ##
 ## file: drivers/soc/fsl/Kconfig
 ##
 CONFIG_FSL_MC_DPIO=m
 CONFIG_DPAA2_CONSOLE=m
 CONFIG_FSL_RCPM=y
-
 ##
 ## file: drivers/soc/mediatek/Kconfig
 ##
@@ -2284,7 +2003,6 @@ CONFIG_MTK_PMIC_WRAP=y
 CONFIG_MTK_REGULATOR_COUPLER=y
 CONFIG_MTK_MMSYS=m
 CONFIG_MTK_SVS=m
-
 ##
 ## file: drivers/soc/qcom/Kconfig
 ##
@@ -2306,7 +2024,6 @@ CONFIG_QCOM_STATS=m
 CONFIG_QCOM_WCNSS_CTRL=m
 CONFIG_QCOM_APR=m
 CONFIG_QCOM_ICC_BWMON=m
-
 ##
 ## file: drivers/soc/renesas/Kconfig
 ##
@@ -2317,30 +2034,25 @@ CONFIG_ARCH_R9A07G054=y
 CONFIG_ARCH_R9A08G045=y
 CONFIG_ARCH_R9A09G011=y
 CONFIG_ARCH_R9A09G057=y
-
 ##
 ## file: drivers/soc/rockchip/Kconfig
 ##
 CONFIG_ROCKCHIP_GRF=y
 CONFIG_ROCKCHIP_IODOMAIN=m
 CONFIG_ROCKCHIP_DTPM=m
-
 ##
 ## file: drivers/soc/samsung/Kconfig
 ##
 CONFIG_EXYNOS_USI=y
-
 ##
 ## file: drivers/soc/tegra/Kconfig
 ##
 CONFIG_ARCH_TEGRA_132_SOC=y
 CONFIG_ARCH_TEGRA_210_SOC=y
-
 ##
 ## file: drivers/soc/ti/Kconfig
 ##
 CONFIG_TI_PRUSS=m
-
 ##
 ## file: drivers/spi/Kconfig
 ##
@@ -2369,54 +2081,44 @@ CONFIG_SPI_TEGRA20_SFLASH=m
 CONFIG_SPI_TEGRA20_SLINK=m
 CONFIG_SPI_THUNDERX=m
 CONFIG_SPI_XLP=m
-
 ##
 ## file: drivers/spmi/Kconfig
 ##
 CONFIG_SPMI=y
 CONFIG_SPMI_MSM_PMIC_ARB=y
 CONFIG_SPMI_MTK_PMIF=y
-
 ##
 ## file: drivers/staging/media/Kconfig
 ##
 CONFIG_STAGING_MEDIA=y
-
 ##
 ## file: drivers/staging/media/meson/vdec/Kconfig
 ##
 CONFIG_VIDEO_MESON_VDEC=m
-
 ##
 ## file: drivers/staging/media/sunxi/Kconfig
 ##
 CONFIG_VIDEO_SUNXI=y
-
 ##
 ## file: drivers/staging/media/sunxi/cedrus/Kconfig
 ##
 CONFIG_VIDEO_SUNXI_CEDRUS=m
-
 ##
 ## file: drivers/staging/vc04_services/bcm2835-audio/Kconfig
 ##
 CONFIG_SND_BCM2835=m
-
 ##
 ## file: drivers/tee/Kconfig
 ##
 CONFIG_TEE=m
-
 ##
 ## file: drivers/tee/optee/Kconfig
 ##
 CONFIG_OPTEE=m
-
 ##
 ## file: drivers/tee/qcomtee/Kconfig
 ##
 CONFIG_QCOMTEE=m
-
 ##
 ## file: drivers/thermal/Kconfig
 ##
@@ -2430,20 +2132,17 @@ CONFIG_ROCKCHIP_THERMAL=m
 CONFIG_ARMADA_THERMAL=m
 CONFIG_GENERIC_ADC_THERMAL=m
 CONFIG_KHADAS_MCU_FAN_THERMAL=m
-
 ##
 ## file: drivers/thermal/broadcom/Kconfig
 ##
 CONFIG_BCM2711_THERMAL=m
 CONFIG_BCM2835_THERMAL=m
-
 ##
 ## file: drivers/thermal/mediatek/Kconfig
 ##
 CONFIG_MTK_THERMAL=m
 CONFIG_MTK_SOC_THERMAL=m
 CONFIG_MTK_LVTS_THERMAL=m
-
 ##
 ## file: drivers/thermal/qcom/Kconfig
 ##
@@ -2451,12 +2150,10 @@ CONFIG_QCOM_TSENS=m
 CONFIG_QCOM_SPMI_ADC_TM5=m
 CONFIG_QCOM_SPMI_TEMP_ALARM=m
 CONFIG_QCOM_LMH=m
-
 ##
 ## file: drivers/thermal/tegra/Kconfig
 ##
 CONFIG_TEGRA_SOCTHERM=y
-
 ##
 ## file: drivers/tty/serial/Kconfig
 ##
@@ -2482,7 +2179,6 @@ CONFIG_SERIAL_FSL_LPUART=y
 CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
 CONFIG_SERIAL_MVEBU_UART=y
 CONFIG_SERIAL_MVEBU_CONSOLE=y
-
 ##
 ## file: drivers/tty/serial/8250/Kconfig
 ##
@@ -2499,14 +2195,12 @@ CONFIG_SERIAL_8250_DW=y
 CONFIG_SERIAL_8250_OMAP=y
 CONFIG_SERIAL_8250_MT6577=y
 CONFIG_SERIAL_OF_PLATFORM=y
-
 ##
 ## file: drivers/ufs/host/Kconfig
 ##
 CONFIG_SCSI_UFSHCD_PLATFORM=m
 CONFIG_SCSI_UFS_QCOM=m
 CONFIG_SCSI_UFS_EXYNOS=m
-
 ##
 ## file: drivers/usb/cdns3/Kconfig
 ##
@@ -2514,14 +2208,12 @@ CONFIG_USB_CDNS_SUPPORT=m
 CONFIG_USB_CDNS3=m
 CONFIG_USB_CDNS3_GADGET=y
 CONFIG_USB_CDNS3_HOST=y
-
 ##
 ## file: drivers/usb/chipidea/Kconfig
 ##
 CONFIG_USB_CHIPIDEA=m
 CONFIG_USB_CHIPIDEA_UDC=y
 CONFIG_USB_CHIPIDEA_HOST=y
-
 ##
 ## file: drivers/usb/dwc2/Kconfig
 ##
@@ -2529,7 +2221,6 @@ CONFIG_USB_DWC2=m
 ## choice: DWC2 Mode Selection
 CONFIG_USB_DWC2_DUAL_ROLE=y
 ## end choice
-
 ##
 ## file: drivers/usb/dwc3/Kconfig
 ##
@@ -2540,21 +2231,10 @@ CONFIG_USB_DWC3_DUAL_ROLE=y
 ## end choice
 CONFIG_USB_DWC3_EXYNOS=m
 CONFIG_USB_DWC3_OF_SIMPLE=m
-
 ##
 ## file: drivers/usb/gadget/Kconfig
 ##
-CONFIG_USB_CONFIGFS=m
-CONFIG_USB_CONFIGFS_F_HID=y
-CONFIG_USB_F_HID=m
 CONFIG_USB_GADGET=m
-
-##
-## file: drivers/usb/gadget/legacy/Kconfig
-##
-CONFIG_USB_ETH=m
-CONFIG_USB_G_HID=m
-
 ##
 ## file: drivers/usb/host/Kconfig
 ##
@@ -2570,7 +2250,6 @@ CONFIG_USB_EHCI_TEGRA=m
 CONFIG_USB_EHCI_HCD_PLATFORM=m
 CONFIG_USB_OHCI_HCD=m
 CONFIG_USB_OHCI_HCD_PLATFORM=m
-
 ##
 ## file: drivers/usb/isp1760/Kconfig
 ##
@@ -2580,13 +2259,11 @@ CONFIG_USB_ISP1760=m
 # CONFIG_USB_ISP1760_GADGET_ROLE is not set
 CONFIG_USB_ISP1760_DUAL_ROLE=y
 ## end choice
-
 ##
 ## file: drivers/usb/misc/Kconfig
 ##
 CONFIG_USB_HSIC_USB3503=m
 CONFIG_USB_ONBOARD_DEV=m
-
 ##
 ## file: drivers/usb/mtu3/Kconfig
 ##
@@ -2594,30 +2271,25 @@ CONFIG_USB_MTU3=m
 ## choice: MTU3 Mode Selection
 CONFIG_USB_MTU3_DUAL_ROLE=y
 ## end choice
-
 ##
 ## file: drivers/usb/musb/Kconfig
 ##
 CONFIG_USB_MUSB_HDRC=m
 CONFIG_USB_MUSB_SUNXI=m
-
 ##
 ## file: drivers/usb/phy/Kconfig
 ##
 CONFIG_NOP_USB_XCEIV=m
 CONFIG_USB_ULPI=y
-
 ##
 ## file: drivers/usb/roles/Kconfig
 ##
 CONFIG_USB_ROLE_SWITCH=y
-
 ##
 ## file: drivers/usb/typec/Kconfig
 ##
 CONFIG_TYPEC=m
 CONFIG_TYPEC_WUSB3801=m
-
 ##
 ## file: drivers/usb/typec/mux/Kconfig
 ##
@@ -2627,7 +2299,6 @@ CONFIG_TYPEC_MUX_IT5205=m
 CONFIG_TYPEC_MUX_NB7VPQ904M=m
 CONFIG_TYPEC_MUX_PS883X=m
 CONFIG_TYPEC_MUX_PTN36502=m
-
 ##
 ## file: drivers/usb/typec/tcpm/Kconfig
 ##
@@ -2638,24 +2309,20 @@ CONFIG_TYPEC_MT6360=m
 CONFIG_TYPEC_TCPCI_MAXIM=m
 CONFIG_TYPEC_FUSB302=m
 CONFIG_TYPEC_QCOM_PMIC=m
-
 ##
 ## file: drivers/usb/typec/ucsi/Kconfig
 ##
 CONFIG_UCSI_PMIC_GLINK=m
 CONFIG_UCSI_LENOVO_YOGA_C630=m
 CONFIG_UCSI_HUAWEI_GAOKUN=m
-
 ##
 ## file: drivers/vfio/Kconfig
 ##
 CONFIG_VFIO=m
-
 ##
 ## file: drivers/vfio/fsl-mc/Kconfig
 ##
 CONFIG_VFIO_FSL_MC=m
-
 ##
 ## file: drivers/video/backlight/Kconfig
 ##
@@ -2663,29 +2330,24 @@ CONFIG_BACKLIGHT_LM3630A=m
 CONFIG_BACKLIGHT_LP855X=m
 CONFIG_BACKLIGHT_GPIO=m
 CONFIG_BACKLIGHT_LED=m
-
 ##
 ## file: drivers/video/fbdev/Kconfig
 ##
 CONFIG_FB_EFI=y
 CONFIG_FB_SIMPLE=y
-
 ##
 ## file: drivers/virt/coco/arm-cca-guest/Kconfig
 ##
 CONFIG_ARM_CCA_GUEST=m
-
 ##
 ## file: drivers/virt/nitro_enclaves/Kconfig
 ##
 CONFIG_NITRO_ENCLAVES=m
-
 ##
 ## file: drivers/virtio/Kconfig
 ##
 CONFIG_VIRTIO_MEM=m
 CONFIG_VIRTIO_MMIO=m
-
 ##
 ## file: drivers/watchdog/Kconfig
 ##
@@ -2708,106 +2370,74 @@ CONFIG_MEDIATEK_WATCHDOG=m
 CONFIG_ARM_SMC_WATCHDOG=m
 CONFIG_I6300ESB_WDT=m
 CONFIG_BCM2835_WDT=m
-
 ##
 ## file: init/Kconfig
 ##
-CONFIG_IKCONFIG=y
-CONFIG_IKCONFIG_PROC=y
 CONFIG_KALLSYMS_ALL=y
-CONFIG_SYSVIPC=y
-
 ##
 ## file: kernel/Kconfig.kexec
 ##
 CONFIG_KEXEC=y
 CONFIG_CRASH_DUMP=y
-
 ##
 ## file: kernel/dma/Kconfig
 ##
 CONFIG_DMA_CMA=y
 CONFIG_CMA_SIZE_MBYTES=64
-
 ##
 ## file: kernel/power/Kconfig
 ##
 CONFIG_ENERGY_MODEL=y
-
 ##
 ## file: lib/Kconfig.debug
 ##
 CONFIG_DEBUG_INFO_BTF=y
 CONFIG_MEMTEST=y
-
 ##
 ## file: mm/Kconfig
 ##
 CONFIG_CMA=y
-CONFIG_MEMORY_HOTPLUG_DEFAULT_ONLINE=y
-
 ##
 ## file: mm/Kconfig.debug
 ##
 CONFIG_DEBUG_WX=y
-
 ##
 ## file: net/bluetooth/Kconfig
 ##
-CONFIG_BT_HIDP=m
 CONFIG_BT_LEDS=y
-
 ##
 ## file: net/dsa/Kconfig
 ##
 CONFIG_NET_DSA=m
-
-##
-## file: net/mac80211/Kconfig
-##
-CONFIG_MAC80211=m
-
-##
-## file: net/netfilter/Kconfig
-##
-CONFIG_NETFILTER_XT_MATCH_MAC=m
-
 ##
 ## file: net/qrtr/Kconfig
 ##
 CONFIG_QRTR_SMD=m
-
 ##
 ## file: net/rfkill/Kconfig
 ##
 CONFIG_RFKILL_GPIO=m
-
 ##
 ## file: net/vmw_vsock/Kconfig
 ##
 CONFIG_HYPERV_VSOCKETS=m
-
 ##
 ## file: sound/hda/controllers/Kconfig
 ##
 CONFIG_SND_HDA_INTEL=m
 CONFIG_SND_HDA_TEGRA=m
-
 ##
 ## file: sound/pci/Kconfig
 ##
 CONFIG_SND_CMIPCI=m
-
 ##
 ## file: sound/soc/Kconfig
 ##
 CONFIG_SND_SOC=m
-
 ##
 ## file: sound/soc/bcm/Kconfig
 ##
 CONFIG_SND_BCM2835_SOC_I2S=m
-
 ##
 ## file: sound/soc/codecs/Kconfig
 ##
@@ -2843,7 +2473,6 @@ CONFIG_SND_SOC_LPASS_WSA_MACRO=m
 CONFIG_SND_SOC_LPASS_VA_MACRO=m
 CONFIG_SND_SOC_LPASS_RX_MACRO=m
 CONFIG_SND_SOC_LPASS_TX_MACRO=m
-
 ##
 ## file: sound/soc/fsl/Kconfig
 ##
@@ -2854,18 +2483,15 @@ CONFIG_SND_IMX_SOC=m
 CONFIG_SND_SOC_FSL_ASOC_CARD=m
 CONFIG_SND_SOC_IMX_AUDMIX=m
 CONFIG_SND_SOC_IMX_HDMI=m
-
 ##
 ## file: sound/soc/generic/Kconfig
 ##
 CONFIG_SND_SIMPLE_CARD=m
 CONFIG_SND_AUDIO_GRAPH_CARD=m
-
 ##
 ## file: sound/soc/hisilicon/Kconfig
 ##
 CONFIG_SND_I2S_HI6210_I2S=m
-
 ##
 ## file: sound/soc/mediatek/Kconfig
 ##
@@ -2884,13 +2510,11 @@ CONFIG_SND_SOC_MT8195=m
 CONFIG_SND_SOC_MT8195_MT6359=m
 CONFIG_SND_SOC_MT8365=m
 CONFIG_SND_SOC_MT8365_MT6357=m
-
 ##
 ## file: sound/soc/meson/Kconfig
 ##
 CONFIG_SND_MESON_AXG_SOUND_CARD=m
 CONFIG_SND_MESON_GX_SOUND_CARD=m
-
 ##
 ## file: sound/soc/qcom/Kconfig
 ##
@@ -2904,7 +2528,6 @@ CONFIG_SND_SOC_SC8280XP=m
 CONFIG_SND_SOC_SC7180=m
 CONFIG_SND_SOC_SC7280=m
 CONFIG_SND_SOC_X1E80100=m
-
 ##
 ## file: sound/soc/rockchip/Kconfig
 ##
@@ -2914,20 +2537,17 @@ CONFIG_SND_SOC_ROCKCHIP_PDM=m
 CONFIG_SND_SOC_ROCKCHIP_SPDIF=m
 CONFIG_SND_SOC_ROCKCHIP_RT5645=m
 CONFIG_SND_SOC_RK3399_GRU_SOUND=m
-
 ##
 ## file: sound/soc/sof/Kconfig
 ##
 CONFIG_SND_SOC_SOF_TOPLEVEL=y
 CONFIG_SND_SOC_SOF_OF=m
-
 ##
 ## file: sound/soc/sof/mediatek/Kconfig
 ##
 CONFIG_SND_SOC_SOF_MTK_TOPLEVEL=y
 CONFIG_SND_SOC_SOF_MT8186=m
 CONFIG_SND_SOC_SOF_MT8195=m
-
 ##
 ## file: sound/soc/sunxi/Kconfig
 ##
@@ -2935,7 +2555,6 @@ CONFIG_SND_SUN8I_CODEC=m
 CONFIG_SND_SUN50I_CODEC_ANALOG=m
 CONFIG_SND_SUN4I_I2S=m
 CONFIG_SND_SUN50I_DMIC=m
-
 ##
 ## file: sound/soc/tegra/Kconfig
 ##
@@ -2947,3 +2566,10 @@ CONFIG_SND_SOC_TEGRA_TRIMSLICE=m
 CONFIG_SND_SOC_TEGRA_ALC5632=m
 CONFIG_SND_SOC_TEGRA_MAX98090=m
 CONFIG_SND_SOC_TEGRA_RT5677=m
+CONFIG_BONDING=m
+CONFIG_USB_ETH=m
+CONFIG_USB_CONFIGFS_F_HID=y
+CONFIG_NETFILTER_XT_MATCH_MAC=m
+CONFIG_ATH9K_HTC=m
+CONFIG_RT2800USB=m
+CONFIG_RTL8187=m

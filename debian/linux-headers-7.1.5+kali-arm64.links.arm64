@@ -1,4 +1,0 @@
-usr/lib/linux-kbuild-7.1.5+kali/scripts                          usr/src/linux-headers-7.1.5+kali-arm64/scripts
-usr/lib/linux-kbuild-7.1.5+kali/tools                            usr/src/linux-headers-7.1.5+kali-arm64/tools
-usr/src/linux-headers-7.1.5+kali-arm64                                               usr/lib/modules/7.1.5+kali-arm64/build
-usr/src/linux-headers-7.1.5+kali-common  usr/lib/modules/7.1.5+kali-arm64/source

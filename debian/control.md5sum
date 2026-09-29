@@ -1,10 +1,10 @@
 b62dd5dd91c14321dcf8dfcd8f7142bb  debian/bin/gencontrol.py
-89788665c093cbece9849e5fa7c447fd  debian/build/version-info
+270e48c9eb88fa565cf97ac42ea112a8  debian/build/version-info
 ba2c200f8c43f7ec8d8323561739379a  debian/config/alpha/defines.toml
-e7f5a1efe081dc3f6f68894e746d16a1  debian/config/amd64/defines.toml
-8fc569f64804a3e3554da5cab144085d  debian/config/arm64/defines.toml
+e246955e198088c1634e702f47fcd8ad  debian/config/amd64/defines.toml
+6bd12c27836e1aa542204036f71db1af  debian/config/arm64/defines.toml
 bd6755d9b59c1b2cd883628dc59669d3  debian/config/armhf/defines.toml
-cbb780c96decdd9b834d28a9eaad9aea  debian/config/defines.toml
+68f8185ff124e5f7dc33c301563abb29  debian/config/defines.toml
 c840ab923e0857515675530f3f72496b  debian/config/hppa/defines.toml
 1cafeb7f6b8e93197877eed0bcba0019  debian/config/loong64/defines.toml
 0ee23490da620ce420b23b2d065ee2d3  debian/config/m68k/defines.toml
@@ -55,7 +55,7 @@ c37dd714832ae86180ff90a85d418b72  debian/templates/signed-template.lintian-overr
 c73ff8d70d4ecc4b54c256736f0142ba  debian/templates/signed.binary.lintian-overrides.in
 3cae3a79a66a1b6b9c951f96dafd357b  debian/templates/signed.source.control.in
 a05f437ee230ed4795adc7785844f73f  debian/templates/signed.source.lintian-overrides.in
-b8748e305e061fa469190acc37a62854  debian/templates/source.control.in
+de256cff1b9a70e2ef62c0cfb779ff76  debian/templates/source.control.in
 edfa7fed4bdffa5ce37dc67af2875954  debian/templates/sourcebin.control.in
 0f283d1deb7af77eba65072e1cd81de3  debian/templates/sourcebin.meta.control.in
 a20d83421667bad21739041d4e743ed1  debian/templates/sourcebin.meta.maintscript.in
