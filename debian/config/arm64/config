@@ -1342,6 +1342,8 @@ CONFIG_MUX_MMIO=m
 ##
 ## file: drivers/net/Kconfig
 ##
+CONFIG_BONDING=m
+CONFIG_TUN=m
 CONFIG_VMXNET3=m
 
 ##
@@ -1653,6 +1655,11 @@ CONFIG_ATH10K_SDIO=m
 CONFIG_ATH10K_SNOC=m
 
 ##
+## file: drivers/net/wireless/ath/ath9k/Kconfig
+##
+CONFIG_ATH9K_HTC=m
+
+##
 ## file: drivers/net/wireless/ath/wcn36xx/Kconfig
 ##
 CONFIG_WCN36XX=m
@@ -1683,6 +1690,16 @@ CONFIG_MT798X_WMAC=y
 ## file: drivers/net/wireless/mediatek/mt76/mt7921/Kconfig
 ##
 CONFIG_MT7921S=m
+
+##
+## file: drivers/net/wireless/ralink/rt2x00/Kconfig
+##
+CONFIG_RT2800USB=m
+
+##
+## file: drivers/net/wireless/realtek/rtl818x/Kconfig
+##
+CONFIG_RTL8187=m
 
 ##
 ## file: drivers/net/wireless/ti/Kconfig
@@ -2527,7 +2544,16 @@ CONFIG_USB_DWC3_OF_SIMPLE=m
 ##
 ## file: drivers/usb/gadget/Kconfig
 ##
+CONFIG_USB_CONFIGFS=m
+CONFIG_USB_CONFIGFS_F_HID=y
+CONFIG_USB_F_HID=m
 CONFIG_USB_GADGET=m
+
+##
+## file: drivers/usb/gadget/legacy/Kconfig
+##
+CONFIG_USB_ETH=m
+CONFIG_USB_G_HID=m
 
 ##
 ## file: drivers/usb/host/Kconfig
@@ -2686,7 +2712,10 @@ CONFIG_BCM2835_WDT=m
 ##
 ## file: init/Kconfig
 ##
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
 CONFIG_KALLSYMS_ALL=y
+CONFIG_SYSVIPC=y
 
 ##
 ## file: kernel/Kconfig.kexec
@@ -2725,12 +2754,23 @@ CONFIG_DEBUG_WX=y
 ##
 ## file: net/bluetooth/Kconfig
 ##
+CONFIG_BT_HIDP=m
 CONFIG_BT_LEDS=y
 
 ##
 ## file: net/dsa/Kconfig
 ##
 CONFIG_NET_DSA=m
+
+##
+## file: net/mac80211/Kconfig
+##
+CONFIG_MAC80211=m
+
+##
+## file: net/netfilter/Kconfig
+##
+CONFIG_NETFILTER_XT_MATCH_MAC=m
 
 ##
 ## file: net/qrtr/Kconfig
@@ -2907,19 +2947,3 @@ CONFIG_SND_SOC_TEGRA_TRIMSLICE=m
 CONFIG_SND_SOC_TEGRA_ALC5632=m
 CONFIG_SND_SOC_TEGRA_MAX98090=m
 CONFIG_SND_SOC_TEGRA_RT5677=m
-CONFIG_SYSVIPC=y
-CONFIG_IKCONFIG=y
-CONFIG_IKCONFIG_PROC=y
-CONFIG_MAC80211=m
-CONFIG_BONDING=m
-CONFIG_TUN=m
-CONFIG_USB_ETH=m
-CONFIG_USB_CONFIGFS=m
-CONFIG_USB_CONFIGFS_F_HID=y
-CONFIG_USB_F_HID=m
-CONFIG_USB_G_HID=m
-CONFIG_BT_HIDP=m
-CONFIG_NETFILTER_XT_MATCH_MAC=m
-CONFIG_ATH9K_HTC=m
-CONFIG_RT2800USB=m
-CONFIG_RTL8187=m
