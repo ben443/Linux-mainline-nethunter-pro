@@ -1,4 +1,4 @@
-name: Build Mainline Kernel (sm8250)
+name: Build Mainline Kernel and modules (sm8250)
 
 on:
   push:
