@@ -1,4 +1,4 @@
-name: Build Mainline Kernel & modules (sm8250)
+name: Build Mainline Kernel (sm8250)
 
 on:
   push:
@@ -33,31 +33,34 @@ jobs:
 
       - name: Compile Kernel, DTBs, and Modules
         run: |
-          # Added 'modules' target to compile loadable kernel modules (LKMs)
           make -j$(nproc) Image.gz dtbs modules
 
       - name: Install Modules and Generate Initrd
         run: |
-          # 1. Create a clean staging directory for the ramdisk
           mkdir -p initramfs_staging
           
-          # 2. Install compiled modules into the staging directory
           make modules_install INSTALL_MOD_PATH=./initramfs_staging
           
-          # 3. Remove build and source symlinks. If left in, they point to absolute 
-          #    paths on the GitHub runner, which bloats the initrd and breaks on the device.
           rm -f initramfs_staging/lib/modules/*/build
           rm -f initramfs_staging/lib/modules/*/source
           
-          # 4. Pack the staging directory into a gzipped cpio archive (standard initrd format)
           cd initramfs_staging
           find . | cpio -H newc -o | gzip -9 > ../initrd.img
 
-      - name: Upload Kernel Artifacts
+      - name: Upload Kernel Image (Image.gz)
         uses: actions/upload-artifact@v4
         with:
-          name: sm8250-kernel-release
-          path: |
-            arch/arm64/boot/Image.gz
-            arch/arm64/boot/dts/qcom/sm8250*.dtb
-            initrd.img
+          name: sm8250-Image.gz
+          path: arch/arm64/boot/Image.gz
+
+      - name: Upload Device Tree Blobs (DTBs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm8250-dtbs
+          path: arch/arm64/boot/dts/qcom/sm8250*.dtb
+
+      - name: Upload Initrd (initrd.img)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sm8250-initrd
+          path: initrd.img
