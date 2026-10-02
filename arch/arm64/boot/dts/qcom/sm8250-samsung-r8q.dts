@@ -9,6 +9,10 @@
 	compatible = "samsung,r8q", "qcom,sm8250";
 	chassis-type = "handset";
 
+	chosen {
+		bootargs = "console=tty0 clk_ignore_unused pd_ignore_unused rootimg=PARTLABEL=userdata/media/0/data/rootfs.img root=/dev/loop0 mobile.root=/dev/loop0";
+	};
+
 	vreg_tsp_3p0: regulator-tsp-3p0 {
 		compatible = "regulator-fixed";
 		regulator-name = "tsp_ldo_en";
