@@ -854,6 +854,11 @@
 			no-map;
 		};
 
+		modem_mem: memory@8ce00000 {
+			reg = <0x0 0x8ce00000 0x0 0x9400000>;
+			no-map;
+		};
+
 		spss_mem: memory@8be00000 {
 			reg = <0x0 0x8be00000 0x0 0x100000>;
 			no-map;

@@ -2,6 +2,7 @@
 
 /dts-v1/;
 
+#include <dt-bindings/input/input-event-codes.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
 #include <dt-bindings/usb/pd.h>
 #include "sm8250.dtsi"
@@ -38,6 +39,23 @@
 			/* Wired to pm8150L gpio3 on stock DT, not pm8150. */
 			gpios = <&pm8150l_gpios 3 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_VOLUMEUP>;
+			debounce-interval = <15>;
+			linux,can-disable;
+			wakeup-source;
+		};
+
+		key-vol-down {
+			label = "Volume Down";
+			gpios = <&pm8150b_gpios 4 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_VOLUMEDOWN>;
+			debounce-interval = <15>;
+			linux,can-disable;
+		};
+
+		key-power {
+			label = "Power";
+			gpios = <&pm8150_gpios 1 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_POWER>;
 			debounce-interval = <15>;
 			linux,can-disable;
 			wakeup-source;
@@ -203,6 +221,26 @@
 &pm8150l_gpios {
 	vol_up_n: vol-up-n-state {
 		pins = "gpio3";
+		function = "normal";
+		power-source = <0>;
+		input-enable;
+		bias-pull-up;
+	};
+};
+
+&pm8150b_gpios {
+	vol_down_n: vol-down-n-state {
+		pins = "gpio4";
+		function = "normal";
+		power-source = <0>;
+		input-enable;
+		bias-pull-up;
+	};
+};
+
+&pm8150_gpios {
+	power_n: power-n-state {
+		pins = "gpio1";
 		function = "normal";
 		power-source = <0>;
 		input-enable;
