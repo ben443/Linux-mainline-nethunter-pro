@@ -951,10 +951,10 @@
 	smp2p-modem {
 		compatible = "qcom,smp2p";
 		qcom,smem = <435>, <428>;
-		interrupts-extended = <&ipcc IPCC_CLIENT_MODEM
+		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
 					     IPCC_MPROC_SIGNAL_SMP2P
 					     IRQ_TYPE_EDGE_RISING>;
-		mboxes = <&ipcc IPCC_CLIENT_MODEM
+		mboxes = <&ipcc IPCC_CLIENT_MPSS
 				IPCC_MPROC_SIGNAL_SMP2P>;
 
 		qcom,local-pid = <0>;
@@ -3839,10 +3839,10 @@
 			status = "disabled";
 
 			glink-edge {
-				interrupts-extended = <&ipcc IPCC_CLIENT_MODEM
+				interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
 							     IPCC_MPROC_SIGNAL_GLINK_QMP
 							     IRQ_TYPE_EDGE_RISING>;
-				mboxes = <&ipcc IPCC_CLIENT_MODEM
+				mboxes = <&ipcc IPCC_CLIENT_MPSS
 						IPCC_MPROC_SIGNAL_GLINK_QMP>;
 
 				label = "modem";
