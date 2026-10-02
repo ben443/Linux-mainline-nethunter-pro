@@ -45,6 +45,7 @@
 		reg = <0x0 SPMI_USID>;
 		#address-cells = <1>;
 		#size-cells = <0>;
+		status = "okay";
 
 		pon: pon@800 {
 			compatible = "qcom,pm8998-pon";

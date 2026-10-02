@@ -254,6 +254,7 @@
 };
 
 &ufs_mem_hc {
+	vdd-hba-supply = <&vreg_l10a_2p8>;
 	vcc-supply = <&vreg_l17a_3p0>;
 	vcc-max-microamp = <800000>;
 	vccq-supply = <&vreg_l6a_1p2>;

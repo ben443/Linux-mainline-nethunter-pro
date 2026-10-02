@@ -5116,6 +5116,7 @@
 			#size-cells = <0>;
 			interrupt-controller;
 			#interrupt-cells = <4>;
+			status = "okay";
 		};
 
 		tlmm: pinctrl@f100000 {
