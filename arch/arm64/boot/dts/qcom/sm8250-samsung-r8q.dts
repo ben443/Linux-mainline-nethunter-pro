@@ -8,6 +8,136 @@
 	model = "Samsung Galaxy S20 FE";
 	compatible = "samsung,r8q", "qcom,sm8250";
 	chassis-type = "handset";
+
+	vreg_tsp_3p0: regulator-tsp-3p0 {
+		compatible = "regulator-fixed";
+		regulator-name = "tsp_ldo_en";
+		regulator-min-microvolt = <3000000>;
+		regulator-max-microvolt = <3000000>;
+		gpio = <&tlmm 92 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+	battery: battery {
+		compatible = "simple-battery";
+		voltage-max-design-microvolt = <4350000>;
+		voltage-min-design-microvolt = <3400000>;
+		over-voltage-threshold-microvolt = <4500000>;
+		charge-full-design-microamp-hours = <4500000>;
+		constant-charge-voltage-max-microvolt = <4350000>;
+		constant-charge-current-max-microamp = <1500000>;
+	};
+
+	qca6390_pmu: qca6390-pmu {
+		compatible = "qcom,qca6390-pmu";
+		pinctrl-names = "default";
+		pinctrl-0 = <&wlan_en_state>, <&bt_en_state>;
+		vddaon-supply = <&vreg_s6a_0p95>;
+		vddpmu-supply = <&vreg_s6a_0p95>;
+		vddrfa0p95-supply = <&vreg_s6a_0p95>;
+		vddrfa1p3-supply = <&vreg_s8c_1p35>;
+		vddrfa1p9-supply = <&vreg_s5a_1p9>;
+		vddpcie1p3-supply = <&vreg_s8c_1p35>;
+		vddpcie1p9-supply = <&vreg_s5a_1p9>;
+		vddio-supply = <&vreg_s4a_1p8>;
+		wlan-enable-gpios = <&tlmm 90 GPIO_ACTIVE_HIGH>;
+		bt-enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
+		regulators {
+			vreg_pmu_rfa_cmn: ldo0 {
+				regulator-name = "vreg_pmu_rfa_cmn";
+			};
+			vreg_pmu_aon_0p59: ldo1 {
+				regulator-name = "vreg_pmu_aon_0p59";
+			};
+			vreg_pmu_wlcx_0p8: ldo2 {
+				regulator-name = "vreg_pmu_wlcx_0p8";
+			};
+			vreg_pmu_wlmx_0p85: ldo3 {
+				regulator-name = "vreg_pmu_wlmx_0p85";
+			};
+			vreg_pmu_btcmx_0p85: ldo4 {
+				regulator-name = "vreg_pmu_btcmx_0p85";
+			};
+			vreg_pmu_rfa_0p8: ldo5 {
+				regulator-name = "vreg_pmu_rfa_0p8";
+			};
+			vreg_pmu_rfa_1p2: ldo6 {
+				regulator-name = "vreg_pmu_rfa_1p2";
+			};
+			vreg_pmu_rfa_1p7: ldo7 {
+				regulator-name = "vreg_pmu_rfa_1p7";
+			};
+			vreg_pmu_pcie_0p9: ldo8 {
+				regulator-name = "vreg_pmu_pcie_0p9";
+			};
+			vreg_pmu_pcie_1p8: ldo9 {
+				regulator-name = "vreg_pmu_pcie_1p8";
+			};
+		};
+	};
+
+	vreg_cam_tele: regulator-cam-tele {
+		compatible = "regulator-fixed";
+		regulator-name = "rcam3_ldo_en";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		gpio = <&tlmm 135 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		startup-delay-us = <1000>;
+	};
+
+	vreg_cam_uw: regulator-cam-uw {
+		compatible = "regulator-fixed";
+		regulator-name = "rcam2_ldo_en";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		gpio = <&tlmm 33 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		startup-delay-us = <1000>;
+	};
+
+	vreg_cam_front: regulator-cam-front {
+		compatible = "regulator-fixed";
+		regulator-name = "fcam_ldo_en";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		gpio = <&tlmm 172 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		startup-delay-us = <1000>;
+	};
+
+	cam_probe_uw: cam-probe-uw {
+		compatible = "r8q,cam-probe";
+		i2c-bus = <&i2c2>;
+		r8q,addresses = <0x2d 0x10 0x1a 0x20 0x21 0x34 0x36>;
+		clocks = <&camcc CAM_CC_MCLK1_CLK>;
+		assigned-clocks = <&camcc CAM_CC_MCLK1_CLK>;
+		assigned-clock-rates = <19200000>;
+		reset-gpios = <&tlmm 125 GPIO_ACTIVE_LOW>;
+		power-domains = <&camcc TITAN_TOP_GDSC>;
+		vddio-supply = <&vreg_l7c_1p8>;
+		avdd-supply = <&vreg_cam_uw>;
+		dvdd-supply = <&vreg_cam_uw>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_uw_default>;
+	};
+
+	cam_probe_front: cam-probe-front {
+		compatible = "r8q,cam-probe";
+		i2c-bus = <&cci0_i2c1>;
+		r8q,addresses = <0x10 0x1a 0x2d 0x20 0x21 0x34 0x36>;
+		clocks = <&camcc CAM_CC_MCLK2_CLK>;
+		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+		assigned-clock-rates = <24000000>;
+		reset-gpios = <&tlmm 30 GPIO_ACTIVE_LOW>;
+		power-domains = <&camcc TITAN_TOP_GDSC>;
+		vddio-supply = <&vreg_l7c_1p8>;
+		avdd-supply = <&vreg_cam_front>;
+		dvdd-supply = <&vreg_l3c_1p056>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_front_default>;
+	};
 };
 
 &adsp {
@@ -23,4 +153,302 @@
 &slpi {
 	firmware-name = "qcom/sm8250/Samsung/r8q/slpi.mbn";
 	status = "okay";
+};
+
+&gmu {
+	status = "okay";
+};
+
+&gpu {
+	status = "okay";
+};
+
+&gpu_zap_shader {
+	firmware-name = "qcom/sm8250/Samsung/r8q/a650_zap.mbn";
+};
+
+&i2c0 {
+	status = "okay";
+
+	max77705: pmic@66 {
+		compatible = "maxim,max77705";
+		reg = <0x66>;
+		interrupt-parent = <&pm8150l_gpios>;
+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&max77705_int_default>;
+	};
+
+	max77705_charger: charger@69 {
+		compatible = "maxim,max77705-charger";
+		reg = <0x69>;
+		monitored-battery = <&battery>;
+		interrupt-parent = <&max77705>;
+		interrupts = <0>;
+	};
+
+	fuel-gauge@36 {
+		compatible = "maxim,max77705-battery";
+		reg = <0x36>;
+		maxim,rsns-microohm = <5000>;
+	};
+};
+
+&pm8150l_gpios {
+	max77705_int_default: max77705-int-default-state {
+		pins = "gpio11";
+		function = "normal";
+		input-enable;
+		bias-disable;
+		power-source = <0>;
+	};
+};
+
+&tlmm {
+	wlan_en_state: wlan-en-state {
+		pins = "gpio90";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	bt_en_state: bt-en-state {
+		pins = "gpio76";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	ts_int_default: ts-int-default-state {
+		pins = "gpio15";
+		function = "gpio";
+		bias-disable;
+	};
+
+	cam_tele_default: cam-tele-default-state {
+		mclk-pins {
+			pins = "gpio97";
+			function = "cam_mclk";
+			drive-strength = <4>;
+			bias-disable;
+		};
+
+		rst-pins {
+			pins = "gpio78";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+
+		ldo-pins {
+			pins = "gpio135";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+
+	cam_uw_default: cam-uw-default-state {
+		mclk-pins {
+			pins = "gpio95";
+			function = "cam_mclk";
+			drive-strength = <4>;
+			bias-disable;
+		};
+
+		rst-pins {
+			pins = "gpio125";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+
+		ldo-pins {
+			pins = "gpio33";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+
+	cam_front_default: cam-front-default-state {
+		mclk-pins {
+			pins = "gpio96";
+			function = "cam_mclk";
+			drive-strength = <4>;
+			bias-disable;
+		};
+
+		rst-pins {
+			pins = "gpio30";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+
+		ldo-pins {
+			pins = "gpio172";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+};
+
+&pcie0 {
+	status = "okay";
+};
+
+&pcie0_phy {
+	vdda-phy-supply = <&vreg_l5a_0p88>;
+	vdda-pll-supply = <&vreg_l9a_1p2>;
+	status = "okay";
+};
+
+&pcieport0 {
+	wifi@0 {
+		compatible = "pci17cb,1101";
+		reg = <0x10000 0x0 0x0 0x0 0x0>;
+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+		vddaon-supply = <&vreg_pmu_aon_0p59>;
+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+	};
+};
+
+&gpi_dma0 {
+	status = "okay";
+};
+
+&qupv3_id_0 {
+	status = "okay";
+};
+
+&i2c5 {
+	status = "okay";
+	qcom,disable-gpi-dma;
+
+	touchscreen@20 {
+		compatible = "zinitix,zt7650";
+		reg = <0x20>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+		vcca-supply = <&vreg_tsp_3p0>;
+		vdd-supply = <&vreg_tsp_3p0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&ts_int_default>;
+		touchscreen-size-x = <1080>;
+		touchscreen-size-y = <2400>;
+	};
+
+	touchscreen@49 {
+		compatible = "samsung,fts5cu56a";
+		reg = <0x49>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+		avdd-supply = <&vreg_tsp_3p0>;
+		vdd-supply = <&vreg_tsp_3p0>;
+	};
+};
+
+&camss {
+	status = "okay";
+	vdda-phy-supply = <&vreg_l5a_0p88>;
+	vdda-pll-supply = <&vreg_l9a_1p2>;
+	ports {
+		port@2 {
+			csiphy2_ep: endpoint {
+				clock-lanes = <7>;
+				data-lanes = <0 1 2 3>;
+				remote-endpoint = <&hi847_ep>;
+			};
+		};
+	};
+};
+
+&cci1_i2c1 {
+	cam_af_tele: focus@f {
+		compatible = "asahi-kasei,ak7375";
+		reg = <0x0f>;
+		vdd-supply = <&vreg_l10a_2p8>;
+		vio-supply = <&vreg_l7c_1p8>;
+	};
+};
+
+&gpi_dma1 {
+	status = "okay";
+};
+
+&qupv3_id_1 {
+	status = "okay";
+};
+
+&i2c10 {
+	clock-frequency = <400000>;
+	status = "okay";
+
+	camera@21 {
+		compatible = "hynix,hi847";
+		reg = <0x21>;
+		clocks = <&camcc CAM_CC_MCLK3_CLK>;
+		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>;
+		assigned-clock-rates = <19200000>;
+		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
+		power-domains = <&camcc TITAN_TOP_GDSC>;
+		vddio-supply = <&vreg_l7c_1p8>;
+		avdd-supply = <&vreg_cam_tele>;
+		dvdd-supply = <&vreg_cam_tele>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_tele_default>;
+		lens-focus = <&cam_af_tele>;
+		orientation = <1>;
+		rotation = <270>;
+		port {
+			hi847_ep: endpoint {
+				bus-type = <4>;
+				data-lanes = <1 2 3 4>;
+				link-frequencies = /bits/ 64 <400000000 200000000>;
+				remote-endpoint = <&csiphy2_ep>;
+			};
+		};
+	};
+};
+
+&cci0 {
+	status = "okay";
+};
+
+&cci1 {
+	status = "okay";
+};
+
+&i2c2 {
+	clock-frequency = <400000>;
+	status = "okay";
+};
+
+&uart6 {
+	status = "okay";
+
+	bluetooth {
+		compatible = "qcom,qca6390-bt";
+
+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+		vddaon-supply = <&vreg_pmu_aon_0p59>;
+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+	};
+};
+
+&big_cpu_sleep_0 {
+	status = "disabled";
 };
