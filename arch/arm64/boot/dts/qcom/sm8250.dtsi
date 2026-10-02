@@ -943,6 +943,30 @@
 		};
 	};
 
+	smp2p-modem {
+		compatible = "qcom,smp2p";
+		qcom,smem = <435>, <428>;
+		interrupts-extended = <&ipcc IPCC_CLIENT_MODEM
+					     IPCC_MPROC_SIGNAL_SMP2P
+					     IRQ_TYPE_EDGE_RISING>;
+		mboxes = <&ipcc IPCC_CLIENT_MODEM
+				IPCC_MPROC_SIGNAL_SMP2P>;
+
+		qcom,local-pid = <0>;
+		qcom,remote-pid = <1>;
+
+		smp2p_modem_out: master-kernel {
+			qcom,entry-name = "master-kernel";
+			#qcom,smem-state-cells = <1>;
+		};
+
+		smp2p_modem_in: slave-kernel {
+			qcom,entry-name = "slave-kernel";
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
 	soc: soc@0 {
 		#address-cells = <2>;
 		#size-cells = <2>;
@@ -3780,6 +3804,52 @@
 					remote-endpoint = <&funnel_apss_out_funnel_apss_merg>;
 					};
 				};
+			};
+		};
+
+		modem: remoteproc@c800000 {
+			compatible = "qcom,sm8250-modem-pas";
+			reg = <0 0x0c800000 0 0x10000>;
+
+			interrupts-extended = <&intc GIC_SPI 307 IRQ_TYPE_EDGE_RISING>,
+					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
+					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
+					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
+					      <&smp2p_modem_in 3 IRQ_TYPE_EDGE_RISING>;
+			interrupt-names = "wdog", "fatal", "ready",
+					  "handover", "stop-ack";
+
+			clocks = <&rpmhcc RPMH_CXO_CLK>;
+			clock-names = "xo";
+
+			power-domains = <&rpmhpd RPMHPD_MSS>;
+
+			memory-region = <&modem_mem>;
+
+			qcom,qmp = <&aoss_qmp>;
+
+			qcom,smem-states = <&smp2p_modem_out 0>;
+			qcom,smem-state-names = "stop";
+
+			status = "disabled";
+
+			glink-edge {
+				interrupts-extended = <&ipcc IPCC_CLIENT_MODEM
+							     IPCC_MPROC_SIGNAL_GLINK_QMP
+							     IRQ_TYPE_EDGE_RISING>;
+				mboxes = <&ipcc IPCC_CLIENT_MODEM
+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+
+				label = "modem";
+				qcom,glink-channels = "DIAG_APPS_PROC",
+						      "DIAG_SENSOR_PROC",
+						      "DIAG_MEMORY_PROC",
+						      "GLINK_SPSS_XPRT",
+						      "GLINK_IPA_1_OUT",
+						      "GLINK_IPA_1_IN",
+						      "QMI_MODEMS",
+						      "PDIP_1_OUT",
+						      "PDIP_1_IN";
 			};
 		};
 
