@@ -10,7 +10,7 @@
 	chassis-type = "handset";
 
 	chosen {
-		bootargs = "console=tty0 clk_ignore_unused pd_ignore_unused rootimg=PARTLABEL=userdata/media/0/data/rootfs.img root=/dev/loop0 mobile.root=/dev/loop0";
+		bootargs = "console=tty0 clk_ignore_unused pd_ignore_unused root=PARTLABEL=userdata rootwait rw splash";
 	};
 
 	vreg_tsp_3p0: regulator-tsp-3p0 {
