@@ -35,17 +35,25 @@ jobs:
         run: |
           make -j$(nproc) Image.gz dtbs modules
 
-      - name: Install Modules and Generate Initrd
+      - name: Build initramfs with kernel modules
         run: |
-          mkdir -p initramfs_staging
-          
-          make modules_install INSTALL_MOD_PATH=./initramfs_staging
-          
-          rm -f initramfs_staging/lib/modules/*/build
-          rm -f initramfs_staging/lib/modules/*/source
-          
-          cd initramfs_staging
-          find . | cpio -H newc -o | gzip -9 > ../initrd.img
+          set -euo pipefail
+
+          staging_dir="$PWD/initramfs_staging"
+          kernel_release="$(make -s kernelrelease)"
+          rm -rf "$staging_dir"
+          mkdir -p "$staging_dir"
+
+          make modules_install INSTALL_MOD_PATH="$staging_dir"
+
+          # Remove build-tree links; keep the installed modules and depmod metadata.
+          rm -f "$staging_dir/lib/modules/$kernel_release/build" \
+                "$staging_dir/lib/modules/$kernel_release/source"
+
+          test -n "$(find "$staging_dir/lib/modules/$kernel_release" -type f -name '*.ko*' -print -quit)"
+
+          # Pack the staged /lib/modules tree into a compressed newc initramfs.
+          (cd "$staging_dir" && find . -print0 | cpio --null --quiet -o -H newc) | gzip -9 > initramfs.img
 
       - name: Upload Kernel Image (Image.gz)
         uses: actions/upload-artifact@v4
@@ -59,8 +67,8 @@ jobs:
           name: sm8250-dtbs
           path: arch/arm64/boot/dts/qcom/sm8250*.dtb
 
-      - name: Upload Initrd (initrd.img)
+      - name: Upload Initramfs (initramfs.img)
         uses: actions/upload-artifact@v4
         with:
-          name: sm8250-initrd
-          path: initrd.img
+          name: sm8250-initramfs
+          path: initramfs.img
