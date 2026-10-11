@@ -8,11 +8,47 @@
 	model = "Samsung Galaxy S20 FE";
 	compatible = "samsung,r8q", "qcom,sm8250";
 	chassis-type = "handset";
+};
 
-	chosen {
-		bootargs = "";
-	};
+&adsp {
+	firmware-name = "qcom/sm8250/Samsung/r8q/adsp.mbn";
+	status = "okay";
+};
 
+&cdsp {
+	firmware-name = "qcom/sm8250/Samsung/r8q/cdsp.mbn";
+	status = "okay";
+};
+
+&slpi {
+	firmware-name = "qcom/sm8250/Samsung/r8q/slpi.mbn";
+	status = "okay";
+};
+
+&gmu {
+	status = "okay";
+};
+
+&gpu {
+	status = "okay";
+};
+
+&gpu_zap_shader {
+	/*
+	 * Samsung-signed zap segments; the DT memory-region (gpu_mem
+	 * carveout) is IGNORED at runtime via msm.r8q_zap_dyn=1 -- loading
+	 * the zap at the carveout makes Samsung TZ hard-reset the SoC.
+	 */
+	firmware-name = "qcom/sm8250/a650_zap.mbn";
+};
+
+/ {
+	/*
+	 * TSP power: discrete LDO switched by TLMM 92 (downstream
+	 * "tsp_ldo_en", fragment@177). The PMIC-LDO touch supplies seen in
+	 * the qcom reference dtbo (st_fts@49 on se13) are NOT wired on r8q.
+	 * always-on for bring-up so the bus can be probed at any time.
+	 */
 	vreg_tsp_3p0: regulator-tsp-3p0 {
 		compatible = "regulator-fixed";
 		regulator-name = "tsp_ldo_en";
@@ -23,6 +59,30 @@
 		regulator-always-on;
 	};
 
+	/*
+	 * Camera power, rear telephoto module (downstream "RCAM3_LDO_EN",
+	 * fragment@184). Like the TSP rail this is a discrete LDO switched by a
+	 * TLMM pin, not a PMIC output: the stock cam-sensor node takes only
+	 * cam_vio from the PMIC (pm8150L L7, 1.8 V) and gets analog + core off
+	 * this one enable line. 2.8 V is the module's AVDD; the sensor driver
+	 * never reads the voltage back, it only needs the enable.
+	 */
+	vreg_cam_tele: regulator-cam-tele {
+		compatible = "regulator-fixed";
+		regulator-name = "rcam3_ldo_en";
+		regulator-min-microvolt = <2800000>;
+		regulator-max-microvolt = <2800000>;
+		gpio = <&tlmm 135 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		startup-delay-us = <1000>;
+	};
+
+	/*
+	 * EB-BG781ABY pack (4500 mAh typ). The MAX77705 charger driver only
+	 * consumes voltage-max-design (it programs that as the CV float target);
+	 * the rest is informational. 4350 mV float is a conservative, standard
+	 * Li-ion CV -- below Samsung's stock 4380 mV -- for first bring-up.
+	 */
 	battery: battery {
 		compatible = "simple-battery";
 		voltage-max-design-microvolt = <4350000>;
@@ -32,11 +92,222 @@
 		constant-charge-voltage-max-microvolt = <4350000>;
 		constant-charge-current-max-microamp = <1500000>;
 	};
+};
 
+/* SE5 has its FIFO interface disabled by firmware -- i2c5 is GPI-DMA-only. */
+&gpi_dma0 {
+	status = "okay";
+};
+
+&qupv3_id_0 {
+	status = "okay";
+};
+
+&i2c5 {
+	status = "okay";
+
+	/*
+	 * r8q ships two TSP variants (downstream fragment@178 on
+	 * qupv3_se5_i2c, both status "ok"): a Zinitix ZT7650 at 0x20 and an
+	 * STM FTS5CU56A at 0x49. Only the fitted one ACKs, so both nodes stay
+	 * enabled and each driver checks for its own chip before registering
+	 * anything (patches/0007 adds that check to zinitix; fts5cu56a always
+	 * had one). THIS unit is the STM; the Zinitix path is untested.
+	 *
+	 * Zinitix ZT7650 (needs patches/0007 -- the mainline zinitix driver
+	 * knows the BT4xx/BT5xx generation only). Stock DT values:
+	 * zinitix,x_resolution = <1080>, y_resolution = <2400> -- this
+	 * controller reports panel pixels rather than raw counts, and the
+	 * driver uses these only to size the input axes (unlike the BT5xx
+	 * path it does not program them into the chip). No zinitix,mode:
+	 * point mode is 0 on this generation and the driver defaults to it.
+	 * IRQ flags are the stock ones (irq_type 0x2008 = ONESHOT|LEVEL_LOW).
+	 *
+	 * The gpio15 pinctrl state lives here rather than on both nodes
+	 * because two devices cannot claim the same pin group; a failed
+	 * zinitix probe releases it again for the STM.
+	 */
+	touchscreen@20 {
+		compatible = "zinitix,zt7650";
+		reg = <0x20>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+		vcca-supply = <&vreg_tsp_3p0>;
+		vdd-supply = <&vreg_tsp_3p0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&ts_int_default>;
+		touchscreen-size-x = <1080>;
+		touchscreen-size-y = <2400>;
+	};
+
+	touchscreen@49 {
+		compatible = "samsung,fts5cu56a";
+		reg = <0x49>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+		avdd-supply = <&vreg_tsp_3p0>;
+		vdd-supply = <&vreg_tsp_3p0>;
+		/*
+		 * NO touchscreen-size: the IC reports 0-4095 full-scale
+		 * coordinates (downstream stm,max_coords), not pixels.
+		 * Adding size-x/y 1080/2400 clamped the axes and broke GNOME
+		 * touch mapping (verified live: worked without, broke with).
+		 */
+	};
+};
+
+&i2c0 {
+	/*
+	 * SE0 (qupv3_se0_i2c) carries the Maxim MAX77705 companion PMIC:
+	 * charger/MUIC @0x66, and the ModelGauge m5 fuel gauge @0x36.
+	 * For now only the fuel gauge is wired up -- read-only capacity /
+	 * voltage via power-supply sysfs (maxim,max77705-battery is handled
+	 * by the mainline max17042_battery driver). The max77705 MFD + charger
+	 * are not in the config yet, so no charging control here.
+	 * i2c-qcom-geni runs with r8q_force_fifo=1 globally, so SE0 uses the
+	 * same FIFO-command + SE-DMA data path that makes SE5 (touch) work.
+	 */
+	status = "okay";
+
+	/*
+	 * MAX77705 top PMIC / MUIC + charger. This unit reports silicon rev
+	 * PASS2 (0x2); mainline mfd/max77705.c only whitelisted PASS3, so it
+	 * needs the r8q PASS2-accept patch (patches/0005) to probe. IRQ is on
+	 * pm8150L gpio11, level-low (from the stock DT: irq-gpio pm8150l 0xb).
+	 */
+	max77705: pmic@66 {
+		compatible = "maxim,max77705";
+		reg = <0x66>;
+		interrupt-parent = <&pm8150l_gpios>;
+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&max77705_int_default>;
+	};
+
+	max77705_charger: charger@69 {
+		compatible = "maxim,max77705-charger";
+		reg = <0x69>;
+		monitored-battery = <&battery>;
+		interrupt-parent = <&max77705>;
+		interrupts = <0>;
+	};
+
+	/*
+	 * ModelGauge fuel gauge -- left IRQ-less on purpose so the read-only
+	 * telemetry keeps working even if the charger/MFD above fails to probe
+	 * (the max17042 "Failed to get IRQ" dmesg lines are benign; it polls).
+	 */
+	fuel-gauge@36 {
+		compatible = "maxim,max77705-battery";
+		reg = <0x36>;
+		maxim,rsns-microohm = <5000>;
+	};
+};
+
+&tlmm {
+	ts_int_default: ts-int-default-state {
+		pins = "gpio15";
+		function = "gpio";
+		bias-disable;
+	};
+
+	/* QCA6390 WiFi/BT enable lines (driven by the qca6390-pmu). */
+	wlan_en_state: wlan-en-state {
+		pins = "gpio90";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	bt_en_state: bt-en-state {
+		pins = "gpio76";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	/*
+	 * Rear telephoto camera: MCLK3 on gpio97, XSHUTDOWN on gpio78, module
+	 * LDO enable on gpio135. Drive strengths are the stock ones
+	 * (fragment@123 raises the MCLK pin to 4 mA; everything else stays at
+	 * the 2 mA the base DT uses).
+	 */
+	cam_tele_default: cam-tele-default-state {
+		mclk-pins {
+			pins = "gpio97";
+			function = "cam_mclk";
+			drive-strength = <4>;
+			bias-disable;
+		};
+
+		rst-pins {
+			pins = "gpio78";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+
+		ldo-pins {
+			pins = "gpio135";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+};
+
+&pm8150l_gpios {
+	max77705_int_default: max77705-int-default-state {
+		pins = "gpio11";
+		function = "normal";
+		input-enable;
+		bias-disable;
+		power-source = <0>;
+	};
+};
+
+/*
+ * WiFi: QCA6390 over PCIe0 + ath11k. The qca6390-pmu power-sequences the chip
+ * (POWER_SEQUENCING_QCOM_WCN) off the sm8250 rails and drives WLAN_EN (gpio90)
+ * / BT_EN (gpio76), exposing the on-chip LDOs that feed the wifi@0 endpoint.
+ * r8q GPIOs are from the stock DT (wl-en 0x5a, bt-en 0x4c).
+ */
+&pcie0 {
+	status = "okay";
+};
+
+&pcie0_phy {
+	vdda-phy-supply = <&vreg_l5a_0p88>;
+	vdda-pll-supply = <&vreg_l9a_1p2>;
+	status = "okay";
+};
+
+&pcieport0 {
+	wifi@0 {
+		compatible = "pci17cb,1101";
+		reg = <0x10000 0x0 0x0 0x0 0x0>;
+
+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+		vddaon-supply = <&vreg_pmu_aon_0p59>;
+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+	};
+};
+
+/ {
 	qca6390_pmu: qca6390-pmu {
 		compatible = "qcom,qca6390-pmu";
+
 		pinctrl-names = "default";
 		pinctrl-0 = <&wlan_en_state>, <&bt_en_state>;
+
 		vddaon-supply = <&vreg_s6a_0p95>;
 		vddpmu-supply = <&vreg_s6a_0p95>;
 		vddrfa0p95-supply = <&vreg_s6a_0p95>;
@@ -45,8 +316,10 @@
 		vddpcie1p3-supply = <&vreg_s8c_1p35>;
 		vddpcie1p9-supply = <&vreg_s5a_1p9>;
 		vddio-supply = <&vreg_s4a_1p8>;
+
 		wlan-enable-gpios = <&tlmm 90 GPIO_ACTIVE_HIGH>;
 		bt-enable-gpios = <&tlmm 76 GPIO_ACTIVE_HIGH>;
+
 		regulators {
 			vreg_pmu_rfa_cmn: ldo0 {
 				regulator-name = "vreg_pmu_rfa_cmn";
@@ -80,17 +353,190 @@
 			};
 		};
 	};
+};
 
-	vreg_cam_tele: regulator-cam-tele {
-		compatible = "regulator-fixed";
-		regulator-name = "rcam3_ldo_en";
-		regulator-min-microvolt = <2800000>;
-		regulator-max-microvolt = <2800000>;
-		gpio = <&tlmm 135 GPIO_ACTIVE_HIGH>;
-		enable-active-high;
-		startup-delay-us = <1000>;
+/*
+ * r8q CAMERA (session 5m).
+ *
+ * The stock dtbo describes four modules, all with their own MCLK, XSHUTDOWN and
+ * discrete module LDO, and all sharing cam_vio on pm8150L L7:
+ *
+ *   fragment@181 &cam_cci0  cam-sensor0 rear wide   CSIPHY0  cci0 m0  MCLK0 gpio94
+ *                           cam-sensor1 front       CSIPHY3  cci0 m1  MCLK2 gpio96 (24 MHz)
+ *   fragment@183 &i2c2      cam-sensor2 rear uw     CSIPHY1  0x2d     MCLK1 gpio95
+ *   fragment@184 &i2c10     cam-sensor3 rear tele   CSIPHY2  0x21     MCLK3 gpio97
+ *
+ * The two rear auxiliaries hang off ordinary QUP I2C rather than CCI, which is
+ * why they carry a slave-addr in the DT while the CCI pair does not (Qualcomm's
+ * downstream camera stack gets those addresses from userspace).
+ *
+ * Only the telephoto is wired up here: it is the one module whose sensor has an
+ * in-tree driver. It is an SK hynix Hi-847 (8 MP, 4-lane D-PHY, SGRBG10), and
+ * the giveaway is that the stock node clocks MCLK3 at exactly 19.2 MHz, which is
+ * the only rate drivers/media/i2c/hi847.c accepts. That driver was written for
+ * an ACPI/IPU6 laptop, so patches/0008 teaches it device tree: an of_match
+ * entry, the reset GPIO, the supplies and the MCLK.
+ *
+ * The other three (Sony IMX555 wide, Samsung S5K2LA ultra-wide, front) have no
+ * mainline driver yet.
+ */
+&camss {
+	status = "okay";
+
+	vdda-phy-supply = <&vreg_l5a_0p88>;
+	vdda-pll-supply = <&vreg_l9a_1p2>;
+
+	ports {
+		port@2 {
+			csiphy2_ep: endpoint {
+				clock-lanes = <7>;
+				data-lanes = <0 1 2 3>;
+				remote-endpoint = <&hi847_ep>;
+			};
+		};
 	};
+};
 
+/*
+ * Autofocus actuators. Both live on cci1 master 1: the rear wide's at 0x0c and
+ * the rear telephoto's at 0x0f (stock slave-addr 0x18 and 0x1e, shifted down).
+ *
+ * Both are AK7375 register-compatible, established by write/readback on the
+ * live bus rather than by guessing: register 0x02 reads back 0x40, which is
+ * AK7375's STANDBY bit, goes to 0x00 when ACTIVE is written, and a position
+ * written to 0x00/0x01 as pos<<4 reads back exactly. Neither the DW9714 nor the
+ * DW9807 protocol gets any response.
+ *
+ * Only the telephoto's is wired up, since that is the only lens with a working
+ * sensor driver so far.
+ */
+&cci1_i2c1 {
+	cam_af_tele: focus@f {
+		compatible = "asahi-kasei,ak7375";
+		reg = <0x0f>;
+
+		vdd-supply = <&vreg_l10a_2p8>;	/* stock cam_vaf */
+		vio-supply = <&vreg_l7c_1p8>;	/* stock cam_vio */
+	};
+};
+
+/* SE10 (qupv3_se10_i2c) is the rear telephoto's control bus. */
+&gpi_dma1 {
+	status = "okay";
+};
+
+&qupv3_id_1 {
+	status = "okay";
+};
+
+&i2c10 {
+	clock-frequency = <400000>;
+	status = "okay";
+
+	camera@21 {
+		compatible = "hynix,hi847";
+		reg = <0x21>;
+
+		clocks = <&camcc CAM_CC_MCLK3_CLK>;
+		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>;
+		assigned-clock-rates = <19200000>;
+
+		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
+
+		/*
+		 * The MCLK branch lives inside camcc's TITAN_TOP domain. With
+		 * that domain off, enabling cam_cc_mclk3_clk gets
+		 * "status stuck at 'off'" and -EBUSY, so the sensor has to be a
+		 * genpd consumer in its own right rather than relying on CAMSS
+		 * happening to have powered the domain up first.
+		 */
+		power-domains = <&camcc TITAN_TOP_GDSC>;
+
+		/*
+		 * avdd and dvdd are the same enable line -- the module carries
+		 * its own LDO and the stock node only ever switches it on.
+		 */
+		vddio-supply = <&vreg_l7c_1p8>;
+		avdd-supply = <&vreg_cam_tele>;
+		dvdd-supply = <&vreg_cam_tele>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&cam_tele_default>;
+
+		lens-focus = <&cam_af_tele>;
+
+		orientation = <1>;	/* Back facing */
+		/*
+		 * The stock DT's sensor-position-roll is 0x5a, but Samsung's
+		 * convention is not V4L2's: 90 put the preview 180 degrees out
+		 * (user-verified on the panel). V4L2 wants the sensor's
+		 * clockwise rotation relative to the device's natural
+		 * orientation, which is 270 here.
+		 */
+		rotation = <270>;
+
+		port {
+			hi847_ep: endpoint {
+				/*
+				 * No clock-lanes here: v4l2_fwnode would see
+				 * lane 1 in both lists and fall back to
+				 * defaults ("duplicated lane 1 in
+				 * clock-lanes").
+				 */
+				data-lanes = <1 2 3 4>;
+				link-frequencies = /bits/ 64 <400000000 200000000>;
+				remote-endpoint = <&csiphy2_ep>;
+			};
+		};
+	};
+};
+
+/*
+ * Sensor identification nodes (session 5m).
+ *
+ * Nothing in Samsung's DT names the parts, and the two CCI modules do not even
+ * carry an I2C address there -- Qualcomm's stack takes both from userspace. A
+ * sensor will not ACK until its rails are on, MCLK is running and XSHUTDOWN is
+ * released, so identifying one needs a driver. tools/camprobe is that driver:
+ * these nodes give it a module's power resources and a list of addresses to
+ * try, and it prints what answers at each.
+ *
+ * It is built out-of-tree and never autoloads, so these nodes sit unbound and
+ * completely inert until r8q-camprobe.ko is insmodded by hand. Loading it
+ * powers a camera module up for a few hundred milliseconds and puts it back
+ * down.
+ *
+ * The rear WIDE module is deliberately missing: its LDO enable is TLMM 32,
+ * which the wcd938x node currently claims as the codec reset. That pin
+ * assignment came from sm8250-mtp.dts and is almost certainly wrong for r8q --
+ * the stock dtbo's own cam-sensor0 labels gpio32 "RCAM1_LDO_EN", while the
+ * downstream codec's msm_cdc_pinctrl node has empty pinctrl lists, i.e. it
+ * drives no TLMM pin at all. Worth revisiting when audio is picked up again;
+ * until then the two must not both claim the pin.
+ */
+&cci0 {
+	status = "okay";
+};
+
+/*
+ * cci1 carries the autofocus actuators and the calibration EEPROMs
+ * (stock fragment@182). The rear telephoto's VCM is qcom,actuator2 at
+ * slave-addr 0x1e on cci-master 1 -- 0x0f once shifted down, if that field is
+ * 8-bit here as it is for the OIS (reg 0x51 / slave-addr 0xa2). The rear wide's
+ * is 0x18, i.e. 0x0c, which is the canonical VCM address, so the shift is
+ * probably right; the prober below settles it rather than guessing.
+ */
+&cci1 {
+	status = "okay";
+};
+
+&i2c2 {
+	clock-frequency = <400000>;
+	status = "okay";
+};
+
+/ {
+	/* Rear ultra-wide module LDO, downstream "RCAM2_LDO_EN". */
 	vreg_cam_uw: regulator-cam-uw {
 		compatible = "regulator-fixed";
 		regulator-name = "rcam2_ldo_en";
@@ -101,6 +547,7 @@
 		startup-delay-us = <1000>;
 	};
 
+	/* Front module LDO, downstream "FCAM_LDO_EN". */
 	vreg_cam_front: regulator-cam-front {
 		compatible = "regulator-fixed";
 		regulator-name = "fcam_ldo_en";
@@ -114,146 +561,65 @@
 	cam_probe_uw: cam-probe-uw {
 		compatible = "r8q,cam-probe";
 		i2c-bus = <&i2c2>;
+		/* 0x2d is what the stock slave-addr 0x5a shifts down to. */
 		r8q,addresses = <0x2d 0x10 0x1a 0x20 0x21 0x34 0x36>;
+
 		clocks = <&camcc CAM_CC_MCLK1_CLK>;
 		assigned-clocks = <&camcc CAM_CC_MCLK1_CLK>;
 		assigned-clock-rates = <19200000>;
+
 		reset-gpios = <&tlmm 125 GPIO_ACTIVE_LOW>;
 		power-domains = <&camcc TITAN_TOP_GDSC>;
+
 		vddio-supply = <&vreg_l7c_1p8>;
 		avdd-supply = <&vreg_cam_uw>;
 		dvdd-supply = <&vreg_cam_uw>;
+
 		pinctrl-names = "default";
 		pinctrl-0 = <&cam_uw_default>;
+	};
+
+	/*
+	 * Autofocus actuator prober. No MCLK -- a VCM has none -- and no
+	 * 16-bit register map either, so this leans on camprobe's bare-read
+	 * fallback to answer "is anything at this address".
+	 */
+	cam_probe_af: cam-probe-af {
+		/* Superseded by the ak7375 node above; keep for re-probing. */
+		status = "disabled";
+		compatible = "r8q,cam-probe";
+		i2c-bus = <&cci1_i2c1>;
+		r8q,addresses = <0x0c 0x0f 0x0e 0x18 0x1e 0x3d 0x76>;
+
+		power-domains = <&camcc TITAN_TOP_GDSC>;
+
+		vddio-supply = <&vreg_l7c_1p8>;	/* stock cam_vio  */
+		avdd-supply = <&vreg_l10a_2p8>;	/* stock cam_vaf  */
+		dvdd-supply = <&vreg_l7c_1p8>;
 	};
 
 	cam_probe_front: cam-probe-front {
 		compatible = "r8q,cam-probe";
 		i2c-bus = <&cci0_i2c1>;
 		r8q,addresses = <0x10 0x1a 0x2d 0x20 0x21 0x34 0x36>;
+
 		clocks = <&camcc CAM_CC_MCLK2_CLK>;
 		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
 		assigned-clock-rates = <24000000>;
+
 		reset-gpios = <&tlmm 30 GPIO_ACTIVE_LOW>;
 		power-domains = <&camcc TITAN_TOP_GDSC>;
+
 		vddio-supply = <&vreg_l7c_1p8>;
 		avdd-supply = <&vreg_cam_front>;
 		dvdd-supply = <&vreg_l3c_1p056>;
+
 		pinctrl-names = "default";
 		pinctrl-0 = <&cam_front_default>;
 	};
 };
 
-&adsp {
-	firmware-name = "qcom/sm8250/Samsung/r8q/adsp.mbn";
-	status = "okay";
-};
-
-&cdsp {
-	firmware-name = "qcom/sm8250/Samsung/r8q/cdsp.mbn";
-	status = "okay";
-};
-
-&slpi {
-	firmware-name = "qcom/sm8250/Samsung/r8q/slpi.mbn";
-	status = "okay";
-};
-
-&gmu {
-	status = "okay";
-};
-
-&gpu {
-	status = "okay";
-};
-
-&gpu_zap_shader {
-	firmware-name = "qcom/sm8250/Samsung/r8q/a650_zap.mbn";
-};
-
-&i2c0 {
-	status = "okay";
-
-	max77705: pmic@66 {
-		compatible = "maxim,max77705";
-		reg = <0x66>;
-		interrupt-parent = <&pm8150l_gpios>;
-		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-		interrupt-controller;
-		#interrupt-cells = <1>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&max77705_int_default>;
-	};
-
-	max77705_charger: charger@69 {
-		compatible = "maxim,max77705-charger";
-		reg = <0x69>;
-		monitored-battery = <&battery>;
-		interrupt-parent = <&max77705>;
-		interrupts = <0>;
-	};
-
-	fuel-gauge@36 {
-		compatible = "maxim,max77705-battery";
-		reg = <0x36>;
-		maxim,rsns-microohm = <5000>;
-	};
-};
-
-&pm8150l_gpios {
-	max77705_int_default: max77705-int-default-state {
-		pins = "gpio11";
-		function = "normal";
-		input-enable;
-		bias-disable;
-		power-source = <0>;
-	};
-};
-
 &tlmm {
-	wlan_en_state: wlan-en-state {
-		pins = "gpio90";
-		function = "gpio";
-		drive-strength = <2>;
-		bias-disable;
-	};
-
-	bt_en_state: bt-en-state {
-		pins = "gpio76";
-		function = "gpio";
-		drive-strength = <2>;
-		bias-disable;
-	};
-
-	ts_int_default: ts-int-default-state {
-		pins = "gpio15";
-		function = "gpio";
-		bias-disable;
-	};
-
-	cam_tele_default: cam-tele-default-state {
-		mclk-pins {
-			pins = "gpio97";
-			function = "cam_mclk";
-			drive-strength = <4>;
-			bias-disable;
-		};
-
-		rst-pins {
-			pins = "gpio78";
-			function = "gpio";
-			drive-strength = <2>;
-			bias-disable;
-		};
-
-		ldo-pins {
-			pins = "gpio135";
-			function = "gpio";
-			drive-strength = <2>;
-			bias-disable;
-		};
-	};
-
 	cam_uw_default: cam-uw-default-state {
 		mclk-pins {
 			pins = "gpio95";
@@ -299,160 +665,4 @@
 			bias-disable;
 		};
 	};
-};
-
-&pcie0 {
-	status = "okay";
-};
-
-&pcie0_phy {
-	vdda-phy-supply = <&vreg_l5a_0p88>;
-	vdda-pll-supply = <&vreg_l9a_1p2>;
-	status = "okay";
-};
-
-&pcieport0 {
-	wifi@0 {
-		compatible = "pci17cb,1101";
-		reg = <0x10000 0x0 0x0 0x0 0x0>;
-		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-		vddaon-supply = <&vreg_pmu_aon_0p59>;
-		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-	};
-};
-
-&gpi_dma0 {
-	status = "okay";
-};
-
-&qupv3_id_0 {
-	status = "okay";
-};
-
-&i2c5 {
-	status = "okay";
-	qcom,disable-gpi-dma;
-
-	touchscreen@20 {
-		compatible = "zinitix,zt7650";
-		reg = <0x20>;
-		interrupt-parent = <&tlmm>;
-		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-		vcca-supply = <&vreg_tsp_3p0>;
-		vdd-supply = <&vreg_tsp_3p0>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&ts_int_default>;
-		touchscreen-size-x = <1080>;
-		touchscreen-size-y = <2400>;
-	};
-
-	touchscreen@49 {
-		compatible = "samsung,fts5cu56a";
-		reg = <0x49>;
-		interrupt-parent = <&tlmm>;
-		interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
-		avdd-supply = <&vreg_tsp_3p0>;
-		vdd-supply = <&vreg_tsp_3p0>;
-	};
-};
-
-&camss {
-	status = "okay";
-	vdda-phy-supply = <&vreg_l5a_0p88>;
-	vdda-pll-supply = <&vreg_l9a_1p2>;
-	ports {
-		port@2 {
-			csiphy2_ep: endpoint {
-				clock-lanes = <7>;
-				data-lanes = <0 1 2 3>;
-				remote-endpoint = <&hi847_ep>;
-			};
-		};
-	};
-};
-
-&cci1_i2c1 {
-	cam_af_tele: focus@f {
-		compatible = "asahi-kasei,ak7375";
-		reg = <0x0f>;
-		vdd-supply = <&vreg_l10a_2p8>;
-		vio-supply = <&vreg_l7c_1p8>;
-	};
-};
-
-&gpi_dma1 {
-	status = "okay";
-};
-
-&qupv3_id_1 {
-	status = "okay";
-};
-
-&i2c10 {
-	clock-frequency = <400000>;
-	status = "okay";
-
-	camera@21 {
-		compatible = "hynix,hi847";
-		reg = <0x21>;
-		clocks = <&camcc CAM_CC_MCLK3_CLK>;
-		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>;
-		assigned-clock-rates = <19200000>;
-		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
-		power-domains = <&camcc TITAN_TOP_GDSC>;
-		vddio-supply = <&vreg_l7c_1p8>;
-		avdd-supply = <&vreg_cam_tele>;
-		dvdd-supply = <&vreg_cam_tele>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&cam_tele_default>;
-		lens-focus = <&cam_af_tele>;
-		orientation = <1>;
-		rotation = <270>;
-		port {
-			hi847_ep: endpoint {
-				bus-type = <4>;
-				data-lanes = <1 2 3 4>;
-				link-frequencies = /bits/ 64 <400000000 200000000>;
-				remote-endpoint = <&csiphy2_ep>;
-			};
-		};
-	};
-};
-
-&cci0 {
-	status = "okay";
-};
-
-&cci1 {
-	status = "okay";
-};
-
-&i2c2 {
-	clock-frequency = <400000>;
-	status = "okay";
-};
-
-&uart6 {
-	status = "okay";
-
-	bluetooth {
-		compatible = "qcom,qca6390-bt";
-
-		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-		vddaon-supply = <&vreg_pmu_aon_0p59>;
-		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-	};
-};
-
-&big_cpu_sleep_0 {
-	status = "disabled";
 };
