@@ -5,8 +5,10 @@
 #include "sm8250-samsung-common.dtsi"
 
 / {
-	model = "Samsung Galaxy S20 FE";
+	model = "Samsung Galaxy S20 FE 5G";
 	compatible = "samsung,r8q", "qcom,sm8250";
+	qcom,msm-id = <0x164 0x20001>;
+	qcom,board-id = <0x00 0x00>;
 	chassis-type = "handset";
 };
 
@@ -533,6 +535,25 @@
 &i2c2 {
 	clock-frequency = <400000>;
 	status = "okay";
+};
+
+&uart6 {
+	status = "okay";
+
+	bluetooth {
+		compatible = "qcom,qca6390-bt";
+
+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+		vddaon-supply = <&vreg_pmu_aon_0p59>;
+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
+	};
+};
+
+&big_cpu_sleep_0 {
+	status = "disabled";
 };
 
 / {
