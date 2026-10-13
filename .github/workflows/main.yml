@@ -33,6 +33,7 @@ jobs:
           # 2. Merge the sm8250 specific configuration fragment
           # NOTE: Adjust the path below if sm8250.config is located somewhere else in your repo
           ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/sm8250.config
+          ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/r8q.config
           
           # 3. Validate and apply the merged configuration
           make olddefconfig
