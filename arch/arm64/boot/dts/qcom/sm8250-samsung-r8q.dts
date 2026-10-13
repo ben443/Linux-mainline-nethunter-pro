@@ -10,6 +10,10 @@
 	qcom,msm-id = <0x164 0x20001>;
 	qcom,board-id = <0x00 0x00>;
 	chassis-type = "handset";
+
+	aliases {
+		serial0 = &uart6;
+	};
 };
 
 &adsp {
@@ -96,7 +100,10 @@
 	};
 };
 
-/* SE5 has its FIFO interface disabled by firmware -- i2c5 is GPI-DMA-only. */
+/*
+ * SE5 has its FIFO interface disabled and its GPI channels owned by TrustZone.
+ * The GENI I2C driver therefore uses its r8q SE-DMA workaround for this bus.
+ */
 &gpi_dma0 {
 	status = "okay";
 };
@@ -166,8 +173,8 @@
 	 * voltage via power-supply sysfs (maxim,max77705-battery is handled
 	 * by the mainline max17042_battery driver). The max77705 MFD + charger
 	 * are not in the config yet, so no charging control here.
-	 * i2c-qcom-geni runs with r8q_force_fifo=1 globally, so SE0 uses the
-	 * same FIFO-command + SE-DMA data path that makes SE5 (touch) work.
+	 * i2c-qcom-geni automatically uses FIFO commands with SE-DMA data on r8q,
+	 * so SE0 takes the same path that makes SE5 (touch) work.
 	 */
 	status = "okay";
 
