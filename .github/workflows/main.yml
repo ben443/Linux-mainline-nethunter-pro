@@ -36,6 +36,8 @@ jobs:
           ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/r8q.config
           
           # 3. Validate and apply the merged configuration
+          # The device config references a machine-local initramfs unavailable in CI.
+          ./scripts/config --file .config --set-str INITRAMFS_SOURCE ""
           make olddefconfig
 
       - name: Compile Kernel and DTBs
