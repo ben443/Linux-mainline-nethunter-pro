@@ -118,6 +118,7 @@ struct geni_i2c_dev {
 	struct dma_chan *rx_c;
 	bool no_dma;
 	bool gpi_mode;
+	bool force_se_dma;
 	bool abort_done;
 	bool is_tx_multi_desc_xfer;
 	u32 num_msgs;
@@ -448,7 +449,8 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
 	size_t len = msg->len;
 	struct i2c_msg *cur;
 
-	dma_buf = gi2c->no_dma ? NULL : i2c_get_dma_safe_msg_buf(msg, 32);
+	dma_buf = gi2c->no_dma ? NULL :
+		  i2c_get_dma_safe_msg_buf(msg, gi2c->force_se_dma ? 1 : 32);
 	if (dma_buf)
 		geni_se_select_mode(se, GENI_SE_DMA);
 	else
@@ -487,7 +489,8 @@ static int geni_i2c_tx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
 	size_t len = msg->len;
 	struct i2c_msg *cur;
 
-	dma_buf = gi2c->no_dma ? NULL : i2c_get_dma_safe_msg_buf(msg, 32);
+	dma_buf = gi2c->no_dma ? NULL :
+		  i2c_get_dma_safe_msg_buf(msg, gi2c->force_se_dma ? 1 : 32);
 	if (dma_buf)
 		geni_se_select_mode(se, GENI_SE_DMA);
 	else
@@ -1005,6 +1008,11 @@ static int geni_i2c_probe(struct platform_device *pdev)
 
 	gi2c->se.dev = dev;
 	gi2c->se.wrapper = dev_get_drvdata(dev->parent);
+	/*
+	 * Samsung firmware leaves the r8q GPI channels owned by TrustZone and
+	 * disables FIFO writes. Use the serial engine DMA path for all messages.
+	 */
+	gi2c->force_se_dma = of_machine_is_compatible("samsung,r8q");
 	gi2c->se.base = devm_platform_ioremap_resource(pdev, 0);
 	if (IS_ERR(gi2c->se.base))
 		return PTR_ERR(gi2c->se.base);
@@ -1099,7 +1107,9 @@ static int geni_i2c_probe(struct platform_device *pdev)
 		fifo_disable = false;
 		gi2c->no_dma = true;
 	} else {
-		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
+		fifo_disable = !gi2c->force_se_dma &&
+			(readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) &
+			 FIFO_IF_DISABLE);
 	}
 
 	if (fifo_disable) {

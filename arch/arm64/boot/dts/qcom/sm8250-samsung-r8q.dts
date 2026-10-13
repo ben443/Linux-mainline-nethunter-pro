@@ -10,6 +10,10 @@
 	qcom,msm-id = <0x164 0x20001>;
 	qcom,board-id = <0x00 0x00>;
 	chassis-type = "handset";
+
+	aliases {
+		serial0 = &uart6;
+	};
 };
 
 &adsp {
