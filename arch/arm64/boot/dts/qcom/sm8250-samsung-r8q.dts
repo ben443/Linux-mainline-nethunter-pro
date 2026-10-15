@@ -16,6 +16,11 @@
 	};
 };
 
+&usb_1_dwc3 {
+	dr_mode = "otg";
+	usb-role-switch;
+};
+
 &adsp {
 	firmware-name = "qcom/sm8250/Samsung/r8q/adsp.mbn";
 	status = "okay";
