@@ -1249,9 +1249,18 @@ config TOUCHSCREEN_STMFTS
 	  To compile this driver as a module, choose M here: the
 	  module will be called stmfts.
 
+config TOUCHSCREEN_FTS5CU56A
+	  tristate "Samsung FTS5CU56A touchscreen"
+	  depends on I2C
+	  help
+	    Say Y here to support the FTS5CU56A touchscreen controller using
+	    Samsung's TSP protocol, as found in Samsung r8q devices. The
+	    driver verifies the controller ID before registering its input
+	    device, so an absent alternate touchscreen variant is ignored.
+
 config TOUCHSCREEN_STMPE
-	tristate "STMicroelectronics STMPE touchscreens"
-	depends on MFD_STMPE
+	  tristate "STMicroelectronics STMPE touchscreens"
+	  depends on MFD_STMPE
 	depends on OF
 	help
 	  Say Y here if you want support for STMicroelectronics
@@ -1392,8 +1401,8 @@ config TOUCHSCREEN_ZINITIX
 	tristate "Zinitix touchscreen support"
 	depends on I2C
 	help
-	  Say Y here if you have a touchscreen using Zinitix bt541,
-	  or something similar enough.
+	  Say Y here if you have a touchscreen using a supported Zinitix
+	  BT4xx/BT5xx controller, the ZT7650, or something similar enough.
 
 	  If unsure, say N.
 
