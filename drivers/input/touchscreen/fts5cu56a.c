@@ -11,6 +11,7 @@
 #include <linux/interrupt.h>
 #include <linux/module.h>
 #include <linux/regulator/consumer.h>
+#include <linux/slab.h>
 
 #define FTS_READ_DEVICE_ID		0x22
 #define FTS_ID0				0x48
@@ -98,7 +99,7 @@ static int fts5cu56a_reset(struct fts5cu56a *ts)
 	if (ret)
 		return ret;
 
-	msleep(10);
+	usleep_range(10000, 11000);
 
 	return fts5cu56a_wait_ready(ts);
 }
@@ -107,7 +108,7 @@ static void fts5cu56a_report_event(struct fts5cu56a *ts, const u8 *event)
 {
 	u8 id = event[0] & 0x3;
 	u8 slot, action;
-	unsigned int x, y;
+	unsigned int x, y, pressure;
 
 	if (id != FTS_EV_COORDINATE)
 		return;
@@ -119,6 +120,7 @@ static void fts5cu56a_report_event(struct fts5cu56a *ts, const u8 *event)
 
 	x = (event[1] << 4) | (event[3] >> 4);
 	y = (event[2] << 4) | (event[3] & 0xf);
+	pressure = event[6] & 0x3f;
 
 	input_mt_slot(ts->input, slot);
 
@@ -129,8 +131,7 @@ static void fts5cu56a_report_event(struct fts5cu56a *ts, const u8 *event)
 		touchscreen_report_pos(ts->input, &ts->prop, x, y, true);
 		input_report_abs(ts->input, ABS_MT_TOUCH_MAJOR, event[4]);
 		input_report_abs(ts->input, ABS_MT_TOUCH_MINOR, event[5]);
-		input_report_abs(ts->input, ABS_MT_PRESSURE,
-				 event[6] & 0x3f);
+		input_report_abs(ts->input, ABS_MT_PRESSURE, pressure ?: 1);
 		break;
 	case FTS_ACT_RELEASE:
 		input_mt_report_slot_state(ts->input, MT_TOOL_FINGER, false);
@@ -205,7 +206,7 @@ static int fts5cu56a_hw_init(struct fts5cu56a *ts)
 	if (ret)
 		return ret;
 
-	msleep(10);
+	usleep_range(10000, 11000);
 
 	ret = fts5cu56a_write(ts, scan_on, sizeof(scan_on));
 	if (ret)
@@ -227,6 +228,9 @@ static int fts5cu56a_probe(struct i2c_client *client)
 {
 	struct fts5cu56a *ts;
 	int ret;
+
+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
+		return -EOPNOTSUPP;
 
 	ts = devm_kzalloc(&client->dev, sizeof(*ts), GFP_KERNEL);
 	if (!ts)

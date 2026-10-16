@@ -211,6 +211,7 @@ struct zinitix_zt_event {
 	u8	area;
 	u8	reserved[5];
 };
+
 static_assert(sizeof(struct zinitix_zt_event) == 16);
 
 struct bt541_ts_data {
