@@ -21,7 +21,7 @@
 	chassis-type = "handset";
 
 	aliases {
-		serial0 = &uart12;
+		serial0 = &uart6;
 	};
 
 	wcd938x: audio-codec {
@@ -821,9 +821,6 @@
 	status = "okay";
 };
 
-&uart12 {
-	status = "okay";
-};
 
 &ufs_mem_hc {
 	status = "okay";
@@ -895,4 +892,49 @@
 
 &wsamacro {
 	status = "okay";
+};
+
+&camss {
+	status = "okay";
+};
+
+&pcie2 {
+	status = "okay";
+};
+
+&pcie2_phy {
+	status = "okay";
+};
+
+&uart6 {
+	status = "okay";
+
+	bluetooth {
+		compatible = "qcom,wcn6855-bt";
+	};
+};
+
+/ {
+	wcn6855-pmu {
+		compatible = "qcom,wcn6855-pmu";
+
+		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
+		pinctrl-names = "default";
+	};
+};
+
+&tlmm {
+	bt_en_state: bt-en-state {
+		pins = "gpio21";
+		function = "gpio";
+		drive-strength = <16>;
+		bias-disable;
+	};
+
+	wlan_en_state: wlan-en-state {
+		pins = "gpio20";
+		function = "gpio";
+		drive-strength = <16>;
+		bias-pull-up;
+	};
 };
