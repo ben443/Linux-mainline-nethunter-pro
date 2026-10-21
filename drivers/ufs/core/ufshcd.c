@@ -8451,6 +8451,16 @@ static void ufshcd_wb_probe(struct ufs_hba *hba, const u8 *desc_buf)
 		return;
 
 	/*
+	 * The r8q UFS device rejects the current WriteBooster buffer-size
+	 * query. Disable WriteBooster before probing or enabling it.
+	 */
+	if (dev_info->wmanufacturerid == UFS_VENDOR_SAMSUNG &&
+	    of_machine_is_compatible("samsung,r8q")) {
+		dev_warn(hba->dev, "Disabling WriteBooster on r8q\n");
+		goto wb_disabled;
+	}
+
+	/*
 	 * Probe WB only for UFS-2.2 and UFS-3.1 (and later) devices or
 	 * UFS devices with quirk UFS_DEVICE_QUIRK_SUPPORT_EXTENDED_FEATURES
 	 * enabled
