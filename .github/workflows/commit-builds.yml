@@ -65,8 +65,10 @@ jobs:
 
           while IFS= read -r -d '' file; do
             if (( $(stat -c %s "$file") > 104857600 )); then
-              echo "::error::Artifact exceeds GitHub's 100 MiB file limit: $file"
-              exit 1
+              echo "Splitting artifact to fit GitHub's 100 MiB file limit: $file"
+              # Reassemble with: cat initramfs.img.part-* > initramfs.img
+              split --bytes=104857600 --numeric-suffixes --suffix-length=4 -- "$file" "$file.part-"
+              rm -- "$file"
             fi
           done < <(find "$ARTIFACT_DIR" -type f -print0)
 
