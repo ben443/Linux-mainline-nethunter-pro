@@ -2,10 +2,15 @@ name: Build Mainline Kernel (sm8250)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, kali/master ]
+    paths-ignore:
+      - 'builds/**'
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, kali/master ]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build-kernel:
@@ -50,9 +55,20 @@ jobs:
         with:
           name: sm8250-Image.gz
           path: arch/arm64/boot/Image.gz
+          if-no-files-found: error
 
       - name: Upload Device Tree Blobs (DTBs)
         uses: actions/upload-artifact@v4
         with:
           name: sm8250-dtbs
           path: arch/arm64/boot/dts/qcom/sm8250*.dtb
+          if-no-files-found: error
+
+  commit-builds:
+    needs: build-kernel
+    if: github.event_name != 'pull_request' && github.ref_type == 'branch'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/commit-builds.yml
+    with:
+      variant: kernel

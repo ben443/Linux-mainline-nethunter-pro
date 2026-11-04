@@ -24,6 +24,25 @@ All users should be familiar with:
 Documentation can be built with make htmldocs or viewed online at:
 https://www.kernel.org/doc/html/latest/
 
+Automated sm8250 build outputs
+-----------------------------
+
+Successful push builds on main, master, and kali/master, and manual branch
+builds, commit their artifacts back to the same branch:
+
+* builds/sm8250/kernel/: Image.gz and sm8250 DTBs from main.yml.
+* builds/sm8250/kernel-modules/: Image.gz, sm8250 DTBs, and initramfs.img
+  containing kernel modules from build.yaml.
+
+Each directory contains source-commit.txt identifying the built source.
+Workflow-run artifact downloads remain available. Pull-request builds never
+commit outputs. Artifact-only commits skip CI to prevent build loops.
+
+The publishing job uses GITHUB_TOKEN with contents: write; branch protection
+must permit its push. Outputs replace the previous files in each directory,
+but older binaries remain in Git history. Publishing fails if any individual
+file exceeds GitHub's 100 MiB limit; larger outputs need Git LFS or releases.
+
 
 Who Are You?
 ============

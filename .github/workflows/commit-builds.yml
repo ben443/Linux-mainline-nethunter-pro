@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: GPL-2.0-only
+name: Commit build outputs
+
+on:
+  workflow_call:
+    inputs:
+      variant:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commit-builds-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  commit:
+    if: github.event_name != 'pull_request' && github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          sparse-checkout: builds
+
+      - name: Download this run's build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: sm8250-*
+          merge-multiple: true
+          path: ${{ runner.temp }}/kernel-artifacts
+
+      - name: Commit and push build outputs
+        shell: bash
+        env:
+          BUILD_VARIANT: ${{ inputs.variant }}
+          ARTIFACT_DIR: ${{ runner.temp }}/kernel-artifacts
+          SOURCE_COMMIT: ${{ github.sha }}
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+
+          required_files=("$ARTIFACT_DIR/Image.gz")
+          case "$BUILD_VARIANT" in
+            kernel) ;;
+            kernel-modules) required_files+=("$ARTIFACT_DIR/initramfs.img") ;;
+            *) echo "::error::Unsupported build variant: $BUILD_VARIANT"; exit 1 ;;
+          esac
+          shopt -s nullglob
+          dtbs=("$ARTIFACT_DIR"/sm8250*.dtb)
+          if (( ${#dtbs[@]} == 0 )); then
+            echo "::error::No sm8250 DTBs were downloaded"
+            exit 1
+          fi
+          required_files+=("${dtbs[@]}")
+          for file in "${required_files[@]}"; do
+            if [[ ! -s "$file" ]]; then
+              echo "::error::Required artifact is missing or empty: $file"
+              exit 1
+            fi
+          done
+
+          while IFS= read -r -d '' file; do
+            if (( $(stat -c %s "$file") > 104857600 )); then
+              echo "::error::Artifact exceeds GitHub's 100 MiB file limit: $file"
+              exit 1
+            fi
+          done < <(find "$ARTIFACT_DIR" -type f -print0)
+
+          output_dir="builds/sm8250/$BUILD_VARIANT"
+          git rm -r --ignore-unmatch -- "$output_dir"
+          mkdir -p "$output_dir"
+          cp -a "$ARTIFACT_DIR/." "$output_dir/"
+          printf '%s\n' "$SOURCE_COMMIT" > "$output_dir/source-commit.txt"
+          git add --force -- "$output_dir"
+          if git diff --cached --quiet; then
+            echo "Build outputs are unchanged"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build: update sm8250 $BUILD_VARIANT outputs [skip ci]"
+          git pull --rebase origin "$TARGET_BRANCH"
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
