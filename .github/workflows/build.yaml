@@ -32,9 +32,7 @@ jobs:
 
       - name: Configure Kernel
         run: |
-          make defconfig
-          ./scripts/kconfig/merge_config.sh -m .config arch/arm64/configs/sm8250.config
-          make olddefconfig
+          make samsung_defconfig
 
       - name: Compile Kernel, DTBs, and Modules
         run: |
