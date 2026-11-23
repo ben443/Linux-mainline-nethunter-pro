@@ -33,7 +33,7 @@ jobs:
       - name: Configure Kernel
         run: |
           # 1. Generate the base configuration
-          make defconfig
+          make defconfig r8q.config
           
           # 2. Merge the sm8250 specific configuration fragment
           # NOTE: Adjust the path below if sm8250.config is located somewhere else in your repo
